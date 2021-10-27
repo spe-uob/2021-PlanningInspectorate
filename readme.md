@@ -1,6 +1,6 @@
-UoB Software Engineering Project
+# UoB Software Engineering Project
 
-Planning inspectorate project
+## Planning inspectorate project
 
 Tech Stack:
 - MySQL database
