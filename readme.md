@@ -7,4 +7,4 @@ Tech Stack:
 - Spring Boot backend 
 - React frontend
 
-![] (https://github.com/spe-uob/2021-PlanningInspectorate/blob/main/Pipeline.png)
+![] (https://github.com/spe-uob/2021-PlanningInspectorate/blob/main/Pipeline.png?raw=true)
