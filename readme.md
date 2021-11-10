@@ -7,4 +7,4 @@ Tech Stack:
 - Spring Boot backend 
 - React frontend
 
-
+![] (pipeline.png)
