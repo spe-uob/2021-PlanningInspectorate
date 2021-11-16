@@ -32,12 +32,15 @@ lorem ipsum....
 
 
 ### Create Consultation List:
-...
+![create consultation list mockup](https://github.com/spe-uob/2021-PlanningInspectorate/blob/375ad4ae7de0c7ce3651856469bc988c491268d0/Mockup_CreateConsultationList.png)
+- Image of logo that is a hyperlink back to **Home Page**
+- Text field explaining what the upload button does and what the output will be
+- Upload button that should allow the user to upload an excel file and then transfer that data to the backend for processing. This button should also cause a loading icon/display a loading screen before transfering to **Output Consultation List** once processing is done
 
 ### Output Consultation List:
 Below is a basic mock up of the final output page consisting of the consulting bodies and their respective emails. We also have two buttons that allow us to generate an update database link and a view database option 
 
-![website design](https://github.com/spe-uob/2021-PlanningInspectorate/blob/33382f32cd0b45bde557d928c33c63f5cb469f50/consultation%20output%20page.png)
+![output consultation list mockup](https://github.com/spe-uob/2021-PlanningInspectorate/blob/33382f32cd0b45bde557d928c33c63f5cb469f50/consultation%20output%20page.png)
 
 ### Crud Interface Page:
 ...
