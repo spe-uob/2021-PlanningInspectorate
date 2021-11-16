@@ -14,12 +14,6 @@ When a new building is to be developed the planning inspectorate need to authori
 
 The time it takes to manually compile consultation lists during pre-application and to conduct/monitor the consultation process. Therefore an automated solution that refreshes and enhances the EST GIS consultation tool and reduce the time taken to identify relevant consultation bodies for Nationally Significant Infrastructure Projects (NSIPs) and compile consultation body lists would be of great convenice. 
 
-## Page Design:
-Each of the pages will need to be implemented for the MVP, each page mockup has a list of features to be implemented (also recorded as issues on kanban board)
+## Website design flowchart:
 
-### Upload Page:
-![Upload page](UploadPage.png)
-
-- Top Progress bar
-- Text description
-- Button that opens upload dialogue and allows submission of file
+![website design](Website Flow chart.drawio.png)
