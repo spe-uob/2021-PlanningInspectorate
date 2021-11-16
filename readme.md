@@ -16,4 +16,4 @@ The time it takes to manually compile consultation lists during pre-application 
 
 ## Website design flowchart:
 
-![website design](Website Flow chart.drawio.png)
+![website design](https://github.com/spe-uob/2021-PlanningInspectorate/blob/4c1e0bf529487a14064de32f196c411b04f2263b/Website%20Flow%20chart.drawio.png)
