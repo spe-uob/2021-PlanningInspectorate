@@ -5,8 +5,6 @@
 Tech Stack:
 - MySQL database
 - Spring Boot backend 
-- React frontend
-
 
 ## User Stories:
 
