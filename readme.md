@@ -17,7 +17,7 @@ The time it takes to manually compile consultation lists during pre-application 
 ## Website design flowchart:
 Below is a flow chart detailing all the different pages of the website. Each of the pages has a mockup of how it should look and a feature list, see below. Each of the pages also has a list in the kanban board where all of the identified features are added as issues for the team to work on.
 
-![website design](https://github.com/spe-uob/2021-PlanningInspectorate/blob/1019402f89ff86ece956a799b3ffd617c450ba39/DesignChart.png)
+![website design](https://github.com/spe-uob/2021-PlanningInspectorate/blob/3d19de0dd1eb1d74e580a53fb4f8e9aa9a23b9a4/DesignChart.png)
 
 ## Page mockups and feature lists:
 ### Login Page:
