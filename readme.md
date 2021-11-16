@@ -32,7 +32,7 @@ lorem ipsum....
 ### Output Consultation List:
 Below is a basic mock up of the final output page consisting of the consulting bodies and their respective emails. We also have two buttons that allow us to generate an update database link and a view database option 
 
-![website design] https://github.com/spe-uob/2021-PlanningInspectorate/blob/main/consultation%20output%20page.png
+![website design](https://github.com/spe-uob/2021-PlanningInspectorate/blob/33382f32cd0b45bde557d928c33c63f5cb469f50/consultation%20output%20page.png)
 
 ### Crud Interface Page:
 ...
