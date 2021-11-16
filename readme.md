@@ -25,7 +25,7 @@ lorem ipsum....
 
 ### Home Page:
 ![homepage mockup](https://github.com/spe-uob/2021-PlanningInspectorate/blob/2980b5d4c706ccf812f8bef5c6d9f353c73c91e8/Mockup_HomePage.png)
-- image of logo
+- Image of logo
 - Create consultation list button that links to **Create Consultation List** page
 - Create manage database/master consultation list button that links to **Crud Interface Page** page
 - Create See responses of external contact detail updates button that links to **View 1 Time Update Links Progress** page
