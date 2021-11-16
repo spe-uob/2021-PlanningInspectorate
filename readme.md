@@ -16,5 +16,5 @@ The time it takes to manually compile consultation lists during pre-application 
 
 ## Page Design:
 
-# Upload Page:
+### Upload Page:
 ![Upload page](UploadPage.png)
