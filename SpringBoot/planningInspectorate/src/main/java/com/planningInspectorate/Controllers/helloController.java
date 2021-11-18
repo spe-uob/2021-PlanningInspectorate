@@ -1,4 +1,4 @@
-package com.planningInspectorate;
+package com.planningInspectorate.Controllers;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class helloController {
-    @GetMapping("/")
+    @GetMapping("/helloworld")
     public String helloWorld(@RequestParam(defaultValue = "world", required = false) String name, Model model){
         model.addAttribute("name",name);
         return "hello";
