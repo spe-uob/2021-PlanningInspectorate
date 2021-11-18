@@ -45,3 +45,17 @@ Below is a basic mock up of the final output page consisting of the consulting b
 
 ### View 1 Time Update Links Progress:
 ...
+![Mockup_view_updatecontact](https://user-images.githubusercontent.com/30760730/142389155-00303f46-9611-40fa-b8a4-c34ecad3670c.png)
+- Image of Logo / Highoerlink to **Homepage**
+- Show total rate of responce
+- Create manage database/master consultation list button that links to **Crud Interface Page** page
+- Create View 1 Time Update Links Progress list
+   - default: all(mvp)
+     - day the 1-time link sent out
+     - connsultees
+     - emails
+     - confirm botton (condition for deleting from this updated status list)
+
+  - filter: not yet
+  - filter: updated
+  
