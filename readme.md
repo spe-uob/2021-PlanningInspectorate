@@ -17,6 +17,9 @@ Below is a flow chart detailing all the different pages of the website. Each of 
 
 ![website design](https://github.com/spe-uob/2021-PlanningInspectorate/blob/3d19de0dd1eb1d74e580a53fb4f8e9aa9a23b9a4/DesignChart.png)
 
+## Page Mockup(AdobeXD)11.18.2021 ver.
+https://xd.adobe.com/view/1d504e0c-3aca-471b-a12f-05ab70123066-4803/grid
+
 ## Page mockups and feature lists:
 ### Login Page:
 lorem ipsum....
