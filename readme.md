@@ -43,8 +43,17 @@ Below is a basic mock up of the final output page consisting of the consulting b
 
 ![output consultation list mockup](https://github.com/spe-uob/2021-PlanningInspectorate/blob/33382f32cd0b45bde557d928c33c63f5cb469f50/consultation%20output%20page.png)
 
-### Crud Interface Page:
-...
+### Manage database Page:
+
+![Manage database mockup](https://github.com/spe-uob/2021-PlanningInspectorate/blob/fb91b64f0ae35c20b68cc9cbcf42ed1b1dea5cd5/ManageDatabase.png)
+
+### Create/Update Record Page:
+
+![Creating and updating a record mockup](https://github.com/spe-uob/2021-PlanningInspectorate/blob/fb91b64f0ae35c20b68cc9cbcf42ed1b1dea5cd5/EditCreateRecord.png)
+
+### Confirm changes pop up:
+
+![Confirm changes mockup](https://github.com/spe-uob/2021-PlanningInspectorate/blob/fb91b64f0ae35c20b68cc9cbcf42ed1b1dea5cd5/ConfirmChanges.png)
 
 ### View 1 Time Update Links Progress:
 ...
