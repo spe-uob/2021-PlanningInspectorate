@@ -19,12 +19,11 @@ html, body {
 }
 
 .mdl-layout-title {
-    position: absolute;
-    left: 50%;
+    display: inline-block;
 }
 
 .mdl-layout__header-row {
-    position: relative;
+    text-align: center;
 }
 
 .demo-avatar {
