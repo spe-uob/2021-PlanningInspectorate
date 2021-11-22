@@ -5,6 +5,7 @@
 Tech Stack:
 - MySQL database
 - Spring Boot backend 
+- Google MDL for frontend
 
 ## User Stories:
 
