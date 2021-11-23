@@ -1,0 +1,17 @@
+.filter-search-row {
+    display: flex;
+    align-items: center;
+}
+
+.database-search-form {
+    margin: 5px;
+}
+
+.database-search-button {
+    margin: 5px;
+}
+
+.database-crud-viewer {
+    margin: 5vh;
+    display: block;
+}
