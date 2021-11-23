@@ -1,17 +1,29 @@
 .filter-search-row {
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 .database-search-form {
     margin: 5px;
+    width: 75%;
+}
+
+.search-database-textfield {
+    width: 75%;
 }
 
 .database-search-button {
     margin: 5px;
+    flex-grow: 2;
 }
 
 .database-crud-viewer {
-    margin: 5vh;
+    margin: 50px;
     display: block;
+    width: 40vw;
+}
+
+.database-view {
+    width: 100%;
 }
