@@ -6,11 +6,11 @@
 
 .database-search-form {
     margin: 5px;
-    width: 75%;
+    width: 70%;
 }
 
 .search-database-textfield {
-    width: 75%;
+    width: 45%;
 }
 
 .database-search-button {
@@ -21,9 +21,15 @@
 .database-crud-viewer {
     margin: 50px;
     display: block;
-    width: 40vw;
+    width: 90%;
 }
 
 .database-view {
     width: 100%;
+    table-layout: fixed;
+    white-space: normal;
+}
+
+td{
+    word-break: break-word;
 }
