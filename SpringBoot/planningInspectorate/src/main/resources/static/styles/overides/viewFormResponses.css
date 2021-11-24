@@ -1,0 +1,26 @@
+.view-form-responses{
+    width : 85%;
+}
+
+.responses_table{
+    display: flex;
+    align-items: center;
+    width : 100%;
+}
+
+.checkbox{
+    width:100%;
+    font-size:16px;
+    text-align:center;
+    border-style:outset;
+}
+table{
+    width : 100%;
+}
+
+.filter-responses-row{
+    display: flex;
+    align-items: center;
+    width : 100%;
+}
+
