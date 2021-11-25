@@ -1,3 +1,41 @@
+#edit-record-dialog{
+    position: relative;
+    width: 70%;
+    height: 80%;
+}
+
+#edit-record-dialog::backdrop{
+    background: grey;
+    opacity: 0.2;
+}
+
+.edit-record-dialog-table{
+    margin: 15px;
+    width: 90%;
+    height: 100%;
+    white-space: normal;
+}
+
+.edit-record-dialog-table-header{
+    margin-bottom: 5px;
+}
+
+.edit-record-dialog-title{
+    text-align: center;
+}
+
+.mdl-dialog__content{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.mdl-dialog__actions{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 .filter-search-row {
     display: flex;
     align-items: center;
