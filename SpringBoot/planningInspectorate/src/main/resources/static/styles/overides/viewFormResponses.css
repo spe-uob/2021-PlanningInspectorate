@@ -2,12 +2,16 @@
     width : 85%;
 }
 
-.checkbox{
-    width:100%;
-    font-size:16px;
-    text-align:center;
-    border-style:outset;
+.responses-search-form{
+    margin: 5px;
+    width: 70%;
 }
+
+.view-form-response-button{
+    margin: 5px;
+    flex-grow: 2;
+}
+
 table{
     width : 100%;
 }
@@ -15,6 +19,7 @@ table{
 .filter-responses-row{
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
     width : 100%;
 }
 
