@@ -26,9 +26,118 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/styles/styles.css}">
+    <link rel="stylesheet" th:href="@{/styles/dialog-polyfill.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/styles/overides/manageDatabase.css}">
 </head>
 <body>
+<!-- currently using MDL dialog for popups however, this is unstable and not included in firefox
+     needs changing to a modal window which can be made following the tutorial here:
+     https://www.w3schools.com/howto/howto_css_modals.asp -->
+<dialog id="edit-record-dialog" class="mdl-dialog">
+    <h3 class="edit-record-dialog-title mdl-dialog__title">Edit Record</h3>
+    <div class="mdl-dialog__content">
+        <table class="edit-record-dialog-table">
+            <thead>
+            <tr class="edit-record-dialog-table-header">
+                <th class="mdl-data-table__cell--non-numeric">Field</th>
+                <th class="mdl-data-table__cell--non-numeric">Old</th>
+                <th class="mdl-data-table__cell--non-numeric">New</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">Schedule 1 Description</td>
+                <td class="mdl-data-table__cell--non-numeric">The Welsh Ministers</td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <form action="#">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" id="sample1">
+                            <label class="mdl-textfield__label" for="sample1">Text...</label>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">Organisation Name</td>
+                <td class="mdl-data-table__cell--non-numeric">Welsh Government</td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <form action="#">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" id="sample1">
+                            <label class="mdl-textfield__label" for="sample1">Text...</label>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">APFP Regs, Sched 1, Column 2</td>
+                <td class="mdl-data-table__cell--non-numeric">All proposed applications likely to affect land in Wales</td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <form action="#">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" id="sample1">
+                            <label class="mdl-textfield__label" for="sample1">Text...</label>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">Notes</td>
+                <td class="mdl-data-table__cell--non-numeric">ENGLAND and WALES</td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <form action="#">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" id="sample1">
+                            <label class="mdl-textfield__label" for="sample1">Text...</label>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">Method</td>
+                <td class="mdl-data-table__cell--non-numeric">Special E-mail</td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <form action="#">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" id="sample1">
+                            <label class="mdl-textfield__label" for="sample1">Text...</label>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">Name</td>
+                <td class="mdl-data-table__cell--non-numeric">John Smith</td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <form action="#">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" id="sample1">
+                            <label class="mdl-textfield__label" for="sample1">Text...</label>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">Email</td>
+                <td class="mdl-data-table__cell--non-numeric">john.smith@wales.gov.uk</td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <form action="#">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" id="sample1">
+                            <label class="mdl-textfield__label" for="sample1">Text...</label>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button mdl-button--colored mdl-button--raised">Cancel</button>
+        <button type="button" class="mdl-button mdl-button--colored mdl-button--raised">Save</button>
+    </div>
+</dialog>
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
     <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
@@ -50,111 +159,6 @@
         <!-- Put code unique to the individual page here -->
         <div class="database-crud-viewer">
             <!-- Dialog component to edit entries -->
-            <dialog id="edit-record-dialog" class="mdl-dialog">
-                <h3 class="edit-record-dialog-title mdl-dialog__title">Edit Record</h3>
-                <div class="mdl-dialog__content">
-                    <table class="edit-record-dialog-table">
-                        <thead>
-                        <tr class="edit-record-dialog-table-header">
-                            <th class="mdl-data-table__cell--non-numeric">Field</th>
-                            <th class="mdl-data-table__cell--non-numeric">Old</th>
-                            <th class="mdl-data-table__cell--non-numeric">New</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="mdl-data-table__cell--non-numeric">Schedule 1 Description</td>
-                            <td class="mdl-data-table__cell--non-numeric">The Welsh Ministers</td>
-                            <td class="mdl-data-table__cell--non-numeric">
-                                <form action="#">
-                                    <div class="mdl-textfield mdl-js-textfield">
-                                        <input class="mdl-textfield__input" type="text" id="sample1">
-                                        <label class="mdl-textfield__label" for="sample1">Text...</label>
-                                    </div>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="mdl-data-table__cell--non-numeric">Organisation Name</td>
-                            <td class="mdl-data-table__cell--non-numeric">Welsh Government</td>
-                            <td class="mdl-data-table__cell--non-numeric">
-                                <form action="#">
-                                    <div class="mdl-textfield mdl-js-textfield">
-                                        <input class="mdl-textfield__input" type="text" id="sample1">
-                                        <label class="mdl-textfield__label" for="sample1">Text...</label>
-                                    </div>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="mdl-data-table__cell--non-numeric">APFP Regs, Sched 1, Column 2</td>
-                            <td class="mdl-data-table__cell--non-numeric">All proposed applications likely to affect land in Wales</td>
-                            <td class="mdl-data-table__cell--non-numeric">
-                                <form action="#">
-                                    <div class="mdl-textfield mdl-js-textfield">
-                                        <input class="mdl-textfield__input" type="text" id="sample1">
-                                        <label class="mdl-textfield__label" for="sample1">Text...</label>
-                                    </div>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="mdl-data-table__cell--non-numeric">Notes</td>
-                            <td class="mdl-data-table__cell--non-numeric">ENGLAND and WALES</td>
-                            <td class="mdl-data-table__cell--non-numeric">
-                                <form action="#">
-                                    <div class="mdl-textfield mdl-js-textfield">
-                                        <input class="mdl-textfield__input" type="text" id="sample1">
-                                        <label class="mdl-textfield__label" for="sample1">Text...</label>
-                                    </div>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="mdl-data-table__cell--non-numeric">Method</td>
-                            <td class="mdl-data-table__cell--non-numeric">Special E-mail</td>
-                            <td class="mdl-data-table__cell--non-numeric">
-                                <form action="#">
-                                    <div class="mdl-textfield mdl-js-textfield">
-                                        <input class="mdl-textfield__input" type="text" id="sample1">
-                                        <label class="mdl-textfield__label" for="sample1">Text...</label>
-                                    </div>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="mdl-data-table__cell--non-numeric">Name</td>
-                            <td class="mdl-data-table__cell--non-numeric">John Smith</td>
-                            <td class="mdl-data-table__cell--non-numeric">
-                                <form action="#">
-                                    <div class="mdl-textfield mdl-js-textfield">
-                                        <input class="mdl-textfield__input" type="text" id="sample1">
-                                        <label class="mdl-textfield__label" for="sample1">Text...</label>
-                                    </div>
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="mdl-data-table__cell--non-numeric">Email</td>
-                            <td class="mdl-data-table__cell--non-numeric">john.smith@wales.gov.uk</td>
-                            <td class="mdl-data-table__cell--non-numeric">
-                                <form action="#">
-                                    <div class="mdl-textfield mdl-js-textfield">
-                                        <input class="mdl-textfield__input" type="text" id="sample1">
-                                        <label class="mdl-textfield__label" for="sample1">Text...</label>
-                                    </div>
-                                </form>
-                            </td>
-                        </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-                <div class="mdl-dialog__actions">
-                    <button type="button" class="mdl-button mdl-button--colored mdl-button--raised">Cancel</button>
-                    <button type="button" class="mdl-button mdl-button--colored mdl-button--raised">Save</button>
-                </div>
-            </dialog>
             <div class="filter-search-row">
                 <form class="database-search-form" action="#">
                     <div class="search-database-textfield mdl-textfield mdl-js-textfield">
@@ -262,5 +266,6 @@
 </div>
 <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <script type="text/javascript" th:src="@{/scripts/manageDatabase.js}"></script>
+<script th:src="@{/scripts/dialog-polyfill.js}"></script>
 </body>
 </html>
