@@ -1,20 +1,19 @@
-(function() {
-    'use strict';
-    var dialog = document.querySelector('#edit-record-dialog');
+// Get the modal
+var modal = document.getElementById("edit-record-popup");
 
-    var dialogButtons = document.querySelectorAll('.dialog-button');
+// Get the button that opens the modal
+var openBtn = document.getElementsByClassName("dialog-button");
 
-    for (var i = 0, len = dialogButtons.length; i < len; i++) {
+// Get the <span> element that closes the modal
+var closeBtn = document.getElementById("close-popup-button");
 
-        if (!dialog.showModal) {
-            dialogPolyfill.registerDialog(dialog);
-        }
-        dialogButtons[i].addEventListener('click', function () {
-            dialog.showModal();
-        });
-        dialog.querySelector('button:not([disabled])')
-            .addEventListener('click', function () {
-                dialog.close();
-            });
+// When the user clicks on the button, open the modal
+for (let i = 0; i < openBtn.length; i++) {
+    openBtn[i].onclick = function () {
+        modal.style.display = "block";
     }
-}());
+}
+
+closeBtn.onclick = function() {
+    modal.style.display = "none";
+}
