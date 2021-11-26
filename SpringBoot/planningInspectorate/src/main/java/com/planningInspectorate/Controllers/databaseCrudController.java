@@ -1,35 +1,43 @@
 package com.planningInspectorate.Controllers;
 
-import org.springframework.stereotype.Component;
+import com.planningInspectorate.ServiceLayer.databaseCrudLogic;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestController
 @RequestMapping(path="api/v1/dbCrud")
 public class databaseCrudController {
 
-    //private final dbLogic dbLogic;
+
+
+    private final databaseCrudLogic databaseCrudLogic;
+
+
+    @Autowired
+    public databaseCrudController(com.planningInspectorate.ServiceLayer.databaseCrudLogic databaseCrudLogic) {
+        this.databaseCrudLogic = databaseCrudLogic;
+    }
 
 
     @GetMapping("/getRecords")
-    public String GetRecords(){
-        return "Get records";
-    }
+    public String GetRecords(){ return databaseCrudLogic.GetRecords(); }
 
     @GetMapping("/editRecords")
     public String EditRecord(){
-        return "Edit records";
+        return databaseCrudLogic.EditRecord();
     }
 
     @GetMapping("/addRecords")
     public String AddRecord(){
-        return "Add records";
+        return databaseCrudLogic.AddRecord();
     }
 
     @GetMapping("/deleteRecords")
     public String DeleteRecord(){
-        return "Delete Records";
+        return databaseCrudLogic.DeleteRecord();
     }
+
+
 }
