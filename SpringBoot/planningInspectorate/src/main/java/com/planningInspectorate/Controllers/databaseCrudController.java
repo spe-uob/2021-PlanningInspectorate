@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class databaseCrudController {
 
 
-
+    //reference to servicelayer logic
     private final databaseCrudLogic databaseCrudLogic;
 
-
+    //dependency injection instantiating  databasecrudlogic^^
     @Autowired
     public databaseCrudController(com.planningInspectorate.ServiceLayer.databaseCrudLogic databaseCrudLogic) {
         this.databaseCrudLogic = databaseCrudLogic;
