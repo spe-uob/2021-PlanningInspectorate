@@ -1,3 +1,8 @@
+@keyframes popup {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
 .modal {
     display: none; /* Hidden by default */
     position: absolute; /* Stay in place */
@@ -18,6 +23,9 @@
     padding: 20px;
     width: 80%;
     height: 80%;
+    animation-name: popup;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-in;
 }
 
 .edit-record-dialog-table{
