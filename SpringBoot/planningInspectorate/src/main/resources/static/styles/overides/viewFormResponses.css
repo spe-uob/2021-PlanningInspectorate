@@ -1,0 +1,25 @@
+.view-form-responses{
+    width : 85%;
+}
+
+.responses-search-form{
+    margin: 5px;
+    width: 70%;
+}
+
+.view-form-response-button{
+    margin: 5px;
+    flex-grow: 2;
+}
+
+table{
+    width : 100%;
+}
+
+.filter-responses-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width : 100%;
+}
+

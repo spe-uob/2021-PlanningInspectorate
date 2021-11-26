@@ -1,0 +1,96 @@
+@keyframes popup {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: absolute; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 3% auto;
+    padding: 20px;
+    width: 80%;
+    height: 80%;
+    animation-name: popup;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-in;
+}
+
+.edit-record-dialog-table{
+    margin: 15px;
+    width: 90%;
+    height: 100%;
+    white-space: normal;
+}
+
+.edit-record-dialog-table td{
+    color: black;
+}
+
+.edit-record-dialog-title{
+    text-align: center;
+}
+
+.mdl-dialog__content{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.mdl-dialog__actions{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.mdl-dialog__actions button{
+    width: 30vw;
+}
+
+.filter-search-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.database-search-form {
+    margin: 5px;
+    width: 70%;
+}
+
+.search-database-textfield {
+    width: 45%;
+}
+
+.database-search-button {
+    margin: 5px;
+    flex-grow: 2;
+}
+
+.database-crud-viewer {
+    margin: 50px;
+    display: block;
+    width: 90%;
+}
+
+.database-view {
+    width: 100%;
+    table-layout: fixed;
+    white-space: normal;
+}
+
+td{
+    word-break: break-word;
+}
