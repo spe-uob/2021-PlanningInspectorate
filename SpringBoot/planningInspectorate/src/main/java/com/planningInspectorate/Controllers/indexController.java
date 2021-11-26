@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 // Controller for basic web requests to the various pages of the site
+// create backend
 @Controller
 public class indexController {
     @GetMapping("/")
