@@ -22,4 +22,7 @@ function CreateNewDatabaseViewRow(data) {
     console.log(newRow);
 }
 
-CreateNewDatabaseViewRow(["test","2","3","4","5"])
+function ProcessEditRecordForm(){
+
+
+}
