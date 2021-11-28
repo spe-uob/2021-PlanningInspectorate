@@ -1,23 +1,21 @@
 
-let textFieldTemplate = `<form action="#">
-                                <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" id="sample1">
-                                    <label class="mdl-textfield__label" for="sample1">Txxt...</label>
-                                </div>
-                          </form>`;
-
-function CreateTableRow(data) {
-    let row = document.createElement("tr");
-    for (let value of data) {
-        let cell = document.createElement("td");
-        cell.className = "mdl-data-table__cell--non-numeric";
-        cell.innerHTML = value;
-        row.appendChild(cell);
+// UpdateFormWithPreviousValues takes a list of previous values and inserts them into the placeholder text on the form
+function UpdateFormWithPreviousValues(form ,previousValues) {
+    // for each child element of the form (can be label, input or textarea)
+    let count = 0;
+    for (let i = 0; i < form.childNodes.length; i++) {
+        {
+            // if input or textarea
+            if (form.childNodes[i].nodeName === "INPUT" || form.childNodes[i].nodeName === "TEXTAREA") {
+                // set placeholder text to previous value
+                form.childNodes[i].setAttribute("placeholder", previousValues[count])
+                count++;
+            }
+        }
     }
-    return row;
 }
 
-
+// SetupEditRecordPopup sets up all the button clicks to display and hide the popup element
 function SetupEditRecordPopup() {
 // Get the popup element
     let popup = document.getElementById("edit-record-popup");
@@ -31,29 +29,17 @@ function SetupEditRecordPopup() {
             // display popup
             popup.style.display = "block";
 
-            let popupTableBody = document.getElementById("popup-table-body");
-            popupTableBody.innerHTML = "";
+            // get edit record form html element
+            let editRecordForm = document.getElementById("edit-record-form");
 
-
-            let firstColumn = [];
-            // get column names for the table
-            let tableHead = document.getElementById("database-table-head");
-            for (let heading of tableHead.querySelectorAll("th")){
-                // if header isn't blank
-                if (heading.innerHTML !== "") {
-                    firstColumn.push(heading.innerHTML);
-                }
-            }
-
-            let secondColumn = [];
+            // parse and collect the previous values of the record being edited
+            let previousValues = [];
             let tableRow = document.getElementById("database-table-body").querySelectorAll("tr")[i];
             for (let dataCell of tableRow.querySelectorAll("td")){
-                secondColumn.push(dataCell.innerHTML);
+                previousValues.push(dataCell.innerHTML);
             }
+            UpdateFormWithPreviousValues(editRecordForm, previousValues);
 
-            for (let j = 0; j < firstColumn.length; j++) {
-                popupTableBody.appendChild(CreateTableRow([firstColumn[j], secondColumn[j]]));
-            }
         }
     }
     closeBtn.onclick = function () {

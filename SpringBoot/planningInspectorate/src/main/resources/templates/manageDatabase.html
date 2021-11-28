@@ -52,27 +52,38 @@
             <div class="popup mdl-shadow--4dp">
                 <h3 class="edit-record-dialog-title mdl-dialog__title">Edit Record</h3>
                 <div class="mdl-dialog__content">
-                    <table class="popup-table-view mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-                        <thead id="popup-table-head">
-                        <tr class="edit-record-dialog-table-header">
-                            <th class="mdl-data-table__cell--non-numeric">Field</th>
-                            <th class="mdl-data-table__cell--non-numeric">Value</th>
-                        </tr>
-                        </thead>
-                        <tbody id="popup-table-body">
+                    <form id="edit-record-form" action="#">
+                        <label for="schedOne">Schedule 1 Description</label>
+                        <input type="text" id="schedOne" name="ScheduleOne" placeholder="The Welsh Ministers">
 
-                        </tbody>
-                    </table>
+                        <label for="orgName">Organisation Name</label>
+                        <input type="text" id="orgName" name="OrganisationName" placeholder="Welsh Government">
+
+                        <label for="apfpRegs">APFP Regs, Sched 1, Column 2</label>
+                        <textarea id="apfpRegs" name="ApfpRegs" placeholder="All proposed applications likely to affect land in Wales" style="height:100px"></textarea>
+
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" name="Notes" placeholder="ENGLAND and WALES" style="height:100px"></textarea>
+
+                        <label for="contactMethod">Method</label>
+                        <input type="text" id="contactMethod" name="ContactMethod" placeholder="Special e-mail">
+
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="Name" placeholder="John Smith">
+
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="Email" placeholder="john.smith@wales.gov.uk">
+
+                    </form>
                 </div>
                 <div class="mdl-dialog__actions">
                     <button type="button" id="close-popup-button" class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">Cancel</button>
-                    <button type="button" class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">Save</button>
+                    <input type="submit" value="Save" form="edit-record-form" class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">
                 </div>
             </div>
 
         </div>
         <div class="database-crud-viewer">
-            <!-- popup component to edit entries -->
             <div class="filter-search-row">
                 <form class="database-search-form" action="#">
                     <div class="search-database-textfield mdl-textfield mdl-js-textfield">
@@ -108,7 +119,7 @@
                         <td class="mdl-data-table__cell--non-numeric">ENGLAND and WALES</td>
                         <td class="mdl-data-table__cell--non-numeric">Special E-mail</td>
                         <td class="mdl-data-table__cell--non-numeric">John Smith</td>
-                        <td class="mdl-data-table__cell--non-numeric">john.smith@wales.gov.uk</td>
+                        <td class="mdl-data-table__cell--non-numeric">john.test@wales.gov.uk</td>
                         <td><button class="dialog-button mdl-button mdl-js-button mdl-button--icon">
                             <i class="material-icons">edit</i>
                         </button></td>
@@ -120,7 +131,7 @@
                         <td class="mdl-data-table__cell--non-numeric">ENGLAND and WALES</td>
                         <td class="mdl-data-table__cell--non-numeric">Special E-mail</td>
                         <td class="mdl-data-table__cell--non-numeric">John Smith</td>
-                        <td class="mdl-data-table__cell--non-numeric">john.smith@wales.gov.uk</td>
+                        <td class="mdl-data-table__cell--non-numeric">john.testing@wales.gov.uk</td>
                         <td><button class="dialog-button mdl-button mdl-js-button mdl-button--icon">
                             <i class="material-icons">edit</i>
                         </button></td>
