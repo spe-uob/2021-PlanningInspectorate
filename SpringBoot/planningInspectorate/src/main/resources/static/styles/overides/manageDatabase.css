@@ -1,4 +1,4 @@
-@keyframes popup {
+@keyframes popupAnimation {
     from {opacity: 0;}
     to {opacity: 1;}
 }
@@ -17,15 +17,22 @@
 }
 
 /* Modal Content/Box */
-.modal-content {
+.popup {
     background-color: #fefefe;
     margin: 3% auto;
     padding: 20px;
     width: 80%;
     height: 80%;
-    animation-name: popup;
+    animation-name: popupAnimation;
     animation-duration: 0.2s;
     animation-timing-function: ease-in;
+}
+
+.popup-table-view {
+    height: 80%;
+    width: 80%;
+    table-layout: fixed;
+    white-space: normal;
 }
 
 .edit-record-dialog-table{
@@ -33,10 +40,6 @@
     width: 90%;
     height: 100%;
     white-space: normal;
-}
-
-.edit-record-dialog-table td{
-    color: black;
 }
 
 .edit-record-dialog-title{
