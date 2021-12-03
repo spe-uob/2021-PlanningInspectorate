@@ -118,3 +118,13 @@
 td{
     word-break: break-word;
 }
+
+#search-database-info {
+    display: block;
+    margin: auto;
+    padding-top: 10%;
+    width: 20%;
+    height: 20%;
+    text-align: center;
+    color: #757575;
+}

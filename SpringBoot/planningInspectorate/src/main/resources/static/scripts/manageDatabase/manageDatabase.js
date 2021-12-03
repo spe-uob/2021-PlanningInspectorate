@@ -20,9 +20,31 @@ function CreateNewDatabaseViewRow(data) {
         newRow.appendChild(newCell);
     }
     newRow.appendChild(document.createRange().createContextualFragment(editButtonTableCell));
-    console.log(newRow);
+    tableBodyReference.appendChild(newRow);
+    return true;
 }
 
+// SearchDatabase is an asynchronous function to search database and update results
+async function SearchDatabase(searchTerm) {
+    // make API call
+    let response = await fetch("request goes here");
+    // check for API response error
+    if (!(response.status >= 200 && response.status <= 299)) {
+        console.log(response.status, response.statusText);
+        return false;
+    }
+    // await response and retrieve json list of records
+    let data = await response.json();
+    // retrieve and clear table body
+    let tableBodyReference = document.getElementById("database-table-body");
+    while (tableBodyReference.firstChild){
+        tableBodyReference.removeChild(tableBodyReference.firstChild);
+    }
+    // update table body with new records
+    for (let record of data) {
+        CreateNewDatabaseViewRow(record)
+    }
+}
 
 // SearchDatabaseButton is called when the search database form is completed either by clicking the search button or
 // by pressing enter whilst using the text box
@@ -42,8 +64,13 @@ function SearchDatabaseButton(){
     button.style.color = "#00BCD4";
 
     let searchValue = textInput.value;
-    console.log(searchValue);
+    // remove info text if they perform a search
+    let infoText = document.getElementById("search-database-info");
+    infoText.remove();
 
+    SearchDatabase(searchValue).then(r => {
+        console.log("successfully searched database");
+    });
 }
 
 
