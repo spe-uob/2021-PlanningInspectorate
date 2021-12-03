@@ -1,6 +1,11 @@
 package com.planningInspectorate.Tables;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class SpecialContact {
+    @Id
     private long id;
     private long personId;
     private long organisationId;

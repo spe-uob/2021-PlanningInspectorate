@@ -1,6 +1,11 @@
 package com.planningInspectorate.Tables;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Organisation {
+    @Id
     private Long id;
     private String name;
     private Boolean special;
