@@ -3,7 +3,7 @@ package com.planningInspectorate.Tables;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+@Entity(name = "Special_Contact")
 public class SpecialContact {
     @Id
     private long id;
