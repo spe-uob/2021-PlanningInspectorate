@@ -77,8 +77,9 @@
                     </form>
                 </div>
                 <div class="mdl-dialog__actions">
+                    <div id="edit-record-loading-bar" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
                     <button type="button" id="close-popup-button" class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">Cancel</button>
-                    <input type="submit" value="Save" form="edit-record-form" class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">
+                    <input type="submit" id="save-edit-record-button" onclick="EditRecordSubmitButton();return false" value="Save" form="edit-record-form" class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">
                 </div>
             </div>
         </div>
@@ -113,6 +114,78 @@
                     </thead>
                     <tbody id="database-table-body">
                     <!-- empty by default until search  is used -->
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">The Welsh Ministers</td>
+                        <td class="mdl-data-table__cell--non-numeric">Welsh Government</td>
+                        <td class="mdl-data-table__cell--non-numeric">All proposed applications likely to affect land in Wales</td>
+                        <td class="mdl-data-table__cell--non-numeric">ENGLAND and WALES</td>
+                        <td class="mdl-data-table__cell--non-numeric">Special E-mail</td>
+                        <td class="mdl-data-table__cell--non-numeric">John Smith</td>
+                        <td class="mdl-data-table__cell--non-numeric">john.test@wales.gov.uk</td>
+                        <td><button class="dialog-button mdl-button mdl-js-button mdl-button--icon">
+                            <i class="material-icons">edit</i>
+                        </button></td>
+                    </tr>
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">The Welsh Ministers</td>
+                        <td class="mdl-data-table__cell--non-numeric">Welsh Government</td>
+                        <td class="mdl-data-table__cell--non-numeric">All proposed applications likely to affect land in Wales</td>
+                        <td class="mdl-data-table__cell--non-numeric">ENGLAND and WALES</td>
+                        <td class="mdl-data-table__cell--non-numeric">Special E-mail</td>
+                        <td class="mdl-data-table__cell--non-numeric">John Smith</td>
+                        <td class="mdl-data-table__cell--non-numeric">john.testing@wales.gov.uk</td>
+                        <td><button class="dialog-button mdl-button mdl-js-button mdl-button--icon">
+                            <i class="material-icons">edit</i>
+                        </button></td>
+                    </tr>
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">The Welsh Ministers</td>
+                        <td class="mdl-data-table__cell--non-numeric">Welsh Government</td>
+                        <td class="mdl-data-table__cell--non-numeric">All proposed applications likely to affect land in Wales</td>
+                        <td class="mdl-data-table__cell--non-numeric">ENGLAND and WALES</td>
+                        <td class="mdl-data-table__cell--non-numeric">Special E-mail</td>
+                        <td class="mdl-data-table__cell--non-numeric">John Smith</td>
+                        <td class="mdl-data-table__cell--non-numeric">john.smith@wales.gov.uk</td>
+                        <td><button class="dialog-button mdl-button mdl-js-button mdl-button--icon">
+                            <i class="material-icons">edit</i>
+                        </button></td>
+                    </tr>
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">The Welsh Ministers</td>
+                        <td class="mdl-data-table__cell--non-numeric">Welsh Government</td>
+                        <td class="mdl-data-table__cell--non-numeric">All proposed applications likely to affect land in Wales</td>
+                        <td class="mdl-data-table__cell--non-numeric">ENGLAND and WALES</td>
+                        <td class="mdl-data-table__cell--non-numeric">Special E-mail</td>
+                        <td class="mdl-data-table__cell--non-numeric">John Smith</td>
+                        <td class="mdl-data-table__cell--non-numeric">john.smith@wales.gov.uk</td>
+                        <td><button class="dialog-button mdl-button mdl-js-button mdl-button--icon">
+                            <i class="material-icons">edit</i>
+                        </button></td>
+                    </tr>
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">The Welsh Ministers</td>
+                        <td class="mdl-data-table__cell--non-numeric">Welsh Government</td>
+                        <td class="mdl-data-table__cell--non-numeric">All proposed applications likely to affect land in Wales</td>
+                        <td class="mdl-data-table__cell--non-numeric">ENGLAND and WALES</td>
+                        <td class="mdl-data-table__cell--non-numeric">Special E-mail</td>
+                        <td class="mdl-data-table__cell--non-numeric">John Smith</td>
+                        <td class="mdl-data-table__cell--non-numeric">john.smith@wales.gov.uk</td>
+                        <td><button class="dialog-button mdl-button mdl-js-button mdl-button--icon">
+                            <i class="material-icons">edit</i>
+                        </button></td>
+                    </tr>
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">The Welsh Ministers</td>
+                        <td class="mdl-data-table__cell--non-numeric">Welsh Government</td>
+                        <td class="mdl-data-table__cell--non-numeric">All proposed applications likely to affect land in Wales</td>
+                        <td class="mdl-data-table__cell--non-numeric">ENGLAND and WALES</td>
+                        <td class="mdl-data-table__cell--non-numeric">Special E-mail</td>
+                        <td class="mdl-data-table__cell--non-numeric">John Smith</td>
+                        <td class="mdl-data-table__cell--non-numeric">john.smith@wales.gov.uk</td>
+                        <td><button class="dialog-button mdl-button mdl-js-button mdl-button--icon">
+                            <i class="material-icons">edit</i>
+                        </button></td>
+                    </tr>
                     </tbody>
                 </table>
             <h3 id="search-database-info">Use the search bar to see the database</h3>

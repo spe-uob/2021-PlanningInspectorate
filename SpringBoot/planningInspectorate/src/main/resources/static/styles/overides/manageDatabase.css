@@ -128,3 +128,7 @@ td{
     text-align: center;
     color: #757575;
 }
+
+#edit-record-loading-bar {
+    display: none;
+}

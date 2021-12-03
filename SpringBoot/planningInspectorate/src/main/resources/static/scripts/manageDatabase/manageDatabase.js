@@ -58,7 +58,6 @@ function SearchDatabaseButton(){
         button.style.color = "#D50000";
         return false;
     }
-
     // if not empty then reset colours and proceed processing input
     form.classList.remove("is-invalid");
     button.style.color = "#00BCD4";
@@ -73,8 +72,47 @@ function SearchDatabaseButton(){
     });
 }
 
+// sleep function taken from https://www.sitepoint.com/delay-sleep-pause-wait/ only used for testing purposes
+async function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}
 
-function ProcessEditRecordForm(){
-    // todo
+function EditRecordSubmitButton(){
+    let formIds = ["schedOne","orgName","apfpRegs","notes","contactMethod","name","email"];
+    let formData = [];
+    // for the id of each component in the form
+    for (let formId of formIds) {
+        // get the element and its value
+        let formInput = document.getElementById(formId).value;
+        if (formInput === "") {
+            // if the value is empty then use default
+            formData.push(document.getElementById(formId).getAttribute("placeholder"));
+        } else {
+            // else push the new value
+            formData.push(formInput);
+        }
+    }
+
+    // display loading bar and hide buttons
+    let saveButton = document.getElementById("save-edit-record-button");
+    let closeButton = document.getElementById("close-popup-button");
+    let loadingBar = document.getElementById("edit-record-loading-bar");
+    loadingBar.style.display = "block";
+    saveButton.style.display = "none";
+    closeButton.style.display = "none";
+
+    // todo make api call with new data
+
+
+    // hide popup and reset loading bar and buttons
+    loadingBar.style.display = "none";
+    let popup = document.getElementById("edit-record-popup");
+    saveButton.style.display = "block";
+    closeButton.style.display = "block";
+    popup.style.display = "none";
 
 }
