@@ -84,15 +84,16 @@
         </div>
         <div class="database-crud-viewer">
             <div class="filter-search-row">
-                <form class="database-search-form" action="#">
-                    <div class="search-database-textfield mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" type="text" id="sample1">
-                        <label class="mdl-textfield__label" for="sample1">Search database</label>
+                <form class="database-search-form" onsubmit="SearchDatabaseButton();return false">
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                        <i id="search-database-button" class="material-icons">search</i>
+                    </button>
+                    <div id="search-database-form" class="search-database-textfield mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="text" id="search-database-input">
+                        <label class="mdl-textfield__label" for="search-database-input">Search database</label>
                     </div>
                 </form>
-                <button class="database-search-button mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">
-                    Search
-                </button>
+
                 <button class="database-search-button mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">
                     Add Record
                 </button>
