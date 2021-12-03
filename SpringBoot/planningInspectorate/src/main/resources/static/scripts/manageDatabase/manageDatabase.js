@@ -4,6 +4,7 @@ const editButtonTableCell = '<td><button class="dialog-button mdl-button mdl-js-
     '                            <i class="material-icons">edit</i>\n' +
     '                        </button></td>';
 
+const loadingBar = '<div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>'
 
 // CreateNewDatabaseViewRow should take a list of data and construct a html table row with the correct classes and
 // styles applied
@@ -65,22 +66,16 @@ function SearchDatabaseButton(){
     let searchValue = textInput.value;
     // remove info text if they perform a search
     let infoText = document.getElementById("search-database-info");
-    infoText.remove();
+    infoText.innerHTML = loadingBar;
 
     SearchDatabase(searchValue).then(r => {
         console.log("successfully searched database");
+        infoText.innerHTML = "";
     });
 }
 
-// sleep function taken from https://www.sitepoint.com/delay-sleep-pause-wait/ only used for testing purposes
-async function sleep(milliseconds) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-        currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
-}
-
+// EditRecordSubmitButton is called when a record is edited, it collects the form data makes an api request and then
+// shows a progress bar
 function EditRecordSubmitButton(){
     let formIds = ["schedOne","orgName","apfpRegs","notes","contactMethod","name","email"];
     let formData = [];
