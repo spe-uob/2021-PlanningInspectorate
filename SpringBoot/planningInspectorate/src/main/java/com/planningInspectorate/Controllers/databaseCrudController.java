@@ -37,5 +37,4 @@ public class databaseCrudController {
         return databaseCrudLogic.DeleteRecord();
     }
 
-
 }
