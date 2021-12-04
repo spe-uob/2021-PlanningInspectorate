@@ -8,13 +8,21 @@ public class Person {
     @Id
     private long id;
     private String name;
-    private String addressBlock;
+    private String addressBlock; // stored as text rather than varchar
     private String email;
 
     public Person(){}
 
+    // when reading from the database
     public Person(long id, String name, String addressBlock, String email) {
         this.id = id;
+        this.name = name;
+        this.addressBlock = addressBlock;
+        this.email = email;
+    }
+
+    // when writing to the database
+    public Person(String name, String addressBlock, String email) {
         this.name = name;
         this.addressBlock = addressBlock;
         this.email = email;

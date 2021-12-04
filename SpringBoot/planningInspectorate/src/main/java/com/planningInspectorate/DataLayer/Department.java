@@ -7,14 +7,15 @@ import javax.persistence.Id;
 public class Department {
     @Id
     private long id;
-    private long organisationId;
+    private long organisationId; // foreign key - organisation table
     private String name;
-    private String test;
-    private String notes;
+    private String test; // stored as text rather than varchar
+    private String notes; // stored as text rather than varchar
     private String location;
 
     public Department(){}
 
+    // when reading from the database
     public Department(long id,
                       long organisationId,
                       String name,
@@ -22,6 +23,15 @@ public class Department {
                       String notes,
                       String location) {
         this.id = id;
+        this.organisationId = organisationId;
+        this.name = name;
+        this.test = test;
+        this.notes = notes;
+        this.location = location;
+    }
+
+    // when writing to the database
+    public Department(long organisationId, String name, String test, String notes, String location) {
         this.organisationId = organisationId;
         this.name = name;
         this.test = test;

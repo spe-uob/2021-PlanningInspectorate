@@ -12,8 +12,15 @@ public class Organisation {
 
     public Organisation(){}
 
+    // when reading from the database
     public Organisation(Long id, String name, Boolean special) {
         this.id = id;
+        this.name = name;
+        this.special = special;
+    }
+
+    // when writing to the database
+    public Organisation(String name, Boolean special) {
         this.name = name;
         this.special = special;
     }

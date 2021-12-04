@@ -7,13 +7,20 @@ import javax.persistence.Id;
 public class SpecialContact {
     @Id
     private long id;
-    private long personId;
-    private long organisationId;
+    private long personId; // foreign key - person table
+    private long organisationId; // foreign key - organisation table
 
     public SpecialContact(){}
 
+    // when reading from the database
     public SpecialContact(long id, long personId, long organisationId) {
         this.id = id;
+        this.personId = personId;
+        this.organisationId = organisationId;
+    }
+
+    // when writing to database
+    public SpecialContact(long personId, long organisationId) {
         this.personId = personId;
         this.organisationId = organisationId;
     }
