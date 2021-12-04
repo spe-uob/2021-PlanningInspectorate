@@ -1,9 +1,9 @@
-package com.planningInspectorate.Tables;
+package com.planningInspectorate.Business;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+@Entity(name = "Contact")
 public class Contact {
     @Id
     private long id;

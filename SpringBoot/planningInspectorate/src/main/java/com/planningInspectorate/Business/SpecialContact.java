@@ -1,4 +1,4 @@
-package com.planningInspectorate.Tables;
+package com.planningInspectorate.Business;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
