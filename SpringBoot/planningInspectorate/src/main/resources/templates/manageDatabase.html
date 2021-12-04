@@ -52,7 +52,7 @@
             <div class="popup mdl-shadow--4dp">
                 <h3 class="edit-record-dialog-title mdl-dialog__title">Edit Record</h3>
                 <div class="mdl-dialog__content">
-                    <form id="edit-record-form" action="" onsubmit="ProcessEditRecordForm()">
+                    <form id="edit-record-form" action="" onsubmit="RecordSubmitButton('edit')">
                         <label for="schedOne">Schedule 1 Description</label>
                         <input type="text" id="schedOne" name="ScheduleOne" placeholder="The Welsh Ministers">
 
@@ -79,10 +79,46 @@
                 <div class="mdl-dialog__actions">
                     <div id="edit-record-loading-bar" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
                     <button type="button" id="close-popup-button" class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">Cancel</button>
-                    <input type="submit" id="save-edit-record-button" onclick="EditRecordSubmitButton();return false" value="Save" form="edit-record-form" class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">
+                    <input type="submit" id="save-edit-record-button" onclick="RecordSubmitButton('edit');return false" value="Save" form="edit-record-form" class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">
                 </div>
             </div>
         </div>
+        <div id="add-record-popup" class="modal">
+            <div class="popup mdl-shadow--4dp">
+                <h3 class="edit-record-dialog-title mdl-dialog__title">Edit Record</h3>
+                <div class="mdl-dialog__content">
+                    <form id="add-record-form" action="" onsubmit="RecordSubmitButton('add')">
+                        <label for="schedOne">Schedule 1 Description</label>
+                        <input type="text" id="schedOne-add" name="ScheduleOne">
+
+                        <label for="orgName">Organisation Name</label>
+                        <input type="text" id="orgName-add" name="OrganisationName">
+
+                        <label for="apfpRegs">APFP Regs, Sched 1, Column 2</label>
+                        <textarea id="apfpRegs-add" name="ApfpRegs"style="height:100px"></textarea>
+
+                        <label for="notes">Notes</label>
+                        <textarea id="notes-add" name="Notes" style="height:100px"></textarea>
+
+                        <label for="contactMethod">Method</label>
+                        <input type="text" id="contactMethod-add" name="ContactMethod">
+
+                        <label for="name">Name</label>
+                        <input type="text" id="name-add" name="Name">
+
+                        <label for="email">Email</label>
+                        <input type="text" id="email-add" name="Email">
+
+                    </form>
+                </div>
+                <div class="mdl-dialog__actions">
+                    <div id="add-record-loading-bar" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+                    <button type="button" id="add-close-popup-button" class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">Cancel</button>
+                    <input type="submit" id="save-add-record-button" onclick="RecordSubmitButton('add');return false" value="Add" form="edit-record-form" class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">
+                </div>
+            </div>
+        </div>
+
         <div class="database-crud-viewer">
             <div class="filter-search-row">
                 <form class="database-search-form" onsubmit="SearchDatabaseButton();return false">
@@ -94,8 +130,7 @@
                         <label class="mdl-textfield__label" for="search-database-input">Search database</label>
                     </div>
                 </form>
-
-                <button class="database-search-button mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">
+                <button id="add-record-button" class="database-search-button mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">
                     Add Record
                 </button>
             </div>

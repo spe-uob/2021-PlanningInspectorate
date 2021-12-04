@@ -21,6 +21,13 @@
     align-items: center;
 }
 
+#add-record-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
 /* Style inputs with type="text", select elements and textareas */
 #edit-record-form > input[type=text], select, textarea {
     width: 70%; /* Full width */
@@ -33,6 +40,16 @@
     resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
 }
 
+#add-record-form > input[type=text], select, textarea {
+    width: 70%; /* Full width */
+    padding: 10px; /* Some padding */
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 10px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
 
 /* Modal Content/Box */
 .popup {
@@ -58,6 +75,7 @@
     width: 80%;
     height: 100%;
 }
+
 
 .edit-record-dialog-table{
     margin: 15px;
@@ -130,5 +148,9 @@ td{
 }
 
 #edit-record-loading-bar {
+    display: none;
+}
+
+#add-record-loading-bar {
     display: none;
 }

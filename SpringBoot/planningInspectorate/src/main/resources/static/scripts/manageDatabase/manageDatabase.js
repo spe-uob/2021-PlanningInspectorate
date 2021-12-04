@@ -76,11 +76,14 @@ function SearchDatabaseButton(){
 
 // EditRecordSubmitButton is called when a record is edited, it collects the form data makes an api request and then
 // shows a progress bar
-function EditRecordSubmitButton(){
+function RecordSubmitButton(type){
     let formIds = ["schedOne","orgName","apfpRegs","notes","contactMethod","name","email"];
     let formData = [];
     // for the id of each component in the form
     for (let formId of formIds) {
+        if (type === "add"){
+            formId = formId.concat("-add");
+        }
         // get the element and its value
         let formInput = document.getElementById(formId).value;
         if (formInput === "") {
@@ -101,7 +104,11 @@ function EditRecordSubmitButton(){
     closeButton.style.display = "none";
 
     // todo make api call with new data
-
+    if (type === "edit"){
+        console.log("edit");
+    } else if (type === "add"){
+        console.log("add");
+    }
 
     // hide popup and reset loading bar and buttons
     loadingBar.style.display = "none";

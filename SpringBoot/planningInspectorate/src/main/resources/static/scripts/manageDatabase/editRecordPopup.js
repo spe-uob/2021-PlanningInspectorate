@@ -17,13 +17,13 @@ function UpdateFormWithPreviousValues(form ,previousValues) {
 
 // SetupEditRecordPopup sets up all the button clicks to display and hide the popup element
 function SetupEditRecordPopup() {
-// Get the popup element
+    // Get the popup element
     let popup = document.getElementById("edit-record-popup");
-// Get the buttons that open the popup
+    // Get the buttons that open the popup
     let openBtn = document.getElementsByClassName("dialog-button");
-// Get the <button> element that closes the popup
+    // Get the button to open the add record popup
     let closeBtn = document.getElementById("close-popup-button");
-// When the user clicks on the button, open the popup
+    // When the user clicks on the button, open the popup
     for (let i = 0; i < openBtn.length; i++) {
         openBtn[i].onclick = function () {
             // display popup
@@ -47,4 +47,24 @@ function SetupEditRecordPopup() {
     }
 }
 
+// SetupAddRecordPopup sets up the button onclicks required for the popup
+function SetupAddRecordPopup() {
+    // Get the popup element
+    let popup = document.getElementById("add-record-popup");
+    // Get the buttons that open the popup
+    let addRecordBtn = document.getElementById("add-record-button");
+    // Get the <button> element that closes the popup
+    let closeBtn = document.getElementById("add-close-popup-button");
+    // When the user clicks on the button, open the popup
+
+    addRecordBtn.onclick = function () {
+        // display popup
+        popup.style.display = "block";
+    }
+    closeBtn.onclick = function () {
+        popup.style.display = "none";
+    }
+}
+
 SetupEditRecordPopup();
+SetupAddRecordPopup();
