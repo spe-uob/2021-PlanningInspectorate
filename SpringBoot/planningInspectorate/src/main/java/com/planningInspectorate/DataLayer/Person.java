@@ -1,4 +1,4 @@
-package com.planningInspectorate.Business;
+package com.planningInspectorate.DataLayer;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

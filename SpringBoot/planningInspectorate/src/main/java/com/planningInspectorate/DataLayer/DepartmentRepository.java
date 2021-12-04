@@ -1,4 +1,4 @@
-package com.planningInspectorate.Business;
+package com.planningInspectorate.DataLayer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
