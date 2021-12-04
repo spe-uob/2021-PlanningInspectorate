@@ -7,10 +7,11 @@ import org.springframework.stereotype.Service;
 public class databaseCrudLogic {
 
 
-    public String GetRecords(){
+    public String GetRecords(String searchTerm){
 
         //TODO: add code here
-        return "Get records";
+
+        return ("Get records: "+searchTerm);
 
     }
 

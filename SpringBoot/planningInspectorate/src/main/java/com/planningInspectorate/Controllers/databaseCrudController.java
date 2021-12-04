@@ -20,7 +20,7 @@ public class databaseCrudController {
 
 
     @GetMapping("/getRecords/{searchTerm}")
-    public String GetRecords(@PathVariable String searchTerm){ return databaseCrudLogic.GetRecords(); }
+    public String GetRecords(@PathVariable String searchTerm){ return databaseCrudLogic.GetRecords(searchTerm); }
 
     @PutMapping("/editRecords/{data}")
     public String EditRecord(@PathVariable String data){
