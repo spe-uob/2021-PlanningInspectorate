@@ -2,9 +2,7 @@ package com.planningInspectorate.Controllers;
 
 import com.planningInspectorate.ServiceLayer.databaseCrudLogic;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path="api/v1/dbCrud")
@@ -21,23 +19,22 @@ public class databaseCrudController {
     }
 
 
-    @GetMapping("/getRecords")
-    public String GetRecords(){ return databaseCrudLogic.GetRecords(); }
+    @GetMapping("/getRecords/{searchTerm}")
+    public String GetRecords(@PathVariable String searchTerm){ return databaseCrudLogic.GetRecords(searchTerm); }
 
-    @GetMapping("/editRecords")
-    public String EditRecord(){
+    @PutMapping("/editRecords/{data}")
+    public String EditRecord(@PathVariable String data){
         return databaseCrudLogic.EditRecord();
     }
 
-    @GetMapping("/addRecords")
-    public String AddRecord(){
+    @PostMapping("/addRecords/{data}")
+    public String AddRecord(@PathVariable String data){
         return databaseCrudLogic.AddRecord();
     }
 
-    @GetMapping("/deleteRecords")
-    public String DeleteRecord(){
+    @DeleteMapping("/deleteRecords/{id}")
+    public String DeleteRecord(@PathVariable String id){
         return databaseCrudLogic.DeleteRecord();
     }
-
 
 }
