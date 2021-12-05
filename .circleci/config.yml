@@ -23,10 +23,7 @@ jobs:
           name: Build
           command: cd ./SpringBoot/planningInspectorate; mvn -B -DskipTests clean package
       # Then run your tests!
-      - run:
-          name: Test
-          command:  cd ./SpringBoot/planningInspectorate; mvn test
-
+      # Todo run tests
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
