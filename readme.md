@@ -5,6 +5,7 @@
 Tech Stack:
 - MySQL database
 - Spring Boot backend 
+- Google MDL for frontend
 
 ## User Stories:
 
@@ -16,6 +17,9 @@ The time it takes to manually compile consultation lists during pre-application 
 Below is a flow chart detailing all the different pages of the website. Each of the pages has a mockup of how it should look and a feature list, see below. Each of the pages also has a list in the kanban board where all of the identified features are added as issues for the team to work on.
 
 ![website design](https://github.com/spe-uob/2021-PlanningInspectorate/blob/3d19de0dd1eb1d74e580a53fb4f8e9aa9a23b9a4/DesignChart.png)
+
+## Page Mockup(AdobeXD)11.18.2021 ver.
+https://xd.adobe.com/view/1d504e0c-3aca-471b-a12f-05ab70123066-4803/grid
 
 ## Page mockups and feature lists:
 ### Login Page:
@@ -40,8 +44,17 @@ Below is a basic mock up of the final output page consisting of the consulting b
 
 ![output consultation list mockup](https://github.com/spe-uob/2021-PlanningInspectorate/blob/33382f32cd0b45bde557d928c33c63f5cb469f50/consultation%20output%20page.png)
 
-### Crud Interface Page:
-...
+### Manage database Page:
+
+![Manage database mockup](https://github.com/spe-uob/2021-PlanningInspectorate/blob/fb91b64f0ae35c20b68cc9cbcf42ed1b1dea5cd5/ManageDatabase.png)
+
+### Create/Update Record Page:
+
+![Creating and updating a record mockup](https://github.com/spe-uob/2021-PlanningInspectorate/blob/fb91b64f0ae35c20b68cc9cbcf42ed1b1dea5cd5/EditCreateRecord.png)
+
+### Confirm changes pop up:
+
+![Confirm changes mockup](https://github.com/spe-uob/2021-PlanningInspectorate/blob/fb91b64f0ae35c20b68cc9cbcf42ed1b1dea5cd5/ConfirmChanges.png)
 
 ### View 1 Time Update Links Progress:
 ...
