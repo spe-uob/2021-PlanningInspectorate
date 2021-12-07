@@ -15,6 +15,13 @@ public class databaseCrudController {
 
 
     private CompleteRecord ConvertArrayToObject(String[] input) {
+        // if no id provided aka length == 7
+        if (input.length == 7){
+            String[] temp = new String[8];
+            temp[0] = "";
+            System.arraycopy(input, 0, temp, 1, 7);
+            input = temp;
+        }
         CompleteRecord record = new CompleteRecord(
                 input[0],
                 input[1],
