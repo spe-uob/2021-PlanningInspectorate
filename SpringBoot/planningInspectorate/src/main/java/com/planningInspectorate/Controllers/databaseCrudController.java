@@ -30,14 +30,14 @@ public class databaseCrudController {
 
     @PutMapping("/editRecords")
     public String[] EditRecord(@RequestBody String[] data){
-        System.out.println(data.length);
         return data;
 //        return databaseCrudLogic.EditRecord(data);
     }
 
     @PostMapping("/addRecord")
-    public boolean AddRecord(@RequestBody CompleteRecord data){
-        return databaseCrudLogic.AddRecord(data);
+    public String[] AddRecord(@RequestBody String[] data){
+        return data;
+//        return databaseCrudLogic.AddRecord(data);
     }
 
     @DeleteMapping("/deleteRecord/{id}")

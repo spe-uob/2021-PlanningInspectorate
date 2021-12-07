@@ -1,5 +1,5 @@
 
-
+let mostRecentSearch = "";
 
 // drag and drop element for edit button at the end of each table row
 const editButtonTableCell = '<td><button class="dialog-button mdl-button mdl-js-button mdl-button--icon">\n' +
@@ -15,6 +15,9 @@ const loadingBar = '<div id="p2" class="mdl-progress mdl-js-progress mdl-progres
 
 // SearchDatabase is an asynchronous function to search database and update results
 async function GetRecordApi(searchTerm) {
+    // update global mostRecentSearch variable so that if record is update, search can be called on the most recent
+    // search and show new values
+    mostRecentSearch = searchTerm;
     // make API call
     let request = "http://localhost:8081/api/v1/dbCrud/getRecords/" + searchTerm;
     let response = await fetch(request);
@@ -47,7 +50,6 @@ async function EditRecordApi(data) {
     // setup request link
     let request = "http://localhost:8081/api/v1/dbCrud/editRecords";
     // send API request with data using correct method
-    console.log(JSON.stringify(data));
     let response = await fetch(request,
         {
         method: "PUT",
@@ -66,19 +68,20 @@ async function EditRecordApi(data) {
 // AddRecordApi is an asynchronous function to add records to the database
 async function AddRecordApi(data) {
     // setup request link
-    let request = "http://localhost:8081/api/v1/dbCrud/addRecords";
+    let request = "http://localhost:8081/api/v1/dbCrud/addRecord";
     // send API request with data using correct method
     let response = await fetch(request,
         {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: data.toJSON()
+            body: JSON.stringify(data)
         });
     // check for API response error
     if (!(response.status >= 200 && response.status <= 299)) {
         console.log(response.status, response.statusText);
         return false;
     }
+    console.log(await response.json());
     return true;
 }
 
@@ -145,26 +148,21 @@ function RecordSubmitButton(type){
         formData.push(document.getElementById(formId).value);
     }
 
-    // display loading bar and hide buttons
-    let saveButton = document.getElementById("save-edit-record-button");
-    let closeButton = document.getElementById("close-popup-button");
-    let loadingBar = document.getElementById("edit-record-loading-bar");
-    loadingBar.style.display = "block";
-    saveButton.style.display = "none";
-    closeButton.style.display = "none";
-
     // todo make api call with new data
     if (type === "edit"){
         EditRecordApi(formData);
     } else if (type === "add"){
         AddRecordApi(formData);
     }
-
-    // hide popup and reset loading bar and buttons
-    loadingBar.style.display = "none";
-    let popup = document.getElementById("edit-record-popup");
-    saveButton.style.display = "block";
-    closeButton.style.display = "block";
+    // close the popup
+    let popup;
+    if (type === "edit") {
+        popup = document.getElementById("edit-record-popup");
+        // update viewer
+        GetRecordApi(mostRecentSearch);
+    } else {
+        popup = document.getElementById("add-record-popup");
+    }
     popup.style.display = "none";
 
 }
