@@ -21,7 +21,6 @@ public class databaseCrudController {
         this.databaseCrudLogic = databaseCrudLogic;
     }
 
-
     @GetMapping("/getRecords/{searchTerm}")
     public CompleteRecord[] GetRecords(@PathVariable String searchTerm){
 
@@ -42,7 +41,7 @@ public class databaseCrudController {
         databaseCrudLogic.AddRecord(data);
     }
 
-    @DeleteMapping("/deleteRecord")
+    @DeleteMapping("/deleteRecord/{}")
     public void DeleteRecord(@PathVariable Long id){
          databaseCrudLogic.DeleteRecord(id);
     }

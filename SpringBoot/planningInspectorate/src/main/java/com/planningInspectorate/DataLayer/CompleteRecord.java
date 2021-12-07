@@ -2,6 +2,15 @@ package com.planningInspectorate.DataLayer;
 
 public class CompleteRecord {
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    private String id;
     private String department;
     private String organisationName;
     private String apfpTest;
@@ -10,7 +19,8 @@ public class CompleteRecord {
     private String name;
     private String email;
 
-    public CompleteRecord(String department, String organisationName, String apfpTest, String notes, String contactMethod, String name, String email) {
+    public CompleteRecord(String id, String department, String organisationName, String apfpTest, String notes, String contactMethod, String name, String email) {
+        this.id = id;
         this.department = department;
         this.organisationName = organisationName;
         this.apfpTest = apfpTest;
