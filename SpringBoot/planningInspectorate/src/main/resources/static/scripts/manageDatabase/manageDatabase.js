@@ -47,17 +47,19 @@ async function EditRecordApi(data) {
     // setup request link
     let request = "http://localhost:8081/api/v1/dbCrud/editRecords";
     // send API request with data using correct method
+    console.log(JSON.stringify(data));
     let response = await fetch(request,
         {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
-        body: data.toJSON()
+        body: JSON.stringify(data)
         });
     // check for API response error
     if (!(response.status >= 200 && response.status <= 299)) {
         console.log(response.status, response.statusText);
         return false;
     }
+    console.log(await response.json());
     return true;
 }
 
@@ -140,16 +142,7 @@ function RecordSubmitButton(type){
             formId = formId.concat("-add");
         }
         // get the element and its value
-        let formInput = document.getElementById(formId).value;
-        if (formInput === "") {
-            // if the value is empty then send null
-            if (type === "edit") {
-                formData.push("null");
-            }
-        } else {
-            // else push the new value
-            formData.push(formInput);
-        }
+        formData.push(document.getElementById(formId).value);
     }
 
     // display loading bar and hide buttons

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.planningInspectorate.DataLayer.CompleteRecord;
 
+import java.sql.SQLOutput;
+
 @RestController
 @RequestMapping(path="api/v1/dbCrud")
 public class databaseCrudController {
@@ -27,8 +29,10 @@ public class databaseCrudController {
     }
 
     @PutMapping("/editRecords")
-    public String EditRecord(@RequestBody CompleteRecord data){
-        return databaseCrudLogic.EditRecord(data);
+    public String[] EditRecord(@RequestBody String[] data){
+        System.out.println(data.length);
+        return data;
+//        return databaseCrudLogic.EditRecord(data);
     }
 
     @PostMapping("/addRecord")

@@ -1,14 +1,19 @@
 
-// UpdateFormWithPreviousValues takes a list of previous values and inserts them into the placeholder text on the form
+// UpdateFormWithPreviousValues takes a list of previous values and inserts them into the value text on the form
 function UpdateFormWithPreviousValues(form ,previousValues) {
     // for each child element of the form (can be label, input or textarea)
+    form.reset();
     let count = 0;
     for (let i = 0; i < form.childNodes.length; i++) {
         {
             // if input or textarea
-            if (form.childNodes[i].nodeName === "INPUT" || form.childNodes[i].nodeName === "TEXTAREA") {
-                // set placeholder text to previous value
-                form.childNodes[i].setAttribute("placeholder", previousValues[count])
+            if (form.childNodes[i].tagName === "INPUT") {
+                // set value text to previous value
+                console.log(previousValues[count]);
+                form.childNodes[i].setAttribute("value", previousValues[count]);
+                count++;
+            } else if (form.childNodes[i].tagName === "TEXTAREA") {
+                form.childNodes[i].innerHTML = previousValues[count];
                 count++;
             }
         }
@@ -38,7 +43,7 @@ function SetupEditRecordPopup() {
             for (let dataCell of tableRow.querySelectorAll("td")){
                 previousValues.push(dataCell.innerHTML);
             }
-            UpdateFormWithPreviousValues(editRecordForm, previousValues);
+            UpdateFormWithPreviousValues(editRecordForm, previousValues.slice(1));
         }
     }
     closeBtn.onclick = function () {
