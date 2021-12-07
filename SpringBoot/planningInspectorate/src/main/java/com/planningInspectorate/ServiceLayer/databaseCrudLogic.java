@@ -45,26 +45,23 @@ public class databaseCrudLogic {
 
     // AddRecord uses the JSON body of an api request to create a record. So long as one field holds a value any of the
     // others can be null. If they are columns in database are nullable so do that
-    public void AddRecord(CompleteRecord data){
+    public boolean AddRecord(CompleteRecord data){
 
         //TODO: add code here
 
 
 
         //return "Add records";
-
+        return true;
     }
 
     // Uses the url parameter of an api request to delete a record based on its id
-    public void DeleteRecord(Long id){
+    public boolean DeleteRecord(Long id){
 
         //TODO: add code here
 
-        //need to add the exception where there isnt an id like that later
-        contactRepository.deleteById(id);
-
          //"Delete Records";
-
+        return true;
     }
 
 

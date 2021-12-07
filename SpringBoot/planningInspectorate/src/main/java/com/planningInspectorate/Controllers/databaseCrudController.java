@@ -32,13 +32,13 @@ public class databaseCrudController {
     }
 
     @PostMapping("/addRecord")
-    public void AddRecord(@RequestBody CompleteRecord data){
-        databaseCrudLogic.AddRecord(data);
+    public boolean AddRecord(@RequestBody CompleteRecord data){
+        return databaseCrudLogic.AddRecord(data);
     }
 
-    @DeleteMapping("/deleteRecord/{}")
-    public void DeleteRecord(@PathVariable Long id){
-         databaseCrudLogic.DeleteRecord(id);
+    @DeleteMapping("/deleteRecord/{id}")
+    public boolean DeleteRecord(@PathVariable Long id){
+         return databaseCrudLogic.DeleteRecord(id);
     }
 
 }
