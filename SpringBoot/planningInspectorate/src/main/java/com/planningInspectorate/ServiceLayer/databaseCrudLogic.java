@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.planningInspectorate.DataLayer.*;
 
 import javax.naming.directory.SearchResult;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -13,9 +14,13 @@ public class databaseCrudLogic {
 
     @Autowired
     private ContactRepository contactRepository;
+    @Autowired
     private DepartmentRepository departmentRepository;
+    @Autowired
     private OrganisationRepository organisationRepository;
+    @Autowired
     private PersonRepository personRepository;
+    @Autowired
     private SpecialContactRepository specialContactRepository;
 
     // GetRecords takes a string as a url parameter and returns the matching records
@@ -24,8 +29,22 @@ public class databaseCrudLogic {
 
         // todo: search the database using searchTerm, for now only 1 column then create an array of CompleteRecord[]
         // and return it in this function
-
-        return void;
+        var result = departmentRepository.getRecord(searchTerm);
+        CompleteRecord records[] = new CompleteRecord[result.size()];
+        for(int i = 0; i < records.length; i++){
+            List<String> currentResult = result.get(i);
+            String recordId = currentResult.get(0).toString() + ":" + currentResult.get(1).toString() + ":" + currentResult.get(2);
+            String deptName = currentResult.get(3);
+            String orgName = currentResult.get(4);
+            String test = currentResult.get(5);
+            String notes = currentResult.get(6);
+            String method = currentResult.get(7);
+            String name = currentResult.get(8);
+            String email = currentResult.get(9);
+            CompleteRecord record = new CompleteRecord(recordId, deptName, orgName, test, notes, method, name, email);
+            records[i] = record;
+        }
+        return records;
 
     }
 
