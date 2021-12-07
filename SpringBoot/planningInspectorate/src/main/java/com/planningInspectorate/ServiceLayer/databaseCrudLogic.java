@@ -36,11 +36,10 @@ public class databaseCrudLogic {
     // EditRecord uses the JSON body of an api request to modify a record.
     // data is a Complete Record passed to the function it can have any number of fields as null, null fields shouldn't
     // be altered
-    public String EditRecord(CompleteRecord data){
+    public boolean EditRecord(CompleteRecord data){
 
         //TODO: add code here
-        return "Edit records";
-
+        return true;
     }
 
     // AddRecord uses the JSON body of an api request to create a record. So long as one field holds a value any of the
