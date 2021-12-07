@@ -23,17 +23,6 @@ public class databaseCrudLogic {
     public String GetRecords(String searchTerm){
 
         //TODO: add code here
-        //Search searchTerm from data layer
-        Optional<Object> foundContact = contactRepository.findAll(searchTerm);
-        Optional<Object> foundDepartment = departmentRepository.findAll(searchTerm);
-        Optional<Object> foundOrganization = organisationRepository.findAll(searchTerm);
-        Optional<Object> foundPerson = personRepository.findAll(searchTerm);
-        Optional<Object> foundSpecialContact =specialContactRepository.findAll(searchTerm);
-
-        // migrate all found data
-        //return the migrated data
-                //.orElseThrow(() -> ("Couldn't find term" + searchTerm));
-
         return ("Get records: "+searchTerm);
 
     }
@@ -45,17 +34,24 @@ public class databaseCrudLogic {
 
     }
 
-    public String AddRecord(){
+    public void AddRecord(){
 
         //TODO: add code here
-        return "Add records";
+
+
+
+        //return "Add records";
 
     }
 
-    public String DeleteRecord(String contactId){
-        contactRepository.deleteById((long) Integer.parseInt(contactId));
+    public void DeleteRecord(Long id){
+
         //TODO: add code here
-        return "Delete Records";
+
+        //need to add the exception where there isnt an id like that later
+        contactRepository.deleteById(id);
+
+         //"Delete Records";
 
     }
 

@@ -27,14 +27,17 @@ public class databaseCrudController {
         return databaseCrudLogic.EditRecord();
     }
 
-    @PostMapping("/addRecords/{data}")
-    public String AddRecord(@PathVariable String data){
-        return databaseCrudLogic.AddRecord();
+    @PostMapping("/addRecord?params=\"\"")
+    public void AddRecord(@RequestBody String data){
+        System.out.println("hrer");
+        databaseCrudLogic.AddRecord();
+
+
     }
 
-    @DeleteMapping("/deleteRecords/{id}")
-    public String DeleteRecord(@PathVariable String id){
-        return databaseCrudLogic.DeleteRecord();
+    @DeleteMapping("/deleteRecord?id=\"\"")
+    public void DeleteRecord(@RequestBody Long id){
+         databaseCrudLogic.DeleteRecord(id);
     }
 
 }
