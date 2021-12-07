@@ -39,7 +39,6 @@ function SetupEditRecordPopup() {
                 previousValues.push(dataCell.innerHTML);
             }
             UpdateFormWithPreviousValues(editRecordForm, previousValues);
-
         }
     }
     closeBtn.onclick = function () {
