@@ -23,8 +23,11 @@ public class databaseCrudController {
 
     @GetMapping("/getRecords/{searchTerm}")
     public String GetRecords(@PathVariable String searchTerm){
-        return databaseCrudLogic.GetRecords(searchTerm);
+        System.out.println("get request recieved with search term: "+searchTerm);
+        CompleteRecord temp = new CompleteRecord("a","b","c","d","e","f","g");
 
+        return searchTerm;
+        //return databaseCrudLogic.GetRecords(searchTerm);
     }
 
     @PutMapping("/editRecords")
@@ -37,7 +40,7 @@ public class databaseCrudController {
         databaseCrudLogic.AddRecord(data);
     }
 
-    @DeleteMapping("/deleteRecord/{id}")
+    @DeleteMapping("/deleteRecord")
     public void DeleteRecord(@PathVariable Long id){
          databaseCrudLogic.DeleteRecord(id);
     }

@@ -11,32 +11,32 @@ const loadingBar = '<div id="p2" class="mdl-progress mdl-js-progress mdl-progres
 // SearchDatabase is an asynchronous function to search database and update results
 async function GetRecordApi(searchTerm) {
     // make API call
-    let request = "http://localhost:8080/api/v1/dbCrud/getRecords?searchTerm=" + searchTerm;
-    console.log("making GET request using: ",request);
-    let response = await fetch("");
+    let request = "http://localhost:8081/api/v1/dbCrud/getRecords/" + searchTerm;
+    let response = await fetch(request);
     // check for API response error
     if (!(response.status >= 200 && response.status <= 299)) {
         console.log(response.status, response.statusText);
         return false;
     }
     // await response and retrieve json list of records
-    let data = response.json();
+    let data = await response.json();
+    console.log(data);
     // retrieve and clear table body
     let tableBodyReference = document.getElementById("database-table-body");
     while (tableBodyReference.firstChild){
         tableBodyReference.removeChild(tableBodyReference.firstChild);
     }
     // update table body with new records
-    for (let record of data) {
-        CreateNewDatabaseViewRow(record)
-    }
+    //for (let record of data) {
+    //    CreateNewDatabaseViewRow(record)
+    //}
 }
 
 // EditRecordApi is an asynchronous function to edit records in the database the data passed to it should be in a json
 // format
 async function EditRecordApi(data) {
     // setup request link
-    let request = "http://localhost:8080/api/v1/dbCrud/editRecords";
+    let request = "http://localhost:8081/api/v1/dbCrud/editRecords";
     // send API request with data using correct method
     let response = await fetch(request,
         {
@@ -55,7 +55,7 @@ async function EditRecordApi(data) {
 // AddRecordApi is an asynchronous function to add records to the database
 async function AddRecordApi(data) {
     // setup request link
-    let request = "http://localhost:8080/api/v1/dbCrud/addRecords";
+    let request = "http://localhost:8081/api/v1/dbCrud/addRecords";
     // send API request with data using correct method
     let response = await fetch(request,
         {
@@ -112,7 +112,6 @@ function SearchDatabaseButton(){
     infoText.innerHTML = loadingBar;
 
     GetRecordApi(searchValue).then(r => {
-        console.log("successfully searched database");
         infoText.innerHTML = "";
     });
 }
