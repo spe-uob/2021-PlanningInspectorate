@@ -21,7 +21,9 @@ public class databaseCrudLogic {
     // GetRecords takes a string as a url parameter and returns the matching records
     public String GetRecords(String searchTerm){
 
-        //TODO: add code here
+        departmentRepository.findAll();
+
+
         return ("Get records: "+searchTerm);
 
     }

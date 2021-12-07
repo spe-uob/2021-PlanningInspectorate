@@ -27,12 +27,12 @@ public class databaseCrudController {
 
     }
 
-    @PutMapping("/editRecords/{data}")
+    @PutMapping("/editRecords")
     public String EditRecord(@RequestBody CompleteRecord data){
         return databaseCrudLogic.EditRecord(data);
     }
 
-    @PostMapping("/addRecord?params=\"\"")
+    @PostMapping("/addRecord")
     public void AddRecord(@RequestBody CompleteRecord data){
         databaseCrudLogic.AddRecord(data);
     }
