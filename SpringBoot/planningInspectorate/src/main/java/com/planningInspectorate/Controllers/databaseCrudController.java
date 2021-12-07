@@ -1,5 +1,6 @@
 package com.planningInspectorate.Controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.planningInspectorate.ServiceLayer.databaseCrudLogic;
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,13 @@ public class databaseCrudController {
 
 
     @GetMapping("/getRecords/{searchTerm}")
-    public String GetRecords(@PathVariable String searchTerm){
+    public CompleteRecord[] GetRecords(@PathVariable String searchTerm){
         System.out.println("get request recieved with search term: "+searchTerm);
         CompleteRecord temp = new CompleteRecord("a","b","c","d","e","f","g");
-
-        return searchTerm;
+        CompleteRecord temp2 = new CompleteRecord("a","b","c","d","e","f","g");
+        CompleteRecord temp3 = new CompleteRecord("a","b","c","d","e","f","g");
+        CompleteRecord[] returnTest = {temp,temp2,temp3};
+        return returnTest;
         //return databaseCrudLogic.GetRecords(searchTerm);
     }
 

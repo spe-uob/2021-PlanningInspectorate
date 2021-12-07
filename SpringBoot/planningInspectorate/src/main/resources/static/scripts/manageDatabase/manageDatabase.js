@@ -27,9 +27,13 @@ async function GetRecordApi(searchTerm) {
         tableBodyReference.removeChild(tableBodyReference.firstChild);
     }
     // update table body with new records
-    //for (let record of data) {
-    //    CreateNewDatabaseViewRow(record)
-    //}
+    data.forEach((record) => {
+        let recordToBeAdded = [];
+        for (const x in record) {
+            recordToBeAdded.push(record[x]);
+        }
+       CreateNewDatabaseViewRow(recordToBeAdded);
+    })
 }
 
 // EditRecordApi is an asynchronous function to edit records in the database the data passed to it should be in a json
@@ -82,6 +86,7 @@ function CreateNewDatabaseViewRow(data) {
     // for each item in the record
     for (let cell of data) {
         let newCell = document.createElement("td");
+        newCell.setAttribute("class", "mdl-data-table__cell--non-numeric");
         newCell.innerHTML = cell;
         newRow.appendChild(newCell);
     }
