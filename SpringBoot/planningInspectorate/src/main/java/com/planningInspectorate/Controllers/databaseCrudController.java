@@ -23,12 +23,7 @@ public class databaseCrudController {
 
     @GetMapping("/getRecords/{searchTerm}")
     public CompleteRecord[] GetRecords(@PathVariable String searchTerm){
-
-        // todo: search the database using searchTerm, for now only 1 column then create an array of CompleteRecord[]
-        // and return it in this function
-
-        return ;
-        //return databaseCrudLogic.GetRecords(searchTerm);
+        return databaseCrudLogic.GetRecords(searchTerm);
     }
 
     @PutMapping("/editRecords")

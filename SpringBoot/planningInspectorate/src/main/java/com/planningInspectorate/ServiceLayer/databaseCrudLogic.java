@@ -19,12 +19,14 @@ public class databaseCrudLogic {
     private SpecialContactRepository specialContactRepository;
 
     // GetRecords takes a string as a url parameter and returns the matching records
-    public String GetRecords(String searchTerm){
-
-        departmentRepository.findAll();
+    public CompleteRecord[] GetRecords(String searchTerm){
 
 
-        return ("Get records: "+searchTerm);
+        // todo: search the database using searchTerm, for now only 1 column then create an array of CompleteRecord[]
+        // and return it in this function
+
+
+        return ;
 
     }
 
