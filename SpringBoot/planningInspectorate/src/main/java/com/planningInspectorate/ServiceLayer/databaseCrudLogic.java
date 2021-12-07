@@ -24,9 +24,12 @@ public class databaseCrudLogic {
 
         // todo: search the database using searchTerm, for now only 1 column then create an array of CompleteRecord[]
         // and return it in this function
+        CompleteRecord temp = new CompleteRecord("1","b","c","d","e","f","g","g");
+        CompleteRecord temp2 = new CompleteRecord("3","b","c","d","e","f","g","g");
+        CompleteRecord temp3 = new CompleteRecord("4","b","c","d","e","f","g","g");
+        CompleteRecord[] returnTest = {temp,temp2,temp3};
 
-
-        return ;
+        return returnTest;
 
     }
 

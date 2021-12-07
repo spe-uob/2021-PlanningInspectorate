@@ -6,6 +6,11 @@ const editButtonTableCell = '<td><button class="dialog-button mdl-button mdl-js-
     '                            <i class="material-icons">edit</i>\n' +
     '                        </button></td>';
 
+// drag and drop element for delete button at the end of each table row
+const deleteButtonTableCell = '<td><button class="dialog-button mdl-button mdl-js-button mdl-button--icon">\n' +
+    '                            <i class="material-icons">delete</i>\n' +
+    '                        </button></td>';
+
 const loadingBar = '<div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>'
 
 // SearchDatabase is an asynchronous function to search database and update results
@@ -91,6 +96,7 @@ function CreateNewDatabaseViewRow(data) {
         newRow.appendChild(newCell);
     }
     newRow.appendChild(document.createRange().createContextualFragment(editButtonTableCell));
+    newRow.appendChild(document.createRange().createContextualFragment(deleteButtonTableCell));
     tableBodyReference.appendChild(newRow);
     return true;
 }
