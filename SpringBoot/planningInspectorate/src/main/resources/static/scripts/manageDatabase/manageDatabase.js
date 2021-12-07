@@ -130,8 +130,10 @@ function RecordSubmitButton(type){
         // get the element and its value
         let formInput = document.getElementById(formId).value;
         if (formInput === "") {
-            // if the value is empty then use default
-            formData.push(document.getElementById(formId).getAttribute("placeholder"));
+            // if the value is empty then send null
+            if (type === "edit") {
+                formData.push("null");
+            }
         } else {
             // else push the new value
             formData.push(formInput);

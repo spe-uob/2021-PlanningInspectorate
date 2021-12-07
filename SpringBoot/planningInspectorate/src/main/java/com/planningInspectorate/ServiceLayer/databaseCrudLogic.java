@@ -18,8 +18,7 @@ public class databaseCrudLogic {
     private PersonRepository personRepository;
     private SpecialContactRepository specialContactRepository;
 
-
-    @GetMapping
+    // GetRecords takes a string as a url parameter and returns the matching records
     public String GetRecords(String searchTerm){
 
         //TODO: add code here
@@ -27,14 +26,19 @@ public class databaseCrudLogic {
 
     }
 
-    public String EditRecord(){
+    // EditRecord uses the JSON body of an api request to modify a record.
+    // data is a Complete Record passed to the function it can have any number of fields as null, null fields shouldn't
+    // be altered
+    public String EditRecord(CompleteRecord data){
 
         //TODO: add code here
         return "Edit records";
 
     }
 
-    public void AddRecord(){
+    // AddRecord uses the JSON body of an api request to create a record. So long as one field holds a value any of the
+    // others can be null. If they are columns in database are nullable so do that
+    public void AddRecord(CompleteRecord data){
 
         //TODO: add code here
 
@@ -44,6 +48,7 @@ public class databaseCrudLogic {
 
     }
 
+    // Uses the url parameter of an api request to delete a record based on its id
     public void DeleteRecord(Long id){
 
         //TODO: add code here

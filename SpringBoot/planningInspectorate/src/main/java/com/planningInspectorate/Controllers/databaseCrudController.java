@@ -1,8 +1,10 @@
 package com.planningInspectorate.Controllers;
 
 import com.planningInspectorate.ServiceLayer.databaseCrudLogic;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.planningInspectorate.DataLayer.CompleteRecord;
 
 @RestController
 @RequestMapping(path="api/v1/dbCrud")
@@ -20,23 +22,23 @@ public class databaseCrudController {
 
 
     @GetMapping("/getRecords/{searchTerm}")
-    public String GetRecords(@PathVariable String searchTerm){ return databaseCrudLogic.GetRecords(searchTerm); }
+    public String GetRecords(@PathVariable String searchTerm){
+        return databaseCrudLogic.GetRecords(searchTerm);
+
+    }
 
     @PutMapping("/editRecords/{data}")
-    public String EditRecord(@PathVariable String data){
-        return databaseCrudLogic.EditRecord();
+    public String EditRecord(@RequestBody CompleteRecord data){
+        return databaseCrudLogic.EditRecord(data);
     }
 
     @PostMapping("/addRecord?params=\"\"")
-    public void AddRecord(@RequestBody String data){
-        System.out.println("hrer");
-        databaseCrudLogic.AddRecord();
-
-
+    public void AddRecord(@RequestBody CompleteRecord data){
+        databaseCrudLogic.AddRecord(data);
     }
 
-    @DeleteMapping("/deleteRecord?id=\"\"")
-    public void DeleteRecord(@RequestBody Long id){
+    @DeleteMapping("/deleteRecord/{id}")
+    public void DeleteRecord(@PathVariable Long id){
          databaseCrudLogic.DeleteRecord(id);
     }
 
