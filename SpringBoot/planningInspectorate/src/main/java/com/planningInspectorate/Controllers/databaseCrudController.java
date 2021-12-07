@@ -24,12 +24,11 @@ public class databaseCrudController {
 
     @GetMapping("/getRecords/{searchTerm}")
     public CompleteRecord[] GetRecords(@PathVariable String searchTerm){
-        System.out.println("get request recieved with search term: "+searchTerm);
-        CompleteRecord temp = new CompleteRecord("a","b","c","d","e","f","g");
-        CompleteRecord temp2 = new CompleteRecord("a","b","c","d","e","f","g");
-        CompleteRecord temp3 = new CompleteRecord("a","b","c","d","e","f","g");
-        CompleteRecord[] returnTest = {temp,temp2,temp3};
-        return returnTest;
+
+        // todo: search the database using searchTerm, for now only 1 column then create an array of CompleteRecord[]
+        // and return it in this function
+
+        return ;
         //return databaseCrudLogic.GetRecords(searchTerm);
     }
 
