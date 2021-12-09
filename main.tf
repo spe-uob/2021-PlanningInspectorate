@@ -6,7 +6,7 @@ terraform {
     }
   }
 }
-
+#---------------------------------------
 provider "docker" {}
 
 resource "docker_image" "nginx" {
@@ -22,4 +22,22 @@ resource "docker_container" "nginx" {
     external = 8000
   }
 }
+#--------------------------------------------------
+provider "postgresql" {
+  host            = "postgres_server_ip"
+  port            = 5432
+  database        = "postgres"
+  username        = "postgres_user"
+  password        = "postgres_password"
+  sslmode         = "require"
+  connect_timeout = 15
+}
 
+resource "postgresql_database" "my_db" {
+  name              = "my_db"
+  owner             = "my_role"
+  template          = "template0"
+  lc_collate        = "C"
+  connection_limit  = -1
+  allow_connections = true
+}

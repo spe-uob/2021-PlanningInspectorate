@@ -1,9 +1,11 @@
-#variable "ibmcloud_api_key" {
-#  default = "%"
-#  #type        = string
-#  #description = "The IAM API Key for IBM Cloud access (https://cloud.ibm.com/iam/apikeys)"
-#}
-#
+#Change Variable
+
+variable "ibmcloud_api_key" {
+  default = "%"
+  #type        = string
+  #description = "The IAM API Key for IBM Cloud access (https://cloud.ibm.com/iam/apikeys)"
+}
+
 #variable "resource_group" {
 #  default = "resource"
 ##  type        = string
@@ -18,10 +20,10 @@
 ##  description = "Name of new Kubernetes cluster to create"
 #}
 #
-#variable "machine_type" {
-#  default     = "b3c.4x16"
-##  description = "Name of machine type from `ibmcloud ks flavors --zone <ZONE>`"
-#}
+variable "machine_type" {
+  default     = "b3c.4x16"
+#  description = "Name of machine type from `ibmcloud ks flavors --zone <ZONE>`"
+}
 #variable "hardware" {
 #  default     = "shared"
 ##  description = "The level of hardware isolation for your worker node. Use 'dedicated' to have available physical resources dedicated to you only, or 'shared' to allow physical resources to be shared with other IBM customers. For IBM Cloud Public accounts, the default value is shared. For IBM Cloud Dedicated accounts, dedicated is the only available option."
@@ -33,11 +35,11 @@
 ##  description = "Zone from `ibmcloud ks zones --provider classic`"
 #}
 #
-#variable "default_pool_size" {
-#  default     = "1"
-##  description = "Number of worker nodes for the new Kubernetes cluster"
-#}
-#
+variable "default_pool_size" {
+  default     = "1"
+#  description = "Number of worker nodes for the new Kubernetes cluster"
+}
+
 #variable "private_vlan_num" {
 #  default = "%"
 #  type        = string
@@ -50,10 +52,10 @@
 #  description = "Number for public VLAN from `ibmcloud ks vlans --zone <ZONE>`"
 #}
 #
-#variable "kube_version" {
-#  default     = "1.18"
-#  description = "Version of Kubernetes to apply to the new Kubernetes cluster"
-#}
+variable "kube_version" {
+  default     = "1.18"
+  description = "Version of Kubernetes to apply to the new Kubernetes cluster"
+}
 #
 #variable "cluster_namespace" {
 #  default = "cluster_space"
