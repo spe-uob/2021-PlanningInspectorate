@@ -1,11 +1,19 @@
 package com.planningInspectorate.DataLayer;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "Department")
 public class Department {
     @Id
+    @SequenceGenerator(
+            name = "department_sequence",
+            sequenceName = "department_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "department_sequence"
+    )
     private long id;
     private long organisationId; // foreign key - organisation table
     private String name;

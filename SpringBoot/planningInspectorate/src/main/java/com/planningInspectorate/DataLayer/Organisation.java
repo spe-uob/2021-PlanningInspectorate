@@ -1,11 +1,19 @@
 package com.planningInspectorate.DataLayer;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "Organisation")
 public class Organisation {
     @Id
+    @SequenceGenerator(
+            name = "organisation_sequence",
+            sequenceName = "organisation_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "organisation_sequence"
+    )
     private Long id;
     private String name;
     private Boolean special;
