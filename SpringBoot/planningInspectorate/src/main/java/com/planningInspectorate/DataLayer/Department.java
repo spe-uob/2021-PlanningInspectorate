@@ -39,6 +39,13 @@ public class Department {
         this.location = location;
     }
 
+    public Department(long organisationId, String name, String test, String notes) {
+        this.organisationId = organisationId;
+        this.name = name;
+        this.test = test;
+        this.notes = notes;
+    }
+
     public long getId() {
         return id;
     }

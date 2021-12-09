@@ -60,7 +60,7 @@ public class databaseCrudController {
     }
 
     @DeleteMapping("/deleteRecord/{id}")
-    public boolean DeleteRecord(@PathVariable Long id){
+    public boolean DeleteRecord(@PathVariable String id){
          return databaseCrudLogic.DeleteRecord(id);
     }
 

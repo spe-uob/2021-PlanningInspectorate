@@ -9,6 +9,8 @@ import javax.naming.directory.SearchResult;
 import java.util.List;
 import java.util.Optional;
 
+// TODO: REWRITE THIS. IT IS AWFUL.
+
 @Service
 public class databaseCrudLogic {
 
@@ -22,7 +24,6 @@ public class databaseCrudLogic {
     private PersonRepository personRepository;
     @Autowired
     private SpecialContactRepository specialContactRepository;
-
     // GetRecords takes a string as a url parameter and returns the matching records
     public CompleteRecord[] GetRecords(String searchTerm){
 
@@ -52,8 +53,18 @@ public class databaseCrudLogic {
     // data is a Complete Record passed to the function it can have any number of fields as null, null fields shouldn't
     // be altered
     public boolean EditRecord(CompleteRecord data){
+        var ids = data.getId().split(":");
+        long deptId = Long.parseLong(ids[0]);
+        long orgId = Long.parseLong(ids[1]);
+        long personId = Long.parseLong(ids[2]);
 
-        //TODO: add code here
+        // update organisation
+        organisationRepository.updateOrg(data.getOrganisationName(), orgId);
+        // update person
+        personRepository.updatePerson(data.getEmail(), data.getContactMethod(), data.getName(), personId);
+        // update department
+        departmentRepository.updateDepartment(data.getDepartment(), data.getNotes(), orgId, data.getApfpTest(), deptId);
+
         return true;
     }
 
@@ -61,18 +72,39 @@ public class databaseCrudLogic {
     // others can be null. If they are columns in database are nullable so do that
     public boolean AddRecord(CompleteRecord data){
 
-        //TODO: add code here
+        if(organisationRepository.getByName(data.getOrganisationName()).size() == 0){
+            //organisationRepository.addOrg(data.getOrganisationName());
+            organisationRepository.save(new Organisation(data.getOrganisationName()));
+        }
+        System.out.println(organisationRepository.getByName(data.getOrganisationName()).get(0).get(0));
+        long orgId = Long.parseLong(organisationRepository.getByName(data.getOrganisationName()).get(0).get(0));
 
-        CompleteRecord temp = new CompleteRecord("1","a","b","c","d","e","f","g");
+        if(departmentRepository.getByName(data.getDepartment(), orgId).size() == 0){
+            departmentRepository.save(new Department(orgId, data.getDepartment(), data.getApfpTest(), data.getNotes()));
+        }
+
+        long deptId = Long.parseLong(departmentRepository.getByName(data.getDepartment(), orgId).get(0));
+
+        //personRepository.addPers(data.getName(), data.getContactMethod(), data.getEmail());
+        personRepository.save(new Person(data.getContactMethod(), data.getName(), data.getEmail()));
+        long persId = Long.parseLong(
+                personRepository.getPerson(data.getName(), data.getContactMethod(), data.getEmail())
+                .get(0));
+
+        //contactRepository.insertContact(deptId, persId);
+        contactRepository.save(new Contact(deptId, persId));
+        //CompleteRecord temp = new CompleteRecord("1","a","b","c","d","e","f","g");
 
         //return "Add records";
         return true;
     }
 
     // Uses the url parameter of an api request to delete a record based on its id
-    public boolean DeleteRecord(Long id){
-
-        //TODO: add code here
+    public boolean DeleteRecord(String id){
+        var ids = id.split(":");
+        long deptId = Long.parseLong(ids[0]);
+        long personId = Long.parseLong(ids[2]);
+        contactRepository.deleteContactsBy(deptId, personId);
 
          //"Delete Records";
         return true;

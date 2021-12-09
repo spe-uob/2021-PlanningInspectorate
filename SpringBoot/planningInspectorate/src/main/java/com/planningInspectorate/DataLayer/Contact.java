@@ -1,11 +1,19 @@
 package com.planningInspectorate.DataLayer;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "Contact")
 public class Contact {
     @Id
+    @SequenceGenerator(
+            name = "contact_sequence",
+            sequenceName = "contact_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "contact_sequence"
+    )
     private long id;
     private long departmentId; // foreign key - department table
     private long personId; // foreign key - person table
@@ -26,6 +34,12 @@ public class Contact {
         this.departmentId = departmentId;
         this.personId = personId;
         this.accepted = accepted;
+    }
+
+    public Contact(long departmentId, long personId) {
+        this.departmentId = departmentId;
+        this.personId = personId;
+        this.accepted = true;
     }
 
     public long getId() {

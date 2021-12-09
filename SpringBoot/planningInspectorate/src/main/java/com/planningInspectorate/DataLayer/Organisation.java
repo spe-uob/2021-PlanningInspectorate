@@ -25,6 +25,10 @@ public class Organisation {
         this.special = special;
     }
 
+    public Organisation(String name){
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
