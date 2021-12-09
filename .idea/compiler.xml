@@ -6,17 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="SPEPROJECT" />
+        <module name="planningInspectorate" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="planningInspectorate" target="11" />
-      <module name="SPEPROJECT" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="SPEPROJECT" options="-parameters" />
       <module name="planningInspectorate" options="-parameters" />
     </option>
   </component>
