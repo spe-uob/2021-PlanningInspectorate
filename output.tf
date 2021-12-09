@@ -1,3 +1,0 @@
-#output "database_name" {
-#
-#}
