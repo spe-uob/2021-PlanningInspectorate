@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/SPEPROJECT.iml" filepath="$PROJECT_DIR$/.idea/SPEPROJECT.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpringBoot/planningInspectorate/planningInspectorate.iml" filepath="$PROJECT_DIR$/SpringBoot/planningInspectorate/planningInspectorate.iml" />
     </modules>
   </component>
 </project>
