@@ -13,7 +13,7 @@ public interface OrganisationRepository extends JpaRepository<Organisation, Long
             "SET name = ? " +
             "WHERE id = ?",
             nativeQuery = true)
-    boolean updateOrg(String name, long orgId);
+    void updateOrg(String name, long orgId);
 
     @Query(value = "SELECT id, name FROM Organisation WHERE name = ?", nativeQuery = true)
     List<List<String>> getByName(String organisationName);
@@ -22,5 +22,5 @@ public interface OrganisationRepository extends JpaRepository<Organisation, Long
             "VALUES (?)",
             nativeQuery = true
     )
-    boolean addOrg(String organisationName);
+    void addOrg(String organisationName);
 }

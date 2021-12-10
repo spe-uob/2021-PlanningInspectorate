@@ -43,6 +43,10 @@ function SetupEditRecordPopup() {
             for (let dataCell of tableRow.querySelectorAll("td")){
                 previousValues.push(dataCell.innerHTML);
             }
+
+            // update global id of record currently being edited
+            beingEditedId = previousValues[0];
+
             UpdateFormWithPreviousValues(editRecordForm, previousValues.slice(1));
         }
     }

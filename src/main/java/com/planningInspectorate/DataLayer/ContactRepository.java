@@ -10,8 +10,9 @@ import java.util.Optional;
 @Repository
 public interface ContactRepository extends JpaRepository<Contact, Long> {
 
+        @Modifying
         @Query(value = "DELETE FROM contact WHERE department_id = ? AND person_id = ?", nativeQuery = true)
-        void deleteContactsBy(long departmentId, long personId);
+        int deleteContactsBy(long departmentId, long personId);
 
         @Query(value = "INSERT INTO CONTACT (department_id, person_id, accepted) " +
                 "VALUES (?, ?, true)",

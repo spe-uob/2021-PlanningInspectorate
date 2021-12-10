@@ -1,5 +1,6 @@
 
 let mostRecentSearch = "";
+let beingEditedId = "";
 
 // drag and drop element for edit button at the end of each table row
 const editButtonTableCell = '<td><button class="dialog-button mdl-button mdl-js-button mdl-button--icon">\n' +
@@ -28,7 +29,7 @@ async function GetRecordApi(searchTerm) {
     }
     // await response and retrieve json list of records
     let data = await response.json();
-    console.log(data);
+    console.log("search returned: "+data);
     // retrieve and clear table body
     let tableBodyReference = document.getElementById("database-table-body");
     while (tableBodyReference.firstChild){
@@ -48,6 +49,7 @@ async function GetRecordApi(searchTerm) {
 // format
 async function EditRecordApi(data) {
     // setup request link
+    console.log("sending data for edit: ", data);
     let request = "http://localhost:8081/api/v1/dbCrud/editRecords";
     // send API request with data using correct method
     let response = await fetch(request,
@@ -61,7 +63,6 @@ async function EditRecordApi(data) {
         console.log(response.status, response.statusText);
         return false;
     }
-    console.log(await response.json());
     return true;
 }
 
@@ -81,7 +82,7 @@ async function AddRecordApi(data) {
         console.log(response.status, response.statusText);
         return false;
     }
-    console.log(await response.json());
+    console.log("sent add record request with params ", JSON.stringify(data));
     return true;
 }
 
@@ -139,6 +140,8 @@ function SearchDatabaseButton(){
 function RecordSubmitButton(type){
     let formIds = ["schedOne","orgName","apfpRegs","notes","contactMethod","name","email"];
     let formData = [];
+    // first push the id of the record being edited
+    formData.push(beingEditedId);
     // for the id of each component in the form
     for (let formId of formIds) {
         if (type === "add"){
@@ -177,8 +180,6 @@ function SetupDeleteRecordButtons(){
             let tableRow = document.getElementById("database-table-body").querySelectorAll("tr")[i];
             let id = tableRow.querySelectorAll("td")[0];
             // make API call
-            console.log(id.innerHTML);
-            console.log(id.innerText);
             let request = "http://localhost:8081/api/v1/dbCrud/deleteRecord/" + id.innerHTML;
             let response = await fetch(request,{
                     method: "DELETE",
