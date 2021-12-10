@@ -3,6 +3,8 @@ package com.planningInspectorate.DataLayer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,7 +12,7 @@ import java.util.Optional;
 
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
     @Query(value =
-            "SELECT Department.id, Organisation.id AS \"OrgId\", Person.id AS \"PersId\", Department.name AS \"DeptName\", Organisation.name AS \"OrgName\", Department.test, Department.notes, Person.method, Person.name AS \"PersName\", Person.email " +
+            "SELECT Contact.id,  Department.name AS \"DeptName\", Organisation.name AS \"OrgName\", Department.test, Department.notes, Person.method, Person.name AS \"PersName\", Person.email " +
             "FROM Department, Organisation, Contact, Person " +
             "WHERE Department.organisation_id = Organisation.id " +
             "AND Contact.department_id = Department.id " +
@@ -19,13 +21,19 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
             nativeQuery = true)
     List<List<String>> getRecord(String dept);
 
+    @Transactional
     @Modifying
     @Query(value =
             "UPDATE Department " +
                     "SET name = ?, notes = ?, organisation_id = ?, test= ? " +
                     "WHERE id = ?",
             nativeQuery = true)
-    boolean updateDepartment(String name, String notes, Long orgId, String test, Long deptId);
+    int updateDepartment(String name, String notes, Long orgId, String test, Long deptId);
+
+    /*@Transactional
+    @Modifying
+    @Query("update Department dep set dep.name = :name, dep.notes = :notes, dep.organisationId = :orgId, dep.test = :test where dep.id = :id")
+    void updateDepartment(@Param("name") String name, @Param("notes") String notes, @Param("organisationId") Long orgId, @Param("test") String test, @Param("id") Long id);*/
 
     @Query(value =
             "SELECT Department.Id " +

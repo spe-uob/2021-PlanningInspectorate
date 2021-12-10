@@ -31,10 +31,17 @@ public class Person {
     }
 
     // when writing to the database
-    public Person(String method, String name, String addressBlock, String email) {
+    /*public Person(String method, String name, String addressBlock, String email) {
         this.method = method;
         this.name = name;
         this.addressBlock = addressBlock;
+        this.email = email;
+    }*/
+
+    public Person(long id, String method, String name, String email) {
+        this.id = id;
+        this.method = method;
+        this.name = name;
         this.email = email;
     }
 

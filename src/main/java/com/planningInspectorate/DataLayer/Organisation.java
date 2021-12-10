@@ -27,6 +27,11 @@ public class Organisation {
         this.special = special;
     }
 
+    public Organisation(Long id, String name){
+        this.id = id;
+        this.name = name;
+    }
+
     // when writing to the database
     public Organisation(String name, Boolean special) {
         this.name = name;
