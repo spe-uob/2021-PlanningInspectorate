@@ -31,6 +31,7 @@ public class databaseCrudLogic {
     public CompleteRecord[] GetRecords(String searchTerm){
 
 
+
         // todo: search the database using searchTerm, for now only 1 column then create an array of CompleteRecord[]
         // and return it in this function
         var result = departmentRepository.getRecord(searchTerm);
