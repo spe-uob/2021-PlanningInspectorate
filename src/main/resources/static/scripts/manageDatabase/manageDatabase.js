@@ -24,12 +24,10 @@ async function GetRecordApi(searchTerm) {
     let response = await fetch(request);
     // check for API response error
     if (!(response.status >= 200 && response.status <= 299)) {
-        console.log(response.status, response.statusText);
         return false;
     }
     // await response and retrieve json list of records
     let data = await response.json();
-    console.log("search returned: "+data);
     // retrieve and clear table body
     let tableBodyReference = document.getElementById("database-table-body");
     while (tableBodyReference.firstChild){
@@ -49,7 +47,6 @@ async function GetRecordApi(searchTerm) {
 // format
 async function EditRecordApi(data) {
     // setup request link
-    console.log("sending data for edit: ", data);
     let request = "http://localhost:8081/api/v1/dbCrud/editRecords";
     // send API request with data using correct method
     let response = await fetch(request,
@@ -60,7 +57,6 @@ async function EditRecordApi(data) {
         });
     // check for API response error
     if (!(response.status >= 200 && response.status <= 299)) {
-        console.log(response.status, response.statusText);
         return false;
     }
     return true;
@@ -79,10 +75,8 @@ async function AddRecordApi(data) {
         });
     // check for API response error
     if (!(response.status >= 200 && response.status <= 299)) {
-        console.log(response.status, response.statusText);
         return false;
     }
-    console.log("sent add record request with params ", JSON.stringify(data));
     return true;
 }
 
@@ -187,7 +181,6 @@ function SetupDeleteRecordButtons(){
                 });
             // check for API response error
             if (!(response.status >= 200 && response.status <= 299)) {
-                console.log(response.status, response.statusText);
                 return false;
             }
             // delete record from search field

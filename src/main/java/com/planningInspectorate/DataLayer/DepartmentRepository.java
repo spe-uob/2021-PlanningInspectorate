@@ -30,11 +30,6 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
             nativeQuery = true)
     int updateDepartment(String name, String notes, Long orgId, String test, Long deptId);
 
-    /*@Transactional
-    @Modifying
-    @Query("update Department dep set dep.name = :name, dep.notes = :notes, dep.organisationId = :orgId, dep.test = :test where dep.id = :id")
-    void updateDepartment(@Param("name") String name, @Param("notes") String notes, @Param("organisationId") Long orgId, @Param("test") String test, @Param("id") Long id);*/
-
     @Query(value =
             "SELECT Department.Id " +
                     "FROM Department, Organisation " +

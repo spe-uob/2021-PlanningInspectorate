@@ -18,10 +18,6 @@ public interface OrganisationRepository extends JpaRepository<Organisation, Long
             nativeQuery = true)
     void updateOrg(String name, long orgId);
 
-    /*@Transactional
-    @Modifying
-    @Query("update Organisation org set org.name = :orgName where org.id = :orgId")
-    void updateOrg(@Param("orgName") String name, @Param("orgId") Long id);*/
 
     @Query(value = "SELECT id, name FROM Organisation WHERE name = ?", nativeQuery = true)
     List<List<String>> getByName(String organisationName);

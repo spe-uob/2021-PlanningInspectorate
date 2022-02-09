@@ -17,11 +17,6 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
             nativeQuery = true)
     int updatePerson(String email, String method, String name, Long id);
 
-    /*@Transactional()
-    @Modifying
-    @Query("update Person p set p.email = :email, p.method = :method, p.name = :name where p.id = :id")
-    void updatePerson(@Param("email") String email, @Param("method") String method, @Param("name") String name, @Param("id") long id);*/
-
     @Modifying
     @Query(value = "INSERT INTO Person (name, method, email) " +
             "VALUES (?, ?, ?);",
