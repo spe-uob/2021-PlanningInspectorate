@@ -1,19 +1,11 @@
 package com.planningInspectorate.DataLayer;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity(name = "Special_Contact")
 public class SpecialContact {
     @Id
-    @SequenceGenerator(
-            name = "special_contact_sequence",
-            sequenceName = "special_contact_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "special_contact_sequence"
-    )
     private long id;
     private long personId; // foreign key - person table
     private long organisationId; // foreign key - organisation table

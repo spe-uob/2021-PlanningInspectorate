@@ -54,25 +54,25 @@
                 <div class="mdl-dialog__content">
                     <form id="edit-record-form" action="" onsubmit="RecordSubmitButton('edit')">
                         <label for="schedOne">Schedule 1 Description</label>
-                        <input type="text" id="schedOne" name="ScheduleOne">
+                        <input type="text" id="schedOne" name="ScheduleOne" placeholder="The Welsh Ministers">
 
                         <label for="orgName">Organisation Name</label>
-                        <input type="text" id="orgName" name="OrganisationName">
+                        <input type="text" id="orgName" name="OrganisationName" placeholder="Welsh Government">
 
                         <label for="apfpRegs">APFP Regs, Sched 1, Column 2</label>
-                        <textarea id="apfpRegs" name="ApfpRegs"style="height:100px"></textarea>
+                        <textarea id="apfpRegs" name="ApfpRegs" placeholder="All proposed applications likely to affect land in Wales" style="height:100px"></textarea>
 
                         <label for="notes">Notes</label>
-                        <textarea id="notes" name="Notes"style="height:100px"></textarea>
+                        <textarea id="notes" name="Notes" placeholder="ENGLAND and WALES" style="height:100px"></textarea>
 
                         <label for="contactMethod">Method</label>
-                        <input type="text" id="contactMethod" name="ContactMethod">
+                        <input type="text" id="contactMethod" name="ContactMethod" placeholder="Special e-mail">
 
                         <label for="name">Name</label>
-                        <input type="text" id="name" name="Name">
+                        <input type="text" id="name" name="Name" placeholder="John Smith">
 
                         <label for="email">Email</label>
-                        <input type="text" id="email" name="Email">
+                        <input type="text" id="email" name="Email" placeholder="john.smith@wales.gov.uk">
 
                     </form>
                 </div>
@@ -85,7 +85,7 @@
         </div>
         <div id="add-record-popup" class="modal">
             <div class="popup mdl-shadow--4dp">
-                <h3 class="edit-record-dialog-title mdl-dialog__title">Add Record</h3>
+                <h3 class="edit-record-dialog-title mdl-dialog__title">Edit Record</h3>
                 <div class="mdl-dialog__content">
                     <form id="add-record-form" action="" onsubmit="RecordSubmitButton('add')">
                         <label for="schedOne">Schedule 1 Description</label>
@@ -137,7 +137,6 @@
             <table class="database-view mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                     <thead id="database-table-head">
                     <tr>
-                        <th class="mdl-data-table__cell--non-numeric">id</th>
                         <th class="mdl-data-table__cell--non-numeric">Schedule 1 Description</th>
                         <th class="mdl-data-table__cell--non-numeric">Organisation Name</th>
                         <th class="mdl-data-table__cell--non-numeric">APFP Regs, Sched 1, Column 2</th>
@@ -145,7 +144,6 @@
                         <th class="mdl-data-table__cell--non-numeric">Method</th>
                         <th class="mdl-data-table__cell--non-numeric">Name</th>
                         <th class="mdl-data-table__cell--non-numeric">Email</th>
-                        <th></th>
                         <th></th>
                     </tr>
                     </thead>
