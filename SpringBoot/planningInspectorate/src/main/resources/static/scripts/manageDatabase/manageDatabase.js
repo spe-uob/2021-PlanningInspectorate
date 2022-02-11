@@ -1,52 +1,62 @@
 
-
+let mostRecentSearch = "";
+let beingEditedId = "";
 
 // drag and drop element for edit button at the end of each table row
 const editButtonTableCell = '<td><button class="dialog-button mdl-button mdl-js-button mdl-button--icon">\n' +
     '                            <i class="material-icons">edit</i>\n' +
     '                        </button></td>';
 
+// drag and drop element for delete button at the end of each table row
+const deleteButtonTableCell = '<td><button class="delete-button mdl-button mdl-js-button mdl-button--icon">\n' +
+    '                            <i class="material-icons">delete</i>\n' +
+    '                        </button></td>';
+
 const loadingBar = '<div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>'
 
 // SearchDatabase is an asynchronous function to search database and update results
 async function GetRecordApi(searchTerm) {
+    // update global mostRecentSearch variable so that if record is update, search can be called on the most recent
+    // search and show new values
+    mostRecentSearch = searchTerm;
     // make API call
-    let request = "http://localhost:8080/api/v1/dbCrud/getRecords?searchTerm=" + searchTerm;
-    console.log("making GET request using: ",request);
-    let response = await fetch("");
+    let request = "http://localhost:8081/api/v1/dbCrud/getRecords/" + searchTerm;
+    let response = await fetch(request);
     // check for API response error
     if (!(response.status >= 200 && response.status <= 299)) {
-        console.log(response.status, response.statusText);
         return false;
     }
     // await response and retrieve json list of records
-    let data = response.json();
+    let data = await response.json();
     // retrieve and clear table body
     let tableBodyReference = document.getElementById("database-table-body");
     while (tableBodyReference.firstChild){
         tableBodyReference.removeChild(tableBodyReference.firstChild);
     }
     // update table body with new records
-    for (let record of data) {
-        CreateNewDatabaseViewRow(record)
-    }
+    data.forEach((record) => {
+        let recordToBeAdded = [];
+        for (const x in record) {
+            recordToBeAdded.push(record[x]);
+        }
+       CreateNewDatabaseViewRow(recordToBeAdded);
+    })
 }
 
 // EditRecordApi is an asynchronous function to edit records in the database the data passed to it should be in a json
 // format
 async function EditRecordApi(data) {
     // setup request link
-    let request = "http://localhost:8080/api/v1/dbCrud/editRecords";
+    let request = "http://localhost:8081/api/v1/dbCrud/editRecords";
     // send API request with data using correct method
     let response = await fetch(request,
         {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
-        body: data.toJSON()
+        body: JSON.stringify(data)
         });
     // check for API response error
     if (!(response.status >= 200 && response.status <= 299)) {
-        console.log(response.status, response.statusText);
         return false;
     }
     return true;
@@ -55,17 +65,16 @@ async function EditRecordApi(data) {
 // AddRecordApi is an asynchronous function to add records to the database
 async function AddRecordApi(data) {
     // setup request link
-    let request = "http://localhost:8080/api/v1/dbCrud/addRecords";
+    let request = "http://localhost:8081/api/v1/dbCrud/addRecord";
     // send API request with data using correct method
     let response = await fetch(request,
         {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: data.toJSON()
+            body: JSON.stringify(data)
         });
     // check for API response error
     if (!(response.status >= 200 && response.status <= 299)) {
-        console.log(response.status, response.statusText);
         return false;
     }
     return true;
@@ -82,11 +91,15 @@ function CreateNewDatabaseViewRow(data) {
     // for each item in the record
     for (let cell of data) {
         let newCell = document.createElement("td");
+        newCell.setAttribute("class", "mdl-data-table__cell--non-numeric");
         newCell.innerHTML = cell;
         newRow.appendChild(newCell);
     }
     newRow.appendChild(document.createRange().createContextualFragment(editButtonTableCell));
+    newRow.appendChild(document.createRange().createContextualFragment(deleteButtonTableCell));
     tableBodyReference.appendChild(newRow);
+    SetupEditRecordPopup();
+    SetupDeleteRecordButtons();
     return true;
 }
 
@@ -112,7 +125,6 @@ function SearchDatabaseButton(){
     infoText.innerHTML = loadingBar;
 
     GetRecordApi(searchValue).then(r => {
-        console.log("successfully searched database");
         infoText.innerHTML = "";
     });
 }
@@ -122,29 +134,16 @@ function SearchDatabaseButton(){
 function RecordSubmitButton(type){
     let formIds = ["schedOne","orgName","apfpRegs","notes","contactMethod","name","email"];
     let formData = [];
+    // first push the id of the record being edited
+    formData.push(beingEditedId);
     // for the id of each component in the form
     for (let formId of formIds) {
         if (type === "add"){
             formId = formId.concat("-add");
         }
         // get the element and its value
-        let formInput = document.getElementById(formId).value;
-        if (formInput === "") {
-            // if the value is empty then use default
-            formData.push(document.getElementById(formId).getAttribute("placeholder"));
-        } else {
-            // else push the new value
-            formData.push(formInput);
-        }
+        formData.push(document.getElementById(formId).value);
     }
-
-    // display loading bar and hide buttons
-    let saveButton = document.getElementById("save-edit-record-button");
-    let closeButton = document.getElementById("close-popup-button");
-    let loadingBar = document.getElementById("edit-record-loading-bar");
-    loadingBar.style.display = "block";
-    saveButton.style.display = "none";
-    closeButton.style.display = "none";
 
     // todo make api call with new data
     if (type === "edit"){
@@ -152,12 +151,40 @@ function RecordSubmitButton(type){
     } else if (type === "add"){
         AddRecordApi(formData);
     }
-
-    // hide popup and reset loading bar and buttons
-    loadingBar.style.display = "none";
-    let popup = document.getElementById("edit-record-popup");
-    saveButton.style.display = "block";
-    closeButton.style.display = "block";
+    // close the popup
+    let popup;
+    if (type === "edit") {
+        popup = document.getElementById("edit-record-popup");
+        // update viewer
+        GetRecordApi(mostRecentSearch);
+    } else {
+        popup = document.getElementById("add-record-popup");
+    }
     popup.style.display = "none";
 
+}
+
+function SetupDeleteRecordButtons(){
+    // Get the buttons that delete records
+    let deleteBtn = document.getElementsByClassName("delete-button");
+    // When the user clicks on the button, open the popup
+    for (let i = 0; i < deleteBtn.length; i++) {
+        deleteBtn[i].onclick = async function () {
+            // parse and collect the id of the record being deleted
+            let tableRow = document.getElementById("database-table-body").querySelectorAll("tr")[i];
+            let id = tableRow.querySelectorAll("td")[0];
+            // make API call
+            let request = "http://localhost:8081/api/v1/dbCrud/deleteRecord/" + id.innerHTML;
+            let response = await fetch(request,{
+                    method: "DELETE",
+                    headers: {"Content-Type": "application/json"},
+                });
+            // check for API response error
+            if (!(response.status >= 200 && response.status <= 299)) {
+                return false;
+            }
+            // delete record from search field
+            tableRow.remove();
+        }
+    }
 }
