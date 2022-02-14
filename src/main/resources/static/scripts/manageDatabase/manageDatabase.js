@@ -169,22 +169,42 @@ function SetupDeleteRecordButtons(){
     let deleteBtn = document.getElementsByClassName("delete-button");
     // When the user clicks on the button, open the popup
     for (let i = 0; i < deleteBtn.length; i++) {
-        deleteBtn[i].onclick = async function () {
+        deleteBtn[i].onclick = function () {
             // parse and collect the id of the record being deleted
             let tableRow = document.getElementById("database-table-body").querySelectorAll("tr")[i];
             let id = tableRow.querySelectorAll("td")[0];
-            // make API call
-            let request = "http://localhost:8081/api/v1/dbCrud/deleteRecord/" + id.innerHTML;
-            let response = await fetch(request,{
-                    method: "DELETE",
-                    headers: {"Content-Type": "application/json"},
-                });
-            // check for API response error
-            if (!(response.status >= 200 && response.status <= 299)) {
-                return false;
+
+            // Get the popup element
+            let popup = document.getElementById("delete-record-popup");
+            // Get the <button> element that closes the popup
+            let closeBtn = document.getElementById("delete-record-close-popup-button");
+            // Get the delete button
+            let popupDeleteBtn = document.getElementById("delete-record-popup-button");
+
+            popup.style.display = "block";
+            popupDeleteBtn.onclick = function () {
+                DeleteRecord(id, tableRow);
+                popup.style.display = "none";
             }
-            // delete record from search field
-            tableRow.remove();
+
+            closeBtn.onclick = function () {
+                popup.style.display = "none";
+            }
         }
     }
+}
+
+async function DeleteRecord(id, tableRow){
+    // make API call
+    let request = "http://localhost:8081/api/v1/dbCrud/deleteRecord/" + id.innerHTML;
+    let response = await fetch(request,{
+        method: "DELETE",
+        headers: {"Content-Type": "application/json"},
+    });
+    // check for API response error
+    if (!(response.status >= 200 && response.status <= 299)) {
+        return false;
+    }
+    // delete record from search field
+    tableRow.remove();
 }
