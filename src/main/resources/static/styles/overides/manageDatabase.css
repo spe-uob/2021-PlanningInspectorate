@@ -51,6 +51,12 @@
     resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
 }
 
+#delete-record-popup {
+    background-color: rgba(0,0,0,0%);
+    width: 100%;
+    height: 100%;
+}
+
 /* Modal Content/Box */
 .popup {
     background-color: #fefefe;
