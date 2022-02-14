@@ -20,15 +20,15 @@ public class UpdateRecord {
             generator = "update_sequence"
     )
 
-    private Long updaterecid;
+    private Long id;
     private Long personId; // foreign key
     private String otp;
     private Integer updatedbool;
 
     public UpdateRecord(){}
 
-    public UpdateRecord(Long updaterecid, Long personId, String otp, Integer updatedbool) {
-        this.updaterecid = updaterecid;
+    public UpdateRecord(Long id, Long personId, String otp, Integer updatedbool) {
+        this.id = id;
         this.personId = personId;
         this.otp = otp;
         this.updatedbool = updatedbool;
@@ -40,12 +40,12 @@ public class UpdateRecord {
         this.updatedbool = updatedbool;
     }
 
-    public Long getUpdaterecid() {
-        return updaterecid;
+    public Long getId() {
+        return id;
     }
 
-    public void setUpdaterecid(Long updaterecid) {
-        this.updaterecid = updaterecid;
+    public void setId(Long updaterecid) {
+        this.id = updaterecid;
     }
 
     public Long getPersonId() {
@@ -79,7 +79,7 @@ public class UpdateRecord {
     @Override
     public String toString() {
         return "UpdateRecord{" +
-                "updaterecid=" + updaterecid +
+                "updaterecid=" + id +
                 ", personId=" + personId +
                 ", otp=" + otp +
                 ", updatedbool=" + updatedbool +
