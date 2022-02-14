@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /api
+Disallow: /api/v1
+Disallow: /api/v1/dbCrud
+Disallow: /api/v1/dbCrud/getRecords
+Disallow: /api/v1/dbCrud/editRecords
+Disallow: /api/v1/dbCrud/addRecords
+Disallow: /api/v1/dbCrud/deleteRecords
