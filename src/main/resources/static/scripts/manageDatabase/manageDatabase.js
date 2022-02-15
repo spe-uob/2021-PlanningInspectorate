@@ -1,33 +1,4 @@
 
-//for security CORS
-import express from "express";
-import cors from "cors";
-
-const app = express();
-
-app.use(
-  cors({
-    //credentials: true, //for cookie
-    origin: "http://localhost:8082/manageDatabase",
-    methods: ["GET", "POST", "PUT"], //should be passed individually?
-
-  })
-);
-
-
-app.get("/getRecords",GetRecordApi(req, res))  (
-  res.send(data) //json //check
-);
-
-app.put("/editRecords", EditRecordApi(req,res))(
-  res.send(data)
-);
-
-
-app.post("/addRecords", AddRecordApi(req, res))(
-    res.send(data)
-);
-
 //-------------------------------------------
 
 let mostRecentSearch = "";
