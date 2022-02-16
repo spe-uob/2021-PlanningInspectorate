@@ -14,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
+import java.util.concurrent.TimeUnit;
+
 @Configuration
 @EnableWebSecurity
 public class securityConfig extends WebSecurityConfigurerAdapter {
@@ -46,7 +48,8 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login").permitAll()
                 .defaultSuccessUrl("/index", true)
                 .and()
-                .rememberMe();
+                .rememberMe().tokenValiditySeconds((int)TimeUnit.DAYS.toSeconds(7))
+                .key("thisisforsecureremeberme");
     }
 
     @Override
