@@ -30,6 +30,16 @@ public class CompleteRecord {
         this.email = email;
     }
 
+    public CompleteRecord(String department, String organisationName, String apfpTest, String notes, String contactMethod, String name, String email) {
+        this.department = department;
+        this.organisationName = organisationName;
+        this.apfpTest = apfpTest;
+        this.notes = notes;
+        this.contactMethod = contactMethod;
+        this.name = name;
+        this.email = email;
+    }
+
     public String getDepartment() {
         return department;
     }
