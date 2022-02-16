@@ -38,8 +38,6 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
- //               .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
- //               .and()
                 .csrf().disable()
                 .authorizeRequests()
                 .anyRequest()
@@ -56,7 +54,6 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                     .logoutUrl("/logout")
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
-                    //↑ delete above line when csrf enable because we want "Post"
                     .clearAuthentication(true)
                     .invalidateHttpSession(true)
                     .deleteCookies("JSESSIONID","remember-me")
@@ -67,7 +64,7 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.inMemoryAuthentication()
                 .withUser("user")
-                .password(passwordEncoder.encode("password"))
+                .password(passwordEncoder.encode("sion"))
                 .roles("USER");
     }
 
