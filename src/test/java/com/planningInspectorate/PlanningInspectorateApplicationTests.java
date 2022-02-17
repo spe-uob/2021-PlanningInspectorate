@@ -1,15 +1,23 @@
 package com.planningInspectorate;
 
-import com.planningInspectorate.DataLayer.CompleteRecord;
+import com.planningInspectorate.DataLayer.*;
 import com.planningInspectorate.ServiceLayer.databaseCrudLogic;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class PlanningInspectorateApplicationTests {
 
-
+	@Autowired
+	private ContactRepository contactRepository;
+	@Autowired
+	private DepartmentRepository departmentRepository;
+	@Autowired
+	private OrganisationRepository organisationRepository;
+	@Autowired
+	private PersonRepository personRepository;
 
 	@Test
 	void contextLoads() {
