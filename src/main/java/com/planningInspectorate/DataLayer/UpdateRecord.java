@@ -19,14 +19,16 @@ public class UpdateRecord {
             strategy = GenerationType.SEQUENCE,
             generator = "update_sequence"
     )
-
     private Long id;
+
     private Long personId; // foreign key
     private String otp;
     private String method;
     private String name;
     private String addressBlock; // stored as text rather than varchar
     private String email;
+
+    @Column(columnDefinition = "integer default 0")
     private Integer valid;
 
     public UpdateRecord(){}
