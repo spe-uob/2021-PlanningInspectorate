@@ -40,6 +40,10 @@ public class CompleteRecord {
         this.email = email;
     }
 
+    public CompleteRecord(String id) {
+        this.id = id;
+    }
+
     public String getDepartment() {
         return department;
     }

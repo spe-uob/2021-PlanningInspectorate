@@ -36,7 +36,7 @@ public class databaseCrudLogic {
         }
         catch (Exception e){
             System.out.println(e.toString());
-            return new CompleteRecord[]{};
+            return new CompleteRecord[]{new CompleteRecord("0")};
         }
         CompleteRecord[] records = new CompleteRecord[result.size()];
         for(int i = 0; i < records.length; i++){
@@ -61,7 +61,14 @@ public class databaseCrudLogic {
     // data is a Complete Record passed to the function it can have any number of fields as null, null fields shouldn't
     // be altered
     public boolean EditRecord(CompleteRecord data){
-        long contactId = Long.parseLong(data.getId());
+        long contactId;
+        try {
+            contactId = Long.parseLong(data.getId());
+        }
+        catch (Exception e){
+            System.out.println(e.toString());
+            return true;
+        }
         // delete contact
 
         // using contact id via the dept id get the organisation id and delete row
@@ -138,9 +145,14 @@ public class databaseCrudLogic {
         contactRepository.deleteContactsBy(deptId, personId);*/
 
         long contactId = Long.parseLong(id);
-
+        try{
         if(contactRepository.existsById(contactId)){
             contactRepository.deleteById(contactId);
+        }
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+            return true;
         }
 
          //"Delete Records";
