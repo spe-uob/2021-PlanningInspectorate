@@ -43,12 +43,29 @@
 version: 2.0
 jobs:
   build:
-    working_directory: ~/2021-PlanningInspectorate
+    working_directory: ~
     docker:
       - image: cimg/openjdk:11.0
+        auth:
+          username: imranzaminali
+          password: dockerpass  # context / project UI env-var reference
       - image: postgres:12.0
+        auth:
+          username: imranzaminali
+          password: dockerpass  # context / project UI env-var reference
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: abc123
     steps:
       - checkout
+      - run:
+          name: install dockerize
+          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.3.0
+      - run:
+          name: Wait for db
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
       - run: mvn test
 
