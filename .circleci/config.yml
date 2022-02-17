@@ -43,7 +43,6 @@
 version: 2.0
 jobs:
   build:
-    working_directory: ~
     docker:
       - image: cimg/openjdk:11.0
         auth:
