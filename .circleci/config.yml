@@ -56,7 +56,7 @@ jobs:
 
       # Service container image
 
-      - image: cimg/postgres:12.0
+      - image: cimg/postgres:9.4
         auth:
           username: imranzaminali
           password: dockerpass  # context / project UI env-var reference
