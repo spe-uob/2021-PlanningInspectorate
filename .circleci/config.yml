@@ -27,7 +27,7 @@ jobs:
 
 
       # run tests!
-      - run: maven test
+      - run: mvn test
 
 
 workflows:
