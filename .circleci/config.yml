@@ -32,4 +32,4 @@ orbs:
 workflows:
   maven_test:
     jobs:
-      - maven/test:
+      - maven/test
