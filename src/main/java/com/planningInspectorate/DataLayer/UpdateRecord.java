@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 
 
-@Entity(name = "UpdateRecord")
+@Entity(name = "update_record")
 public class UpdateRecord {
 
     @Id
@@ -27,11 +27,11 @@ public class UpdateRecord {
     private String name;
     private String addressBlock; // stored as text rather than varchar
     private String email;
-    private Integer updatedbool;
+    private Integer valid;
 
     public UpdateRecord(){}
 
-    public UpdateRecord(Long id, Long personId, String otp, String method, String name, String addressBlock, String email, Integer updatedbool) {
+    public UpdateRecord(Long id, Long personId, String otp, String method, String name, String addressBlock, String email, Integer valid) {
         this.id = id;
         this.personId = personId;
         this.otp = otp;
@@ -39,17 +39,17 @@ public class UpdateRecord {
         this.name = name;
         this.addressBlock = addressBlock;
         this.email = email;
-        this.updatedbool = updatedbool;
+        this.valid = valid;
     }
 
-    public UpdateRecord(Long personId, String otp, String method, String name, String addressBlock, String email, Integer updatedbool) {
+    public UpdateRecord(Long personId, String otp, String method, String name, String addressBlock, String email, Integer valid) {
         this.personId = personId;
         this.otp = otp;
         this.method = method;
         this.name = name;
         this.addressBlock = addressBlock;
         this.email = email;
-        this.updatedbool = updatedbool;
+        this.valid = valid;
     }
 
     public String getMethod() {
@@ -112,12 +112,12 @@ public class UpdateRecord {
         this.otp = hshotp;
     }
 
-    public Integer getUpdatedbool() {
-        return updatedbool;
+    public Integer getValid() {
+        return valid;
     }
 
-    public void setUpdatedbool(Integer updatedbool) {
-        this.updatedbool = updatedbool;
+    public void setValid(Integer valid) {
+        this.valid = valid;
     }
 
     @Override
@@ -130,7 +130,7 @@ public class UpdateRecord {
                 ", name='" + name + '\'' +
                 ", addressBlock='" + addressBlock + '\'' +
                 ", email='" + email + '\'' +
-                ", updatedbool=" + updatedbool +
+                ", valid=" + valid +
                 '}';
     }
 }
