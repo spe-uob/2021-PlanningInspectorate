@@ -22,10 +22,17 @@ class PlanningInspectorateApplicationTests {
 	}
 
 	@Test
-	void b_testRead(){}
+	void b_testRead(){
+		databaseCrudLogic crud = new databaseCrudLogic();
+		boolean complete = crud.GetRecords("department") != null;
+
+		assert complete;
+	}
 
 	@Test
-	void c_testUpdate(){}
+	void c_testUpdate(){
+
+	}
 
 	@Test
 	void d_testDelete(){}

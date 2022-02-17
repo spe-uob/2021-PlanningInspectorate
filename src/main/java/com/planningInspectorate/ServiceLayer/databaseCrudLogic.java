@@ -30,7 +30,14 @@ public class databaseCrudLogic {
 
         // todo: search the database using searchTerm, for now only 1 column then create an array of CompleteRecord[]
         // and return it in this function
-        var result = departmentRepository.getRecord(searchTerm);
+        List<List<String>> result;
+        try {
+            result = departmentRepository.getRecord(searchTerm);
+        }
+        catch (Exception e){
+            System.out.println(e.toString());
+            return new CompleteRecord[]{};
+        }
         CompleteRecord[] records = new CompleteRecord[result.size()];
         for(int i = 0; i < records.length; i++){
             List<String> currentResult = result.get(i);
