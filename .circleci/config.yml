@@ -38,4 +38,4 @@ jobs:
 workflows:
   test_all:
     jobs:
-      - java
+      - build
