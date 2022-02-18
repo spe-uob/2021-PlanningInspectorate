@@ -222,3 +222,40 @@ _:-ms-input-placeholder, :root .demo-graph {
       -ms-flex-align: center;
           align-items: center;
 }
+
+
+
+/* logout */
+
+.button-1 {
+  background-color: #263238;
+  border-radius: 4px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #eceff1;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin-left: auto;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-1:hover,
+.button-1:focus {
+  color: #424242;
+  background-color: #00bcd4;
+}
