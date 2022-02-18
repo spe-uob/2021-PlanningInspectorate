@@ -1,4 +1,4 @@
-package com.planningInspectorate.security;
+package com.planningInspectorate.Security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -6,7 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
-public class PasswordConfig {
+public class passwordConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder(){
