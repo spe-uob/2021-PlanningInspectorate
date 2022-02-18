@@ -1,4 +1,4 @@
-package com.planningInspectorate.Security;
+package com.planningInspectorate.security;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
