@@ -1,6 +1,7 @@
 
 # UoB SPE Planning inspectorate
 
+<img width="1125" alt="demo image" src="https://user-images.githubusercontent.com/43220609/154694239-1e6750a4-d5aa-45b3-8541-1d598cde2268.png">
 
 ## Background
 ### Context
