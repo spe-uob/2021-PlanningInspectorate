@@ -1,6 +1,4 @@
 
-//-------------------------------------------
-
 let mostRecentSearch = "";
 let beingEditedId = "";
 
