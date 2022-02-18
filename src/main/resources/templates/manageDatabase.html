@@ -15,7 +15,7 @@
   See the License for the specific language governing permissions and
   limitations under the License
 -->
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -127,6 +127,21 @@
                 </div>
             </div>
         </div>
+
+        <div id="email-record-popup" class="modal">
+            <div class="popup mdl-shadow--4dp">
+                <h3 class="edit-record-dialog-title mdl-dialog__title">Who would you like to request new details from?</h3>
+                <div class="mdl-dialog__actions">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="text" id="emailBtn">
+                        <label class="mdl-textfield__label" for="emailBtn">Email:</label>
+                    </div>
+                    <button type="button" id="email-record-close-popup-button" class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">Cancel</button>
+                    <button type="button" id="email-record-popup-button" class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">Send</button>
+                </div>
+            </div>
+        </div>
+
         <div class="database-crud-viewer">
             <div class="filter-search-row">
                 <form class="database-search-form" onsubmit="SearchDatabaseButton();return false">
