@@ -2,5 +2,8 @@ User-agent: *
 Disallow: /newConsultationList
 Disallow: /manageDatabase
 Disallow: /formResponses
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 7e49d4f1f9e82129ae8a979eaea2c11a4f930c03
