@@ -1,6 +1,4 @@
 
-//-------------------------------------------
-
 let mostRecentSearch = "";
 let beingEditedId = "";
 
@@ -12,6 +10,11 @@ const editButtonTableCell = '<td><button class="dialog-button mdl-button mdl-js-
 // drag and drop element for delete button at the end of each table row
 const deleteButtonTableCell = '<td><button class="delete-button mdl-button mdl-js-button mdl-button--icon">\n' +
     '                            <i class="material-icons">delete</i>\n' +
+    '                        </button></td>';
+
+// drag and drop element for delete button at the end of each table row
+const emailButtonTableCell = '<td><button class="email-button mdl-button mdl-js-button mdl-button--icon">\n' +
+    '                            <i class="material-icons">email</i>\n' +
     '                        </button></td>';
 
 const loadingBar = '<div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>'
@@ -99,9 +102,11 @@ function CreateNewDatabaseViewRow(data) {
     }
     newRow.appendChild(document.createRange().createContextualFragment(editButtonTableCell));
     newRow.appendChild(document.createRange().createContextualFragment(deleteButtonTableCell));
+    newRow.appendChild(document.createRange().createContextualFragment(emailButtonTableCell));
     tableBodyReference.appendChild(newRow);
     SetupEditRecordPopup();
     SetupDeleteRecordButtons();
+    SetupEmailRecordButtons();
     return true;
 }
 
@@ -171,22 +176,74 @@ function SetupDeleteRecordButtons(){
     let deleteBtn = document.getElementsByClassName("delete-button");
     // When the user clicks on the button, open the popup
     for (let i = 0; i < deleteBtn.length; i++) {
-        deleteBtn[i].onclick = async function () {
+        deleteBtn[i].onclick = function () {
             // parse and collect the id of the record being deleted
             let tableRow = document.getElementById("database-table-body").querySelectorAll("tr")[i];
             let id = tableRow.querySelectorAll("td")[0];
-            // make API call
-            let request = "http://localhost:8081/api/v1/dbCrud/deleteRecord/" + id.innerHTML;
-            let response = await fetch(request,{
-                    method: "DELETE",
-                    headers: {"Content-Type": "application/json"},
-                });
-            // check for API response error
-            if (!(response.status >= 200 && response.status <= 299)) {
-                return false;
+
+            // Get the popup element
+            let popup = document.getElementById("delete-record-popup");
+            // Get the <button> element that closes the popup
+            let closeBtn = document.getElementById("delete-record-close-popup-button");
+            // Get the delete button
+            let popupDeleteBtn = document.getElementById("delete-record-popup-button");
+
+            popup.style.display = "block";
+            popupDeleteBtn.onclick = function () {
+                DeleteRecord(id, tableRow);
+                popup.style.display = "none";
             }
-            // delete record from search field
-            tableRow.remove();
+
+            closeBtn.onclick = function () {
+                popup.style.display = "none";
+            }
         }
     }
+}
+
+function SetupEmailRecordButtons(){
+    // Get the buttons that delete records
+    let emailBtn = document.getElementsByClassName("email-button");
+    // When the user clicks on the button, open the popup
+    for (let i = 0; i < emailBtn.length; i++) {
+        emailBtn[i].onclick = function () {
+            // parse and collect the id of the record being deleted
+            let tableRow = document.getElementById("database-table-body").querySelectorAll("tr")[i];
+            let id = tableRow.querySelectorAll("td")[0];
+
+
+
+            // Get the popup element
+            let popup = document.getElementById("email-record-popup");
+            // Get the <button> element that closes the popup
+            let closeBtn = document.getElementById("email-record-close-popup-button");
+            // Get the delete button
+            let popupEmailBtn = document.getElementById("email-record-popup-button");
+
+            popup.style.display = "block";
+            popupEmailBtn.onclick = function () {
+                //DeleteRecord(id, tableRow);
+                popup.style.display = "none";
+            }
+
+            closeBtn.onclick = function () {
+                popup.style.display = "none";
+            }
+        }
+    }
+}
+
+async function DeleteRecord(id, tableRow){
+    // make API call
+    let request = "http://localhost:8081/api/v1/dbCrud/deleteRecord/" + id.innerHTML;
+    let response = await fetch(request,{
+        method: "DELETE",
+        headers: {"Content-Type": "application/json"},
+    });
+    // check for API response error
+    if (!(response.status >= 200 && response.status <= 299)) {
+        return false;
+    }
+    // delete record from search field
+    tableRow.remove();
 }
