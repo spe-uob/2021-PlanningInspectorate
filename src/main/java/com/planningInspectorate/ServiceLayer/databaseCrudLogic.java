@@ -24,6 +24,9 @@ public class databaseCrudLogic {
     private PersonRepository personRepository;
     @Autowired
     private SpecialContactRepository specialContactRepository;
+    @Autowired
+    private UpdateRecordRepository updateRecordRepository;
+
     // GetRecords takes a string as a url parameter and returns the matching records
     public CompleteRecord[] GetRecords(String searchTerm){
 
@@ -47,6 +50,31 @@ public class databaseCrudLogic {
             records[i] = record;
         }
         return records;
+
+    }
+
+    public int GetRecordPin(String searchTerm){
+
+
+        // todo: search the database using searchTerm, for now only 1 column then create an array of CompleteRecord[]
+        // and return it in this function
+        /*var result = departmentRepository.getRecord(searchTerm);
+        CompleteRecord[] records = new CompleteRecord[result.size()];
+        for(int i = 0; i < records.length; i++){
+            List<String> currentResult = result.get(i);
+            //String recordId = currentResult.get(0).toString() + ":" + currentResult.get(1).toString() + ":" + currentResult.get(2);
+            String recordId = currentResult.get(0);
+            String deptName = currentResult.get(1);
+            String orgName = currentResult.get(2);
+            String test = currentResult.get(3);
+            String notes = currentResult.get(4);
+            String method = currentResult.get(5);
+            String name = currentResult.get(6);
+            String email = currentResult.get(7);
+            CompleteRecord record = new CompleteRecord(recordId, deptName, orgName, test, notes, method, name, email);
+            records[i] = record;
+        }*/
+        return 1;
 
     }
 

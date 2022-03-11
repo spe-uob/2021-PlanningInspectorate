@@ -49,6 +49,11 @@ public class databaseCrudController {
         return databaseCrudLogic.GetRecords(searchTerm);
     }
 
+    @GetMapping("/getRecords/{searchTerm}")
+    public int GetRecordPin(@PathVariable String searchTerm){
+        return databaseCrudLogic.GetRecordPin(searchTerm);
+    }
+
     @PutMapping("/editRecords")
     public boolean EditRecord(@RequestBody String[] data){
         return databaseCrudLogic.EditRecord(ConvertArrayToObject(data));
