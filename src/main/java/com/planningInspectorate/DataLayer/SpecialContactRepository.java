@@ -6,6 +6,4 @@ import java.util.Optional;
 
 public interface SpecialContactRepository extends JpaRepository<SpecialContact, Long> {
 
-
-
 }
