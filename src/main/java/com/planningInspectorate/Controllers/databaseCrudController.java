@@ -50,8 +50,10 @@ public class databaseCrudController {
     }
 
     @GetMapping("/getRecords/{searchTerm}")
-    public int GetRecordPin(@PathVariable String searchTerm){
-        return databaseCrudLogic.GetRecordPin(searchTerm);
+    public String GetRecordPin(@PathVariable String searchTerm){
+        //return databaseCrudLogic.GetRecordPin(searchTerm);
+        var record = databaseCrudLogic.GetRecords(searchTerm);
+        return databaseCrudLogic.GetRecordPin(record);
     }
 
     @PutMapping("/editRecords")

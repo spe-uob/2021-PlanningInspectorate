@@ -53,7 +53,7 @@ public class databaseCrudLogic {
 
     }
 
-    public int GetRecordPin(String searchTerm){
+    public String GetRecordPin(CompleteRecord[] record){
 
 
         // todo: search the database using searchTerm, for now only 1 column then create an array of CompleteRecord[]
@@ -74,7 +74,9 @@ public class databaseCrudLogic {
             CompleteRecord record = new CompleteRecord(recordId, deptName, orgName, test, notes, method, name, email);
             records[i] = record;
         }*/
-        return 1;
+        //var otp = updateRecordRepository.getRecordInfo();
+        var id = record[0];
+        return "";
 
     }
 
