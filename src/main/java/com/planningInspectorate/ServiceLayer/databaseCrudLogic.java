@@ -53,6 +53,9 @@ public class databaseCrudLogic {
 
     public String GetRecordOneTimePin(String recordId){
         // locate the record
+        Long searchId = Long.parseLong(recordId);
+        var acessrecord = updateRecordRepository.getRecordInfo(searchId);
+
         // update the record i.e. generate the pin
         // return the pin
 
