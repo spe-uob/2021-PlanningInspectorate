@@ -49,11 +49,9 @@ public class databaseCrudController {
         return databaseCrudLogic.GetRecords(searchTerm);
     }
 
-    @GetMapping("/getRecords/{searchTerm}")
-    public String GetRecordPin(@PathVariable String searchTerm){
-        //return databaseCrudLogic.GetRecordPin(searchTerm);
-        var record = databaseCrudLogic.GetRecords(searchTerm);
-        return databaseCrudLogic.GetRecordPin(record);
+    @GetMapping("/getRecordPin/{recordId}")
+    public String GetRecordPin(@PathVariable String recordId){
+        return databaseCrudLogic.GetRecordOneTimePin(recordId);
     }
 
     @PutMapping("/editRecords")

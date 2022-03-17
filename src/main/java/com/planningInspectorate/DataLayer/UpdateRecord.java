@@ -19,8 +19,8 @@ public class UpdateRecord {
             strategy = GenerationType.SEQUENCE,
             generator = "update_sequence"
     )
-    private Long id;
 
+    private Long id;
     private Long personId; // foreign key
     private String otp;
     private String method;
@@ -106,10 +106,9 @@ public class UpdateRecord {
         return otp;
     }
 
-    public void setOtp(String otp, Long updaterecid) {
-
+    public void generateOneTimePinForRecord() {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String hshpass = updaterecid.toString();
+        String hshpass = this.getId().toString();
         String hshotp = bCryptPasswordEncoder.encode(hshpass);
         this.otp = hshotp;
     }
