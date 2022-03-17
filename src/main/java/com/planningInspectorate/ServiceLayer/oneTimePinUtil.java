@@ -1,12 +1,20 @@
 package com.planningInspectorate.ServiceLayer;
 
+import com.planningInspectorate.DataLayer.PersonRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class oneTimePinUtil {
 
+    @Autowired
+    PersonRepository personRepository;
+
     // Static function to hash an id into a one time pin
-    public static String GenerateOneTimePinHashFromId(String id) {
+    public String GenerateOneTimePinHashFromId(String id) {
+
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder.encode(id);
+        String otp = bCryptPasswordEncoder.encode(id);
+        personRepository.addOtp(Long.parseLong(id), otp);
+        return otp;
     }
 }
