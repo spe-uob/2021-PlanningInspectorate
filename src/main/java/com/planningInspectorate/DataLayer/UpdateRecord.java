@@ -106,11 +106,12 @@ public class UpdateRecord {
         return otp;
     }
 
+    // once record is loaded the one time pin can be generated, as it is a hash everytime it is generated it will
+    // be the same for the record
     public void generateOneTimePinForRecord() {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String hshpass = this.getId().toString();
-        String hshotp = bCryptPasswordEncoder.encode(hshpass);
-        this.otp = hshotp;
+        String hashPass = this.getId().toString();
+        this.otp = bCryptPasswordEncoder.encode(hashPass);
     }
 
     public Integer getValid() {

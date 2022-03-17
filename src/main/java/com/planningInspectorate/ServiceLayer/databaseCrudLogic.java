@@ -1,6 +1,7 @@
 package com.planningInspectorate.ServiceLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.planningInspectorate.DataLayer.*;
@@ -8,6 +9,8 @@ import com.planningInspectorate.DataLayer.*;
 import javax.naming.directory.SearchResult;
 import java.util.List;
 import java.util.Optional;
+
+import static com.planningInspectorate.ServiceLayer.oneTimePinUtil.GenerateOneTimePinHashFromId;
 
 // TODO: REWRITE THIS. IT IS AWFUL.
 
@@ -52,13 +55,7 @@ public class databaseCrudLogic {
     }
 
     public String GetRecordOneTimePin(String recordId){
-        // locate the record
-        Long searchId = Long.parseLong(recordId);
-        var acessrecord = updateRecordRepository.getRecordInfo(searchId);
-
-        // update the record i.e. generate the pin
-        // return the pin
-        return null;
+        return GenerateOneTimePinHashFromId(recordId);
     }
 
     // EditRecord uses the JSON body of an api request to modify a record.
