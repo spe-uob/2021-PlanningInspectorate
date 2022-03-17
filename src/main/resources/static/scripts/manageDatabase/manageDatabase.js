@@ -210,7 +210,7 @@ function SetupOTPButtons(){
 
             // parse and collect the id of the record
             let tableRow = document.getElementById("database-table-body").querySelectorAll("tr")[i];
-            let id = tableRow.querySelectorAll("td")[0];
+            let id = tableRow.querySelectorAll("td")[0].innerText;
 
             // get value box to update
             let otpDisplayBox = document.getElementById("otp-code-display");
@@ -222,10 +222,7 @@ function SetupOTPButtons(){
             if (!(response.status >= 200 && response.status <= 299)) {
                 return false;
             }
-            // await response and retrieve json list of records
-            let data = await response.json();
-
-            otpDisplayBox.setAttribute("value", data)
+            otpDisplayBox.setAttribute("value", await response.text())
 
             // Get the popup element
             let popup = document.getElementById("otp-record-popup");
