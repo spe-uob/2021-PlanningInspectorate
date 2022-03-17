@@ -14,32 +14,40 @@ public class Contact {
             strategy = GenerationType.SEQUENCE,
             generator = "contact_sequence"
     )
+    @Column
     private long id;
+    @Column
     private long departmentId; // foreign key - department table
+    @Column
     private long personId; // foreign key - person table
-    private boolean accepted;
+    @Column(nullable = true)
+    private String otp;
 
     public Contact(){}
 
-    // when reading from the database
-    public Contact(long id, long departmentId, long personId, boolean accepted) {
+    public Contact(long id, long departmentId, long personId, String otp) {
         this.id = id;
         this.departmentId = departmentId;
         this.personId = personId;
-        this.accepted = accepted;
+        this.otp = otp;
+    }
+
+    // when reading from the database
+    public Contact(long id, long departmentId, long personId) {
+        this.id = id;
+        this.departmentId = departmentId;
+        this.personId = personId;
     }
 
     // when writing to the database
     public Contact(long departmentId, long personId, boolean accepted) {
         this.departmentId = departmentId;
         this.personId = personId;
-        this.accepted = accepted;
     }
 
     public Contact(long departmentId, long personId) {
         this.departmentId = departmentId;
         this.personId = personId;
-        this.accepted = true;
     }
 
     public long getId() {
@@ -66,9 +74,13 @@ public class Contact {
         this.personId = personId;
     }
 
-    public boolean isAccepted() { return accepted; }
+    public String getOtp() {
+        return otp;
+    }
 
-    public void setAccepted(boolean accepted) { this.accepted = accepted; }
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
 
     @Override
     public String toString() {
@@ -76,7 +88,7 @@ public class Contact {
                 "id=" + id +
                 ", departmentId=" + departmentId +
                 ", personId=" + personId +
-                ", accepted=" + accepted +
+                ", otp='" + otp + '\'' +
                 '}';
     }
 }

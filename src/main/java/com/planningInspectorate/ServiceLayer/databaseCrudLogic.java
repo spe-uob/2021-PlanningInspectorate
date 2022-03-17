@@ -60,8 +60,14 @@ public class databaseCrudLogic {
     }
 
     public String GetRecordOneTimePin(String recordId){
-        oneTimePinUtil generate = new oneTimePinUtil();
-        return generate.GenerateOneTimePinHashFromId(recordId);
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String otp = bCryptPasswordEncoder.encode(recordId);
+        System.out.println(otp);
+        contactRepository.addOtp(otp, Long.parseLong(recordId));
+        System.out.println(otp);
+        return otp;
+        /*oneTimePinUtil generate = new oneTimePinUtil();
+        return generate.GenerateOneTimePinHashFromId(recordId);*/
     }
 
     // EditRecord uses the JSON body of an api request to modify a record.

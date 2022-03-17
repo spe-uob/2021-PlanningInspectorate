@@ -23,13 +23,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
             nativeQuery = true)
     void addPers(String name, String method, String email);
 
-    @Transactional
-    @Modifying
-    @Query(value="UPDATE Person " +
-            "SET otp = ? " +
-            "WHERE id = ?",
-            nativeQuery = true)
-    int addOtp(Long id, String otp);
+
 
     @Query(value = "SELECT id FROM Person WHERE name = ? AND method = ? AND email = ?", nativeQuery = true)
     List<String> getPerson(String name, String contactMethod, String email);
