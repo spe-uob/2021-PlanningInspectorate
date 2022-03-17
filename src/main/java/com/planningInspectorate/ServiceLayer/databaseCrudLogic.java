@@ -34,7 +34,14 @@ public class databaseCrudLogic {
     public CompleteRecord[] GetRecords(String searchTerm){
         // todo: search the database using searchTerm, for now only 1 column then create an array of CompleteRecord[]
         // and return it in this function
-        var result = departmentRepository.getRecord(searchTerm);
+        List<List<String>> result;
+        try {
+            result = departmentRepository.getRecord(searchTerm);
+        }
+        catch (Exception e){
+            System.out.println(e.toString());
+            return new CompleteRecord[]{new CompleteRecord("0")};
+        }
         CompleteRecord[] records = new CompleteRecord[result.size()];
         for(int i = 0; i < records.length; i++){
             List<String> currentResult = result.get(i);
@@ -62,7 +69,6 @@ public class databaseCrudLogic {
     // data is a Complete Record passed to the function it can have any number of fields as null, null fields shouldn't
     // be altered
     public boolean EditRecord(CompleteRecord data){
-        long contactId = Long.parseLong(data.getId());
         // update organisation
         long organisationId = Long.parseLong(contactRepository.getOrg(contactId));
         organisationRepository.updateOrg(data.getOrganisationName(), contactId);
@@ -80,9 +86,12 @@ public class databaseCrudLogic {
     // others can be null. If they are columns in database are nullable so do that
     public boolean AddRecord(CompleteRecord data){
 
+        try{
         if(organisationRepository.getByName(data.getOrganisationName()).size() == 0){
             //organisationRepository.addOrg(data.getOrganisationName());
             organisationRepository.save(new Organisation(data.getOrganisationName()));
+        }} catch (Exception e) {
+            return true;
         }
         System.out.println(organisationRepository.getByName(data.getOrganisationName()).get(0).get(0));
         long orgId = Long.parseLong(organisationRepository.getByName(data.getOrganisationName()).get(0).get(0));
@@ -115,9 +124,14 @@ public class databaseCrudLogic {
         contactRepository.deleteContactsBy(deptId, personId);*/
 
         long contactId = Long.parseLong(id);
-
+        try{
         if(contactRepository.existsById(contactId)){
             contactRepository.deleteById(contactId);
+        }
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+            return true;
         }
 
          //"Delete Records";
