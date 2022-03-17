@@ -10,8 +10,6 @@ import javax.naming.directory.SearchResult;
 import java.util.List;
 import java.util.Optional;
 
-import static com.planningInspectorate.ServiceLayer.oneTimePinUtil.GenerateOneTimePinHashFromId;
-
 // TODO: REWRITE THIS. IT IS AWFUL.
 
 @Service
@@ -62,7 +60,8 @@ public class databaseCrudLogic {
     }
 
     public String GetRecordOneTimePin(String recordId){
-        return GenerateOneTimePinHashFromId(recordId);
+        oneTimePinUtil generate = new oneTimePinUtil();
+        return generate.GenerateOneTimePinHashFromId(recordId);
     }
 
     // EditRecord uses the JSON body of an api request to modify a record.

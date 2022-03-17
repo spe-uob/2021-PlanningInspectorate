@@ -19,6 +19,9 @@ public class Person {
     private String name;
     private String addressBlock; // stored as text rather than varchar
     private String email;
+
+    @Column(nullable = true)
+    private String otp;
     public Person(){}
 
     // when reading from the database
@@ -28,6 +31,15 @@ public class Person {
         this.name = name;
         this.addressBlock = addressBlock;
         this.email = email;
+    }
+
+    public Person(long id, String method, String name, String addressBlock, String email, String otp) {
+        this.id = id;
+        this.method = method;
+        this.name = name;
+        this.addressBlock = addressBlock;
+        this.email = email;
+        this.otp = otp;
     }
 
     // when writing to the database
@@ -87,13 +99,23 @@ public class Person {
         this.email = email;
     }
 
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
                 "id=" + id +
+                ", method='" + method + '\'' +
                 ", name='" + name + '\'' +
                 ", addressBlock='" + addressBlock + '\'' +
                 ", email='" + email + '\'' +
+                ", otp='" + otp + '\'' +
                 '}';
     }
 }
