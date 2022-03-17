@@ -13,7 +13,7 @@ const deleteButtonTableCell = '<td><button class="delete-button mdl-button mdl-j
     '                        </button></td>';
 
 // drag and drop element for delete button at the end of each table row
-const emailButtonTableCell = '<td><button class="email-button mdl-button mdl-js-button mdl-button--icon">\n' +
+const emailButtonTableCell = '<td><button class="otp-button mdl-button mdl-js-button mdl-button--icon">\n' +
     '                            <i class="material-icons">email</i>\n' +
     '                        </button></td>';
 
@@ -106,7 +106,7 @@ function CreateNewDatabaseViewRow(data) {
     tableBodyReference.appendChild(newRow);
     SetupEditRecordPopup();
     SetupDeleteRecordButtons();
-    SetupEmailRecordButtons();
+    SetupOTPButtons();
     return true;
 }
 
@@ -201,31 +201,38 @@ function SetupDeleteRecordButtons(){
     }
 }
 
-function SetupEmailRecordButtons(){
-    // Get the buttons that delete records
-    let emailBtn = document.getElementsByClassName("email-button");
+function SetupOTPButtons(){
+    // Get the buttons
+    let emailBtn = document.getElementsByClassName("otp-button");
     // When the user clicks on the button, open the popup
     for (let i = 0; i < emailBtn.length; i++) {
-        emailBtn[i].onclick = function () {
-            // parse and collect the id of the record being deleted
+        emailBtn[i].onclick = async function () {
+
+            // parse and collect the id of the record
             let tableRow = document.getElementById("database-table-body").querySelectorAll("tr")[i];
             let id = tableRow.querySelectorAll("td")[0];
 
+            // get value box to update
+            let otpDisplayBox = document.getElementById("otp-code-display");
 
+            // make api call
+            let request = "http://localhost:8081/api/v1/dbCrud/getRecordPin/" + id;
+            let response = await fetch(request);
+            // check for API response error
+            if (!(response.status >= 200 && response.status <= 299)) {
+                return false;
+            }
+            // await response and retrieve json list of records
+            let data = await response.json();
+
+            otpDisplayBox.setAttribute("value", data)
 
             // Get the popup element
-            let popup = document.getElementById("email-record-popup");
+            let popup = document.getElementById("otp-record-popup");
             // Get the <button> element that closes the popup
-            let closeBtn = document.getElementById("email-record-close-popup-button");
-            // Get the delete button
-            let popupEmailBtn = document.getElementById("email-record-popup-button");
+            let closeBtn = document.getElementById("otp-record-close-popup-button");
 
             popup.style.display = "block";
-            popupEmailBtn.onclick = function () {
-                //DeleteRecord(id, tableRow);
-                popup.style.display = "none";
-            }
-
             closeBtn.onclick = function () {
                 popup.style.display = "none";
             }
