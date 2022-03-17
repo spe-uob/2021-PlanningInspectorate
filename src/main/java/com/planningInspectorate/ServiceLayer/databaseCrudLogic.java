@@ -58,7 +58,7 @@ public class databaseCrudLogic {
 
         // update the record i.e. generate the pin
         // return the pin
-
+        return null;
     }
 
     // EditRecord uses the JSON body of an api request to modify a record.
