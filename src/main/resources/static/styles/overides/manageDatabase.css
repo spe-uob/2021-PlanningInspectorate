@@ -57,6 +57,33 @@
     height: 100%;
 }
 
+#otp-record-popup {
+    background-color: rgba(0,0,0,0%);
+    width: 100%;
+    height: 100%;
+}
+
+#otp-code-display {
+    width: 50%;
+    height: 7%;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-align: center;
+}
+
+.otp-container {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
+#otp-record-close-popup-button {
+    width: 20%;
+    height: 7%;
+    margin: auto;
+}
+
 /* Modal Content/Box */
 .popup {
     background-color: #fefefe;
