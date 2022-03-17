@@ -69,6 +69,14 @@ public class databaseCrudLogic {
     // data is a Complete Record passed to the function it can have any number of fields as null, null fields shouldn't
     // be altered
     public boolean EditRecord(CompleteRecord data){
+        long contactId;
+        try {
+            contactId = Long.parseLong(data.getId());
+        }
+        catch (Exception e){
+            System.out.println(e.toString());
+            return true;
+        }
         // update organisation
         long organisationId = Long.parseLong(contactRepository.getOrg(contactId));
         organisationRepository.updateOrg(data.getOrganisationName(), contactId);
