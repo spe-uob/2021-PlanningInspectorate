@@ -1,6 +1,7 @@
 package com.planningInspectorate.ServiceLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.planningInspectorate.DataLayer.*;
@@ -24,10 +25,11 @@ public class databaseCrudLogic {
     private PersonRepository personRepository;
     @Autowired
     private SpecialContactRepository specialContactRepository;
+    @Autowired
+    private UpdateRecordRepository updateRecordRepository;
+
     // GetRecords takes a string as a url parameter and returns the matching records
     public CompleteRecord[] GetRecords(String searchTerm){
-
-
         // todo: search the database using searchTerm, for now only 1 column then create an array of CompleteRecord[]
         // and return it in this function
         var result = departmentRepository.getRecord(searchTerm);
@@ -50,10 +52,22 @@ public class databaseCrudLogic {
 
     }
 
+    public String GetRecordOneTimePin(String recordId){
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String otp = bCryptPasswordEncoder.encode(recordId);
+        System.out.println(otp);
+        contactRepository.addOtp(otp, Long.parseLong(recordId));
+        System.out.println(otp);
+        return otp;
+        /*oneTimePinUtil generate = new oneTimePinUtil();
+        return generate.GenerateOneTimePinHashFromId(recordId);*/
+    }
+
     // EditRecord uses the JSON body of an api request to modify a record.
     // data is a Complete Record passed to the function it can have any number of fields as null, null fields shouldn't
     // be altered
     public boolean EditRecord(CompleteRecord data){
+<<<<<<< HEAD
         long contactId = Long.parseLong(data.getId());
         // delete contact
 
@@ -76,6 +90,16 @@ public class databaseCrudLogic {
         personRepository.deleteById(personId);
         Person person = new Person(personId, data.getContactMethod(), data.getName(), data.getEmail());
         personRepository.save(person);*/
+=======
+        long contactId;
+        try {
+            contactId = Long.parseLong(data.getId());
+        }
+        catch (Exception e){
+            System.out.println(e.toString());
+            return true;
+        }
+>>>>>>> dev
         // update organisation
         long organisationId = Long.parseLong(contactRepository.getOrg(contactId));
         organisationRepository.updateOrg(data.getOrganisationName(), contactId);

@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -31,6 +32,14 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
                 "VALUES (?, ?, true)",
                 nativeQuery = true)
         boolean insertContact(long deptId, long persId);
+
+        @Transactional
+        @Modifying
+        @Query(value="UPDATE Contact " +
+                "SET otp = ? " +
+                "WHERE id = ?",
+                nativeQuery = true)
+        int addOtp(String otp, Long id);
 
         @Query(value =
                 "SELECT person_id FROM Contact WHERE id = ?",

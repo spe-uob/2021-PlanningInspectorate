@@ -91,6 +91,7 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "id=" + id +
+                ", method='" + method + '\'' +
                 ", name='" + name + '\'' +
                 ", addressBlock='" + addressBlock + '\'' +
                 ", email='" + email + '\'' +

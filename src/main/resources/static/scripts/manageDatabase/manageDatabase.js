@@ -12,6 +12,11 @@ const deleteButtonTableCell = '<td><button class="delete-button mdl-button mdl-j
     '                            <i class="material-icons">delete</i>\n' +
     '                        </button></td>';
 
+// drag and drop element for delete button at the end of each table row
+const emailButtonTableCell = '<td><button class="otp-button mdl-button mdl-js-button mdl-button--icon">\n' +
+    '                            <i class="material-icons">email</i>\n' +
+    '                        </button></td>';
+
 const loadingBar = '<div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>'
 
 // SearchDatabase is an asynchronous function to search database and update results
@@ -97,9 +102,11 @@ function CreateNewDatabaseViewRow(data) {
     }
     newRow.appendChild(document.createRange().createContextualFragment(editButtonTableCell));
     newRow.appendChild(document.createRange().createContextualFragment(deleteButtonTableCell));
+    newRow.appendChild(document.createRange().createContextualFragment(emailButtonTableCell));
     tableBodyReference.appendChild(newRow);
     SetupEditRecordPopup();
     SetupDeleteRecordButtons();
+    SetupOTPButtons();
     return true;
 }
 
@@ -169,22 +176,78 @@ function SetupDeleteRecordButtons(){
     let deleteBtn = document.getElementsByClassName("delete-button");
     // When the user clicks on the button, open the popup
     for (let i = 0; i < deleteBtn.length; i++) {
-        deleteBtn[i].onclick = async function () {
+        deleteBtn[i].onclick = function () {
             // parse and collect the id of the record being deleted
             let tableRow = document.getElementById("database-table-body").querySelectorAll("tr")[i];
             let id = tableRow.querySelectorAll("td")[0];
-            // make API call
-            let request = "http://localhost:8081/api/v1/dbCrud/deleteRecord/" + id.innerHTML;
-            let response = await fetch(request,{
-                    method: "DELETE",
-                    headers: {"Content-Type": "application/json"},
-                });
+
+            // Get the popup element
+            let popup = document.getElementById("delete-record-popup");
+            // Get the <button> element that closes the popup
+            let closeBtn = document.getElementById("delete-record-close-popup-button");
+            // Get the delete button
+            let popupDeleteBtn = document.getElementById("delete-record-popup-button");
+
+            popup.style.display = "block";
+            popupDeleteBtn.onclick = function () {
+                DeleteRecord(id, tableRow);
+                popup.style.display = "none";
+            }
+
+            closeBtn.onclick = function () {
+                popup.style.display = "none";
+            }
+        }
+    }
+}
+
+function SetupOTPButtons(){
+    // Get the buttons
+    let emailBtn = document.getElementsByClassName("otp-button");
+    // When the user clicks on the button, open the popup
+    for (let i = 0; i < emailBtn.length; i++) {
+        emailBtn[i].onclick = async function () {
+
+            // parse and collect the id of the record
+            let tableRow = document.getElementById("database-table-body").querySelectorAll("tr")[i];
+            let id = tableRow.querySelectorAll("td")[0].innerText;
+
+            // get value box to update
+            let otpDisplayBox = document.getElementById("otp-code-display");
+
+            // make api call
+            let request = "http://localhost:8081/api/v1/dbCrud/getRecordPin/" + id;
+            let response = await fetch(request);
             // check for API response error
             if (!(response.status >= 200 && response.status <= 299)) {
                 return false;
             }
-            // delete record from search field
-            tableRow.remove();
+            otpDisplayBox.setAttribute("value", await response.text())
+
+            // Get the popup element
+            let popup = document.getElementById("otp-record-popup");
+            // Get the <button> element that closes the popup
+            let closeBtn = document.getElementById("otp-record-close-popup-button");
+
+            popup.style.display = "block";
+            closeBtn.onclick = function () {
+                popup.style.display = "none";
+            }
         }
     }
+}
+
+async function DeleteRecord(id, tableRow){
+    // make API call
+    let request = "http://localhost:8081/api/v1/dbCrud/deleteRecord/" + id.innerHTML;
+    let response = await fetch(request,{
+        method: "DELETE",
+        headers: {"Content-Type": "application/json"},
+    });
+    // check for API response error
+    if (!(response.status >= 200 && response.status <= 299)) {
+        return false;
+    }
+    // delete record from search field
+    tableRow.remove();
 }
