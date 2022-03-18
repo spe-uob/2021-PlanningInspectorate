@@ -37,7 +37,6 @@ public class databaseCrudLogic {
             result = departmentRepository.getRecord(searchTerm);
         }
         catch (Exception e){
-            System.out.println(e.toString());
             return new CompleteRecord[]{new CompleteRecord("0")};
         }
         CompleteRecord[] records = new CompleteRecord[result.size()];
