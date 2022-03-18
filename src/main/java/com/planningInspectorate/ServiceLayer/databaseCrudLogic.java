@@ -32,7 +32,15 @@ public class databaseCrudLogic {
     public CompleteRecord[] GetRecords(String searchTerm){
         // todo: search the database using searchTerm, for now only 1 column then create an array of CompleteRecord[]
         // and return it in this function
-        var result = departmentRepository.getRecord(searchTerm);
+
+        List<List<String>> result;
+        try {
+            result = departmentRepository.getRecord(searchTerm);
+        }
+        catch (Exception e){
+            return new CompleteRecord[]{new CompleteRecord("0")};
+        }
+
         CompleteRecord[] records = new CompleteRecord[result.size()];
         for(int i = 0; i < records.length; i++){
             List<String> currentResult = result.get(i);
@@ -67,30 +75,7 @@ public class databaseCrudLogic {
     // data is a Complete Record passed to the function it can have any number of fields as null, null fields shouldn't
     // be altered
     public boolean EditRecord(CompleteRecord data){
-<<<<<<< HEAD
-        long contactId = Long.parseLong(data.getId());
-        // delete contact
 
-        // using contact id via the dept id get the organisation id and delete row
-        // re-create row with same id and new org name
-        /*long contactId = Long.parseLong(data.getId());
-        long organisationId = Long.parseLong(contactRepository.getOrg(contactId));
-        organisationRepository.deleteById(organisationId);
-        Organisation org = new Organisation(organisationId, data.getOrganisationName());
-        organisationRepository.save(org);
-
-        // delete current dept using id and re create dept row with same id and new data
-        long deptId = Long.parseLong(contactRepository.getDept(contactId));
-        departmentRepository.deleteById(deptId);
-        Department dept = new Department(deptId, Long.toString(organisationId), data.getDepartment(), data.getApfpTest(), data.getNotes());
-        departmentRepository.save(dept);
-
-        // delete person using id and re create person row with same id and new data
-        long personId = Long.parseLong(contactRepository.getPerson(contactId));
-        personRepository.deleteById(personId);
-        Person person = new Person(personId, data.getContactMethod(), data.getName(), data.getEmail());
-        personRepository.save(person);*/
-=======
         long contactId;
         try {
             contactId = Long.parseLong(data.getId());
@@ -99,7 +84,7 @@ public class databaseCrudLogic {
             System.out.println(e.toString());
             return true;
         }
->>>>>>> dev
+
         // update organisation
         long organisationId = Long.parseLong(contactRepository.getOrg(contactId));
         organisationRepository.updateOrg(data.getOrganisationName(), contactId);
