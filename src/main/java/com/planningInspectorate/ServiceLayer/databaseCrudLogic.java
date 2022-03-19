@@ -102,9 +102,12 @@ public class databaseCrudLogic {
     // others can be null. If they are columns in database are nullable so do that
     public boolean AddRecord(CompleteRecord data){
 
+        try{
         if(organisationRepository.getByName(data.getOrganisationName()).size() == 0){
             //organisationRepository.addOrg(data.getOrganisationName());
             organisationRepository.save(new Organisation(data.getOrganisationName()));
+        }} catch (Exception e){
+            return true;
         }
         System.out.println(organisationRepository.getByName(data.getOrganisationName()).get(0).get(0));
         long orgId = Long.parseLong(organisationRepository.getByName(data.getOrganisationName()).get(0).get(0));
@@ -138,8 +141,12 @@ public class databaseCrudLogic {
 
         long contactId = Long.parseLong(id);
 
+        try{
         if(contactRepository.existsById(contactId)){
             contactRepository.deleteById(contactId);
+        }} catch (Exception e){
+            System.out.println(e.toString());
+            return true;
         }
 
          //"Delete Records";
