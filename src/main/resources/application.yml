@@ -6,7 +6,7 @@ spring:
 
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://planning-inspectorate-postgre-toolchain/planningInspectorateDB
+    url: jdbc:postgresql://planning-inspectorate-postgre-toolchain:5432/planningInspectorateDB
     username: planningInspectorateTool
     password: mysecretpassword
   jpa:
