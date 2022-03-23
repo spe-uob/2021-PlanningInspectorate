@@ -10,13 +10,13 @@ spring:
     username: ${POSTGRES_USER}
     password: ${POSTGRES_PASSWORD}
   jpa:
+    connection:
+      charset: utf8
+      useUnicode: true
+      # Hibernate ddl auto (create, create-drop, update): with "update" the database
+      # schema will be automatically updated accordingly to java entities found in
+      # the project
     hibernate:
-      connection:
-        charset: utf8
-        useUnicode: true
-        # Hibernate ddl auto (create, create-drop, update): with "update" the database
-        # schema will be automatically updated accordingly to java entities found in
-        # the project
       ddl-auto: update
       # Show or not log for each sql query
     #      show-sql: false
