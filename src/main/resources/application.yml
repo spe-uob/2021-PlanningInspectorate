@@ -6,9 +6,9 @@ spring:
 
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://db:5432/planningInspectorateDB
-    username: planningInspectorateTool
-    password: mysecretpassword
+    url: jdbc:postgresql://${PG_HOST}:5432/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
   jpa:
     hibernate:
       connection:

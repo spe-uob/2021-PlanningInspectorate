@@ -5,8 +5,7 @@ RUN mvn -f /home/app/pom.xml clean package -DskipTests=True
 
 FROM openjdk:11.0-jdk-slim-buster
 COPY --from=build /home/app/target/planningInspectorate-0.0.1-SNAPSHOT.jar /usr/local/lib/demo.jar
-ENV SPRING_PROFILES_ACTIVE=prod
-ENV PG_HOST=planning-inspectorate-postgre-toolchain
+ENV PG_HOST=planning-inspectorate-postgre-toolchain-57dd747d57-t4jr9
 ENV POSTGRES_PASSWORD=mysecretpassword
 ENV POSTGRES_USER=planningInspectorateTool
 ENV POSTGRES_DB=planningInspectorateDB
