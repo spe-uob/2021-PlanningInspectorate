@@ -1,6 +1,7 @@
 // 2 possible use cases for site, entering pin and editing record
 const PIN_ENTRY_CONTAINER = document.getElementById("otp-submission-container");
 const RECORD_EDIT_CONTAINER = document.getElementById("record-edit-container");
+let currentOTP = "";
 
 // HELPER FUNCTIONS
 // UpdateFormWithPreviousValues takes a list of previous values and inserts them into the value text on the form
@@ -26,7 +27,6 @@ function UpdateFormWithPreviousValues(form ,previousValues) {
 async function SubmitOtp(){
     // one time pin is below
     let otp = document.getElementById("otpEntry").value;
-
     // make api call to verify otp exists
     let request = "http://localhost:8081/api/v1/dbCrud/verifyOTP/" + otp;
     let response = await fetch(request);
@@ -45,6 +45,7 @@ async function SubmitOtp(){
     // hide this reveal other
     PIN_ENTRY_CONTAINER.setAttribute("style","display: none;")
     RECORD_EDIT_CONTAINER.setAttribute("style","display: flex;")
+    currentOTP = otp;
 
     // request previous record values from API
     request = "http://localhost:8081/api/v1/dbCrud/getRecordFromOTP/" + otp;
@@ -57,5 +58,42 @@ async function SubmitOtp(){
     let oldData = await response.json();
 
     // populate record edit container with correct values
+    let otpRecordForm = document.getElementById("otp-edit-record");
+    UpdateFormWithPreviousValues(otpRecordForm, oldData);
+}
 
+function RecordUpdateOnClick(){
+    let formIds = ["otp","schedOne","orgName","apfpRegs","notes","contactMethod","name","email"];
+    let formData = [];
+    // first push the id of the record being edited
+    formData.push(currentOTP);
+    // for the id of each component in the form
+    for (let formId of formIds) {
+        formId = formId.concat("-add");
+        // get the element and its value
+        formData.push(document.getElementById(formId).value);
+    }
+    // call api request
+    SubmitRecordUpdates(formData);
+    alert("data submitted for review, thank you for using the service");
+    PIN_ENTRY_CONTAINER.setAttribute("style","display: flex;")
+    RECORD_EDIT_CONTAINER.setAttribute("style","display: none;")
+    currentOTP = "";
+}
+
+async function SubmitRecordUpdates(data){
+    // setup request link
+    let request = "http://localhost:8081/api/v1/dbCrud/updateOtp";
+    // send API request with data using correct method
+    let response = await fetch(request,
+        {
+            method: "PUT",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(data)
+        });
+    // check for API response error
+    if (!(response.status >= 200 && response.status <= 299)) {
+        return false;
+    }
+    return true;
 }

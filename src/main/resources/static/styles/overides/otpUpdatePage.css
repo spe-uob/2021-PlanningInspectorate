@@ -6,3 +6,20 @@
     width: 100%;
     height: 70%;
 }
+
+.otp-form-box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.otp-form-box label {
+    margin: 5px;
+}
+
+.otp-form-box * {
+    width: 500px;
+}

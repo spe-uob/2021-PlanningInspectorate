@@ -40,16 +40,40 @@
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
         <!-- 2 main divs, one for submission and one for editing they are toggled in js -->
-            <div id="otp-submission-container" class="otp-content-box">
+            <div id="otp-submission-container" style="display: flex;" class="otp-content-box">
                 <h3 class="edit-record-dialog-title mdl-dialog__title" style="margin: 1.5%;">Enter the one time pin given to you</h3>
-                <form id="add-record-form"style="width: 300px;">
+                <form style="width: 300px;">
                     <input type="text" style="width: 100%;" id="otpEntry" name="otpEntryBox">
                 </form>
                 <button type="button" onclick="SubmitOtp()" id="add-close-popup-button" style="margin: 1%; width: 150px" class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">Submit</button>
             </div>
             <div id="record-edit-container" style="display: none;" class="otp-content-box">
-                <h3>Test</h3>
-            </div>
+                    <h3 class="edit-record-dialog-title mdl-dialog__title">Editing Record</h3>
+                    <form id="otp-edit-record" class="otp-form-box">
+                        <label for="schedOne">Schedule 1 Description</label>
+                        <input type="text" id="schedOne" name="ScheduleOne">
+
+                        <label for="orgName">Organisation Name</label>
+                        <input type="text" id="orgName" name="OrganisationName">
+
+                        <label for="apfpRegs">APFP Regs, Sched 1, Column 2</label>
+                        <textarea id="apfpRegs" name="ApfpRegs"style="height:100px"></textarea>
+
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" name="Notes" style="height:100px"></textarea>
+
+                        <label for="contactMethod">Method</label>
+                        <input type="text" id="contactMethod" name="ContactMethod">
+
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="Name">
+
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="Email">
+                    </form>
+                <button type="button" style="width: 200px;" class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">Submit</button>
+
+                </div>
     </main>
 </div>
 <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>

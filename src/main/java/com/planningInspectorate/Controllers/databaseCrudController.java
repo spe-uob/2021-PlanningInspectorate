@@ -82,4 +82,14 @@ public class databaseCrudController {
         // Should only be used after VerifyOTP
         return null;
     }
+
+    @PutMapping("/updateOtp")
+    public boolean updateOtp(@RequestBody String[] data){
+        // another one, this gets sent when the user updates the data, the String[] data is an array of the new data
+        // it has the otp as the first field (should be used to identify the record that needs updating)
+        // it then has the values (no id) so sched 1, org name, apfp regs etc
+        // There is no spam handling on the frontend so once this is called it should also delete the otp for that record
+
+        return true;
+    }
 }
