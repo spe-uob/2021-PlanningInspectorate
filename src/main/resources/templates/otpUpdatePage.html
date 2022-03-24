@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/styles/styles.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/styles/overides/manageDatabase.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/overides/otpUpdatePage.css}">
 </head>
 <body>
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
@@ -40,7 +40,7 @@
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
         <!-- Put code unique to the individual page here -->
-            <div class="otp-content-box" style="display: flex;flex-direction: column;justify-content: center;align-items: center;width: 100%;height: 70%;">
+            <div class="otp-content-box">
                 <h3 class="edit-record-dialog-title mdl-dialog__title" style="margin: 1.5%;">Enter the one time pin given to you</h3>
                 <form id="add-record-form"style="width: 20%;" action="" onsubmit="RecordSubmitButton('add')">
                     <input type="text" style="width: 100%;" id="otpEntry" name="otpEntryBox">
@@ -50,7 +50,6 @@
     </main>
 </div>
 <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-<script type="text/javascript" th:src="@{/scripts/manageDatabase/editRecordPopup.js}"></script>
-<script type="text/javascript" th:src="@{/scripts/manageDatabase/manageDatabase.js}"></script>
+<script type="text/javascript" th:src="@{/scripts/otpUpdatePage/otpLogic.js}"></script>
 </body>
 </html>
