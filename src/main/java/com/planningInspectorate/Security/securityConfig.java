@@ -36,8 +36,9 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .anyRequest()
-                .authenticated()
+                    // uses antMatchers to say if request is to /otp no auth required otherwise you have to login
+                    .antMatchers("/otp*").permitAll()
+                    .anyRequest().authenticated()
                 .and()
                 .formLogin()
                     .loginPage("/login").permitAll()
@@ -56,6 +57,8 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
                     .deleteCookies("JSESSIONID","remember-me")
                     .logoutSuccessUrl("/login");
     }
+
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
