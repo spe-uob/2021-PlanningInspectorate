@@ -69,4 +69,17 @@ public class databaseCrudController {
          return databaseCrudLogic.DeleteRecord(id);
     }
 
+    @GetMapping("/verifyOTP/{pin}")
+    public boolean VerifyOTP(@PathVariable String pin){
+        // Imran can you implement this should return true or false for if the pin exists or doesn't
+        // gonna use a second function to get the record data from a given pin
+        return true;
+    }
+
+    @GetMapping("/getRecordFromOTP/{pin}")
+    public CompleteRecord[] GetRecordFromOTP(@PathVariable String pin){
+        // This should return a record based on the OTP pin, basically identical to get record but searches OTP's
+        // Should only be used after VerifyOTP
+        return null;
+    }
 }

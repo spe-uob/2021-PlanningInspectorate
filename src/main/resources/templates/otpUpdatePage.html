@@ -39,13 +39,16 @@
         <h3 style="margin: 20px">Planning Inspectorate Tool</h3>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
-        <!-- Put code unique to the individual page here -->
-            <div class="otp-content-box">
+        <!-- 2 main divs, one for submission and one for editing they are toggled in js -->
+            <div id="otp-submission-container" class="otp-content-box">
                 <h3 class="edit-record-dialog-title mdl-dialog__title" style="margin: 1.5%;">Enter the one time pin given to you</h3>
-                <form id="add-record-form"style="width: 20%;" action="" onsubmit="RecordSubmitButton('add')">
+                <form id="add-record-form"style="width: 300px;">
                     <input type="text" style="width: 100%;" id="otpEntry" name="otpEntryBox">
                 </form>
-                <button type="button" id="add-close-popup-button" style="margin: 1%; width: 10%" class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">Submit</button>
+                <button type="button" onclick="SubmitOtp()" id="add-close-popup-button" style="margin: 1%; width: 150px" class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">Submit</button>
+            </div>
+            <div id="record-edit-container" class="otp-content-box">
+                <h3>Test</h3>
             </div>
     </main>
 </div>
