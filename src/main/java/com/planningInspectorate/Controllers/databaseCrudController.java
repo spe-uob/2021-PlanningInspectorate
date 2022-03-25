@@ -77,5 +77,12 @@ public class databaseCrudController {
         //return true;
     }
 
+    @GetMapping("/getRecordFromOTP/{pin}")
+    public CompleteRecord[] GetRecordFromOTP(@PathVariable String pin){
+        return databaseCrudLogic.GetRecordFromOtp(pin);
+        // This should return a record based on the OTP pin, basically identical to get record but searches OTP's
+        // Should only be used after VerifyOTP
+        //return null;
+    }
 
 }
