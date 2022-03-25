@@ -60,6 +60,7 @@ public class databaseCrudLogic {
 
     }
 
+    // creates otp from contact_id and inserts into database
     public String GetRecordOneTimePin(String recordId){
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String otp = bCryptPasswordEncoder.encode(recordId);
@@ -153,5 +154,19 @@ public class databaseCrudLogic {
         return true;
     }
 
+
+    public boolean VerifyOTP(String pin) {
+        List<String> otpRow = contactRepository.getOtpRow(pin);
+        if(otpRow == null){
+            return false;
+        }
+        else if(otpRow.size() == 0){
+            return false;
+        }
+        else{
+            return true;
+        }
+        //return otpRow != null && otpRow.size() > 0;
+    }
 
 }
