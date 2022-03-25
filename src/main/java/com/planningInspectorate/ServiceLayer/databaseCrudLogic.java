@@ -169,4 +169,21 @@ public class databaseCrudLogic {
         //return otpRow != null && otpRow.size() > 0;
     }
 
+
+    public CompleteRecord[] GetRecordFromOtp(String pin) {
+        List<String> result = departmentRepository.getRecordFromOtp(pin);
+
+        String recordId = result.get(0);
+        String deptName = result.get(1);
+        String orgName = result.get(2);
+        String test = result.get(3);
+        String notes = result.get(4);
+        String method = result.get(5);
+        String name = result.get(6);
+        String email = result.get(7);
+        CompleteRecord record = new CompleteRecord(recordId, deptName, orgName, test, notes, method, name, email);
+
+        return new CompleteRecord[]{record};
+    }
+
 }
