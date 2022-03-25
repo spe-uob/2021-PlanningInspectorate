@@ -26,7 +26,7 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
 
     public void configure(WebSecurity web) throws Exception{
         web
-                .ignoring().antMatchers("/resources/**").anyRequest();
+                .ignoring().antMatchers("resources/static/**", "/css/**", "/js/**", "/img/**", "/icon/**");
     }
 
 
@@ -36,7 +36,9 @@ public class securityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                     // uses antMatchers to say if request is to /otp no auth required otherwise you have to login
-                    .antMatchers("/otp*", "/resources/**").permitAll()
+                    .antMatchers("/otp*").permitAll()
+                    .antMatchers("/styles/styles.css").permitAll()
+                    .antMatchers("/otp/*").permitAll()
                     .anyRequest().authenticated()
                 .and()
                 .formLogin()
