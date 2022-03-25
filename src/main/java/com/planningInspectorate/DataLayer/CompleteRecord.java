@@ -19,6 +19,9 @@ public class CompleteRecord {
     private String name;
     private String email;
 
+    public CompleteRecord() {
+    }
+
     public CompleteRecord(String id, String department, String organisationName, String apfpTest, String notes, String contactMethod, String name, String email) {
         this.id = id;
         this.department = department;
