@@ -154,7 +154,7 @@ public class databaseCrudLogic {
         return true;
     }
 
-
+    // check if a record exits via otp
     public boolean VerifyOTP(String pin) {
         List<String> otpRow = contactRepository.getOtpRow(pin);
         if(otpRow == null){
@@ -169,7 +169,7 @@ public class databaseCrudLogic {
         //return otpRow != null && otpRow.size() > 0;
     }
 
-
+    // get all record data corresponding to otp
     public CompleteRecord[] GetRecordFromOtp(String pin) {
         List<String> result = departmentRepository.getRecordFromOtp(pin);
 
@@ -186,4 +186,47 @@ public class databaseCrudLogic {
         return new CompleteRecord[]{record};
     }
 
+    // update data corresponding to otp
+    public void updateOtp(String[] data) {
+
+        /*long contactId;
+        try {
+            contactId = Long.parseLong(data.getId());
+        }
+        catch (Exception e){
+            System.out.println(e.toString());
+            return true;
+        }
+
+        // update organisation
+        long organisationId = Long.parseLong(contactRepository.getOrg(contactId));
+        organisationRepository.updateOrg(data.getOrganisationName(), contactId);
+        // update person
+        long personId = Long.parseLong(contactRepository.getPerson(contactId));
+        personRepository.updatePerson(data.getEmail(), data.getContactMethod(), data.getName(), personId);
+        // update department
+        long deptId = Long.parseLong(contactRepository.getDept(contactId));
+        departmentRepository.updateDepartment(data.getDepartment(), data.getNotes(), organisationId, data.getApfpTest(), deptId);
+        */
+
+        String otp = data[0];
+        String deptName = data[1];
+        String orgName = data[2];
+        String test = data[3];
+        String notes = data[4];
+        String method = data[5];
+        String personName = data[6];
+        String email = data[7];
+
+        var info = contactRepository.getOtpRow(otp);
+
+        long contactId = Long.parseLong(info.get(0));
+        long departmentId = Long.parseLong(info.get(1));
+        long personId = Long.parseLong(info.get(2));
+        long orgId = Long.parseLong(contactRepository.getOrg(contactId));
+
+        departmentRepository.updateDepartment(deptName, notes, orgId, test, departmentId);
+        organisationRepository.updateOrg(orgName, orgId);
+        personRepository.updatePerson(email, method, personName, personId);
+    }
 }
