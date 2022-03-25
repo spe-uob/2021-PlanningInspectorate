@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -41,8 +42,15 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
                 nativeQuery = true)
         int addOtp(String otp, Long id);
 
+        @Query(value=
+        "SELECT * FROM Contact WHERE otp = ?",
+        nativeQuery = true)
+        List<String> getOtpRow(String pin);
+
         @Query(value =
                 "SELECT person_id FROM Contact WHERE id = ?",
                 nativeQuery = true)
         String getPerson(long contactId);
+
+
 }
