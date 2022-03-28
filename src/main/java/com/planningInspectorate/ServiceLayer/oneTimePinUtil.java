@@ -15,6 +15,7 @@ public class oneTimePinUtil {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String otp = bCryptPasswordEncoder.encode(id);
         //personRepository.addOtp(Long.parseLong(id), otp);
+
         return otp;
     }
 }

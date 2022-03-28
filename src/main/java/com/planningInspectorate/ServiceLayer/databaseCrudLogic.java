@@ -157,6 +157,7 @@ public class databaseCrudLogic {
     // check if a record exits via otp
     public boolean VerifyOTP(String pin) {
         List<String> otpRow = contactRepository.getOtpRow(pin);
+
         if(otpRow == null){
             return false;
         }
