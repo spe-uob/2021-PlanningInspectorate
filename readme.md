@@ -33,16 +33,50 @@ git clone https://github.com/spe-uob/2021-PlanningInspectorate.git
 mvn spring-boot:run 
 ```
 
-## Deployment Instructions (IBM Cloud)
-### Springboot Deploy
-* 1
-* 2
-* 3
-* 4
+## Deployment Instructions 
+### AWS app + db coupled:
+#### Assumed Knowledge:
+1. Able to create an AWS EC2 instance and access it via ssh
+2. Familiarity with altering spring boot application.properties
 
-### Postgres Db Deploy
-* 1
-* 2
-* 3
-* 4
-
+#### Instructions:
+1. Access your AWS dashboard and spin up an EC2 compute instance
+2. Clone this repo using
+```
+git clone https://github.com/spe-uob/2021-PlanningInspectorate.git
+```
+3. Open in your editor of choice and navigate to ```src/main/resources/application.properties``` and edit the spring datasource parameters to connect to localhost
+4. Locally compile the application by using
+``` 
+mvn clean package -DskipTests=True
+```
+5. You now need to get this Jar file onto the EC2 instance. There are several ways to do this including ftp but we reccommend connecting via [WinSCP](https://winscp.net/eng/index.php) and using the .pem access key provided by amazon
+6. Next we need to setup the EC2 instance by pasting the following commands
+```
+sudo tee /etc/yum.repos.d/pgdg.repo<<EOF
+[pgdg13]
+name=PostgreSQL 13 for RHEL/CentOS 7 - x86_64
+baseurl=https://download.postgresql.org/pub/repos/yum/13/redhat/rhel-7-x86_64
+enabled=1
+gpgcheck=0
+EOF
+```
+Then update the system
+```
+sudo yum update
+```
+And install and configure postgres service (run these commands line by line)
+```
+sudo yum install postgresql13 postgresql13-server
+sudo /usr/pgsql-13/bin/postgresql-13-setup initdb
+sudo systemctl start postgresql-13
+sudo systemctl enable postgresql-13
+sudo passwd postgres
+su - postgres
+psql -c "ALTER USER postgres WITH PASSWORD 'WHAT-YOU-SET-SPRING-DATASOURCE-PASSWORD-TO';"
+```
+7. Now postgres is running we can launch the spring app, to do this java needs installing via 
+```sudo yum install java```
+8. Finally to launch the application run (ensuring the path to the compiled .jar file is correct)
+```java -jar planningInspectorate-0.0.1-SNAPSHOT.jar```
+9. To access the application setup the EC2 security group to allow access on port 8080 and enter the public ipv4 address with :8080 into you search bar.
