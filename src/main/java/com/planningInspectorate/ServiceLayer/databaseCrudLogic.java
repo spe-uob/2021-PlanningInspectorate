@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.planningInspectorate.DataLayer.*;
 
 import javax.naming.directory.SearchResult;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,8 +62,8 @@ public class databaseCrudLogic {
     }
 
     // creates otp from contact_id and inserts into database
-    public String GetRecordOneTimePin(String recordId){
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    public String GetRecordOneTimePin(String recordId) throws NoSuchAlgorithmException {
+        /*BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String otp = bCryptPasswordEncoder.encode(recordId);
         System.out.println(otp);
         contactRepository.addOtp(otp, Long.parseLong(recordId));
@@ -70,6 +71,11 @@ public class databaseCrudLogic {
         return otp;
         /*oneTimePinUtil generate = new oneTimePinUtil();
         return generate.GenerateOneTimePinHashFromId(recordId);*/
+
+        oneTimePinUtil pinGen = new oneTimePinUtil();
+        String otp = pinGen.GenerateOneTimePinHashFromId(recordId);
+
+        return otp;
     }
 
     // EditRecord uses the JSON body of an api request to modify a record.
@@ -157,14 +163,17 @@ public class databaseCrudLogic {
     // check if a record exits via otp
     public boolean VerifyOTP(String pin) {
         List<String> otpRow = contactRepository.getOtpRow(pin);
-
+        System.out.println(otpRow.toString());
         if(otpRow == null){
+            System.out.println("first case");
             return false;
         }
         else if(otpRow.size() == 0){
+            System.out.println("second case");
             return false;
         }
         else{
+            System.out.println("Third case");
             return true;
         }
         //return otpRow != null && otpRow.size() > 0;

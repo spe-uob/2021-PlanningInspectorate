@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.planningInspectorate.DataLayer.CompleteRecord;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLOutput;
 
 @RestController
@@ -50,7 +51,7 @@ public class databaseCrudController {
     }
 
     @GetMapping("/getRecordPin/{recordId}")
-    public String GetRecordPin(@PathVariable String recordId){
+    public String GetRecordPin(@PathVariable String recordId) throws NoSuchAlgorithmException {
         return databaseCrudLogic.GetRecordOneTimePin(recordId);
     }
 
@@ -71,6 +72,7 @@ public class databaseCrudController {
 
     @GetMapping("/verifyOTP/{pin}")
     public boolean VerifyOTP(@PathVariable String pin){
+        System.out.println("here");
         return databaseCrudLogic.VerifyOTP(pin);
         // Imran can you implement this should return true or false for if the pin exists or doesn't
         // gonna use a second function to get the record data from a given pin
