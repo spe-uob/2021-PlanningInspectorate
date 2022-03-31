@@ -8,7 +8,8 @@ let currentOTP = "";
 function UpdateFormWithPreviousValues(form ,previousValues) {
     // for each child element of the form (can be label, input or textarea)
     form.reset();
-    let count = 0;
+    console.log("prev: ",previousValues[2]);
+    let count = 1;
     for (let i = 0; i < form.childNodes.length; i++) {
         {
             // if input or textarea
@@ -55,21 +56,26 @@ async function SubmitOtp(){
         return false;
     }
     // await response and retrieve json list of records
-    let oldData = await response.json();
+    let jsonVals = await response.json();
+    let oldData = [];
+    let keys = Object.keys(jsonVals);
+    keys.forEach(function(key){
+        oldData.push(jsonVals[key]);
+    });
 
     // populate record edit container with correct values
     let otpRecordForm = document.getElementById("otp-edit-record");
+    console.log("json: ",oldData);
     UpdateFormWithPreviousValues(otpRecordForm, oldData);
 }
 
 function RecordUpdateOnClick(){
-    let formIds = ["otp","schedOne","orgName","apfpRegs","notes","contactMethod","name","email"];
+    let formIds = ["schedOne","orgName","apfpRegs","notes","contactMethod","name","email"];
     let formData = [];
     // first push the id of the record being edited
     formData.push(currentOTP);
     // for the id of each component in the form
     for (let formId of formIds) {
-        formId = formId.concat("-add");
         // get the element and its value
         formData.push(document.getElementById(formId).value);
     }

@@ -9,6 +9,7 @@ import com.planningInspectorate.DataLayer.CompleteRecord;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLOutput;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping(path="api/v1/dbCrud")
@@ -89,6 +90,7 @@ public class databaseCrudController {
 
     @PutMapping("/updateOtp")
     public boolean updateOtp(@RequestBody String[] data){
+        System.out.println(Arrays.toString(data));
         databaseCrudLogic.updateOtp(data);
         // another one, this gets sent when the user updates the data, the String[] data is an array of the new data
         // it has the otp as the first field (should be used to identify the record that needs updating)
