@@ -73,7 +73,6 @@ public class databaseCrudController {
 
     @GetMapping("/verifyOTP/{pin}")
     public boolean VerifyOTP(@PathVariable String pin){
-        System.out.println("here");
         return databaseCrudLogic.VerifyOTP(pin);
         // Imran can you implement this should return true or false for if the pin exists or doesn't
         // gonna use a second function to get the record data from a given pin
@@ -90,7 +89,6 @@ public class databaseCrudController {
 
     @PutMapping("/updateOtp")
     public boolean updateOtp(@RequestBody String[] data){
-        System.out.println(Arrays.toString(data));
         databaseCrudLogic.updateOtp(data);
         // another one, this gets sent when the user updates the data, the String[] data is an array of the new data
         // it has the otp as the first field (should be used to identify the record that needs updating)

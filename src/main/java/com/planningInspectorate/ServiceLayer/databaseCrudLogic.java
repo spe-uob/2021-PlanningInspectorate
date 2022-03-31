@@ -134,10 +134,6 @@ public class databaseCrudLogic {
 
     // Uses the url parameter of an api request to delete a record based on its id
     public boolean DeleteRecord(String id){
-        /*var ids = id.split(":");
-        long deptId = Long.parseLong(ids[0]);
-        long personId = Long.parseLong(ids[2]);
-        contactRepository.deleteContactsBy(deptId, personId);*/
 
         long contactId = Long.parseLong(id);
 
@@ -155,7 +151,7 @@ public class databaseCrudLogic {
 
     // check if a record exits via otp
     public boolean VerifyOTP(String pin) {
-        List<String> otpRow = contactRepository.getOtpRow(pin);
+        List<String> otpRow = contactRepository.getOtpRow(pin).get(0);
         if(otpRow == null){
             return false;
         }
@@ -188,26 +184,6 @@ public class databaseCrudLogic {
     // update data corresponding to otp
     public void updateOtp(String[] data) {
 
-        /*long contactId;
-        try {
-            contactId = Long.parseLong(data.getId());
-        }
-        catch (Exception e){
-            System.out.println(e.toString());
-            return true;
-        }
-
-        // update organisation
-        long organisationId = Long.parseLong(contactRepository.getOrg(contactId));
-        organisationRepository.updateOrg(data.getOrganisationName(), contactId);
-        // update person
-        long personId = Long.parseLong(contactRepository.getPerson(contactId));
-        personRepository.updatePerson(data.getEmail(), data.getContactMethod(), data.getName(), personId);
-        // update department
-        long deptId = Long.parseLong(contactRepository.getDept(contactId));
-        departmentRepository.updateDepartment(data.getDepartment(), data.getNotes(), organisationId, data.getApfpTest(), deptId);
-        */
-
         String otp = data[0];
         String deptName = data[1];
         String orgName = data[2];
@@ -217,11 +193,11 @@ public class databaseCrudLogic {
         String personName = data[6];
         String email = data[7];
 
-        var info = contactRepository.getOtpRow(otp);
+        var info = contactRepository.getOtpRow(otp).get(0);
 
         long contactId = Long.parseLong(info.get(0));
         long departmentId = Long.parseLong(info.get(1));
-        long personId = Long.parseLong(info.get(2));
+        long personId = Long.parseLong(info.get(3));
         long orgId = Long.parseLong(contactRepository.getOrg(contactId));
 
         departmentRepository.updateDepartment(deptName, notes, orgId, test, departmentId);

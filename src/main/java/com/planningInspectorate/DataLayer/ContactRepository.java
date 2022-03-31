@@ -45,7 +45,7 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
         @Query(value=
         "SELECT * FROM Contact WHERE otp = ?",
         nativeQuery = true)
-        List<String> getOtpRow(String pin);
+        List<List<String>> getOtpRow(String pin);
 
         @Query(value =
                 "SELECT person_id FROM Contact WHERE id = ?",
