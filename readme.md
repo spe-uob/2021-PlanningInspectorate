@@ -22,10 +22,7 @@ This project was created to optimise the workflow of the Planning Inspectorate g
 
 ## Running Locally for Development (InteliJ recommended but not required)
 1. Clone this repository into a local destination
-```
-git clone https://github.com/spe-uob/2021-PlanningInspectorate.git
-```
-3. Install [Postgres DB V14](https://www.postgresql.org/download/)
+2. Install [Postgres DB V14](https://www.postgresql.org/download/)
 > Follow the default instructions and either user the default username and passwords or create your own. If using a custom password then update the following in application.properties in the springboot project (this is only for development, in deployment environment variables will be used)  
 4. Ensure [JDK 17](https://openjdk.java.net/install/) is installed on the machine, this can be done via the link or in InteliJ autmatically when the project is loaded (recommended)
 5. The project is now configured correctly and can be run using InteliJ (green play button) or on the command line as follow
