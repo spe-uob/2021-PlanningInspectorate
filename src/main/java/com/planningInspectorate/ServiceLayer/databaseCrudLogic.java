@@ -63,17 +63,10 @@ public class databaseCrudLogic {
 
     // creates otp from contact_id and inserts into database
     public String GetRecordOneTimePin(String recordId) throws NoSuchAlgorithmException {
-        /*BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String otp = bCryptPasswordEncoder.encode(recordId);
-        System.out.println(otp);
-        contactRepository.addOtp(otp, Long.parseLong(recordId));
-        System.out.println(otp);
-        return otp;
-        /*oneTimePinUtil generate = new oneTimePinUtil();
-        return generate.GenerateOneTimePinHashFromId(recordId);*/
 
         oneTimePinUtil pinGen = new oneTimePinUtil();
         String otp = pinGen.GenerateOneTimePinHashFromId(recordId);
+        contactRepository.addOtp(otp, Long.parseLong(recordId));
 
         return otp;
     }
@@ -163,37 +156,33 @@ public class databaseCrudLogic {
     // check if a record exits via otp
     public boolean VerifyOTP(String pin) {
         List<String> otpRow = contactRepository.getOtpRow(pin);
-        System.out.println(otpRow.toString());
         if(otpRow == null){
-            System.out.println("first case");
             return false;
         }
         else if(otpRow.size() == 0){
-            System.out.println("second case");
             return false;
         }
         else{
-            System.out.println("Third case");
             return true;
         }
         //return otpRow != null && otpRow.size() > 0;
     }
 
     // get all record data corresponding to otp
-    public CompleteRecord[] GetRecordFromOtp(String pin) {
-        List<String> result = departmentRepository.getRecordFromOtp(pin);
-
-        String recordId = result.get(0);
-        String deptName = result.get(1);
-        String orgName = result.get(2);
-        String test = result.get(3);
-        String notes = result.get(4);
-        String method = result.get(5);
-        String name = result.get(6);
-        String email = result.get(7);
+    public CompleteRecord GetRecordFromOtp(String pin) {
+        List<String> data = departmentRepository.getRecordFromOtp(pin);
+        var result = data.get(0).split(",");
+        String recordId = result[0];
+        String deptName = result[1];
+        String orgName = result[2];
+        String test = result[3];
+        String notes = result[4];
+        String method = result[5];
+        String name = result[6];
+        String email = result[7];
         CompleteRecord record = new CompleteRecord(recordId, deptName, orgName, test, notes, method, name, email);
 
-        return new CompleteRecord[]{record};
+        return record;
     }
 
     // update data corresponding to otp
