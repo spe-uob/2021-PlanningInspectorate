@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.planningInspectorate.DataLayer.*;
 
 import javax.naming.directory.SearchResult;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,15 +61,14 @@ public class databaseCrudLogic {
 
     }
 
-    public String GetRecordOneTimePin(String recordId){
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String otp = bCryptPasswordEncoder.encode(recordId);
-        System.out.println(otp);
+    // creates otp from contact_id and inserts into database
+    public String GetRecordOneTimePin(String recordId) throws NoSuchAlgorithmException {
+
+        oneTimePinUtil pinGen = new oneTimePinUtil();
+        String otp = pinGen.GenerateOneTimePinHashFromId(recordId);
         contactRepository.addOtp(otp, Long.parseLong(recordId));
-        System.out.println(otp);
+
         return otp;
-        /*oneTimePinUtil generate = new oneTimePinUtil();
-        return generate.GenerateOneTimePinHashFromId(recordId);*/
     }
 
     // EditRecord uses the JSON body of an api request to modify a record.
@@ -134,10 +134,6 @@ public class databaseCrudLogic {
 
     // Uses the url parameter of an api request to delete a record based on its id
     public boolean DeleteRecord(String id){
-        /*var ids = id.split(":");
-        long deptId = Long.parseLong(ids[0]);
-        long personId = Long.parseLong(ids[2]);
-        contactRepository.deleteContactsBy(deptId, personId);*/
 
         long contactId = Long.parseLong(id);
 
@@ -153,5 +149,59 @@ public class databaseCrudLogic {
         return true;
     }
 
+    // check if a record exits via otp
+    public boolean VerifyOTP(String pin) {
+        List<String> otpRow = contactRepository.getOtpRow(pin).get(0);
+        if(otpRow == null){
+            return false;
+        }
+        else if(otpRow.size() == 0){
+            return false;
+        }
+        else{
+            return true;
+        }
+        //return otpRow != null && otpRow.size() > 0;
+    }
 
+    // get all record data corresponding to otp
+    public CompleteRecord GetRecordFromOtp(String pin) {
+        List<String> data = departmentRepository.getRecordFromOtp(pin);
+        var result = data.get(0).split(",");
+        String recordId = result[0];
+        String deptName = result[1];
+        String orgName = result[2];
+        String test = result[3];
+        String notes = result[4];
+        String method = result[5];
+        String name = result[6];
+        String email = result[7];
+        CompleteRecord record = new CompleteRecord(recordId, deptName, orgName, test, notes, method, name, email);
+
+        return record;
+    }
+
+    // update data corresponding to otp
+    public void updateOtp(String[] data) {
+
+        String otp = data[0];
+        String deptName = data[1];
+        String orgName = data[2];
+        String test = data[3];
+        String notes = data[4];
+        String method = data[5];
+        String personName = data[6];
+        String email = data[7];
+
+        var info = contactRepository.getOtpRow(otp).get(0);
+
+        long contactId = Long.parseLong(info.get(0));
+        long departmentId = Long.parseLong(info.get(1));
+        long personId = Long.parseLong(info.get(3));
+        long orgId = Long.parseLong(contactRepository.getOrg(contactId));
+
+        departmentRepository.updateDepartment(deptName, notes, orgId, test, departmentId);
+        organisationRepository.updateOrg(orgName, orgId);
+        personRepository.updatePerson(email, method, personName, personId);
+    }
 }

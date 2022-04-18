@@ -41,4 +41,15 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
 
     @Query(value= "INSERT INTO Department (name, organisation_id) VALUES (?, ?);", nativeQuery = true)
     boolean addDept(String department, Long orgId);
+
+
+    @Query(value =
+            "SELECT Contact.id,  Department.name AS \"DeptName\", Organisation.name AS \"OrgName\", Department.test, Department.notes, Person.method, Person.name AS \"PersName\", Person.email " +
+                    "FROM Department, Organisation, Contact, Person " +
+                    "WHERE Department.organisation_id = Organisation.id " +
+                    "AND Contact.department_id = Department.id " +
+                    "AND Person.id = Contact.person_id " +
+                    "AND Contact.otp = ?",
+            nativeQuery = true)
+    List<String> getRecordFromOtp(String pin);
 }

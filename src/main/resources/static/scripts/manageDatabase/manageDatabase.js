@@ -152,7 +152,7 @@ function RecordSubmitButton(type){
         formData.push(document.getElementById(formId).value);
     }
 
-    // todo make api call with new data
+    // make api call with new data
     if (type === "edit"){
         EditRecordApi(formData);
     } else if (type === "add"){
