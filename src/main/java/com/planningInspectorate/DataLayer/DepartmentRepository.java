@@ -17,7 +17,7 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
             "WHERE Department.organisation_id = Organisation.id " +
             "AND Contact.department_id = Department.id " +
             "AND Person.id = Contact.person_id " +
-            "AND Department.name = ?",
+            "AND Department.name LIKE ?",
             nativeQuery = true)
     List<List<String>> getRecord(String dept);
 
@@ -33,7 +33,7 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
     @Query(value =
             "SELECT Department.Id " +
                     "FROM Department, Organisation " +
-                    "WHERE Department.name = ? " +
+                    "WHERE Department.name LIKE ? " +
                     "AND Organisation.id = ? " +
                     "AND Department.organisation_id = Organisation.id;",
             nativeQuery = true)
