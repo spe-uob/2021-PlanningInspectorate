@@ -19,6 +19,7 @@ This project was created to optimise the workflow of the Planning Inspectorate g
 
 ## Dependencies
 * JDK 17
+* Postgres 14
 
 ## Running Locally for Development (InteliJ recommended but not required)
 1. Clone this repository into a local destination
@@ -47,7 +48,7 @@ git clone https://github.com/spe-uob/2021-PlanningInspectorate.git
 ``` 
 mvn clean package -DskipTests=True
 ```
-5. You now need to get this Jar file onto the EC2 instance. There are several ways to do this including ftp but we reccommend connecting via [WinSCP](https://winscp.net/eng/index.php) and using the .pem access key provided by amazon
+5. You now need to get this Jar file onto the EC2 instance. There are several ways to do this including ftp but we reccommend connecting via [WinSCP](https://winscp.net/eng/index.php) and using the .pem access key provided by amazon (if not using windows, there are various other ways and tutorials on how to copy the jar to AWS )
 6. Next we need to setup the EC2 instance by pasting the following commands
 ```
 sudo tee /etc/yum.repos.d/pgdg.repo<<EOF
