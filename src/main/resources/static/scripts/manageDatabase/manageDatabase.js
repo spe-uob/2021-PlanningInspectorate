@@ -115,6 +115,7 @@ function CreateNewDatabaseViewRow(data) {
 function SearchDatabaseButton(){
     let form = document.getElementById("search-database-form");
     let textInput = document.getElementById("search-database-input");
+    let dropdown = document.getElementById("search-database-dropdown");
     let button = document.getElementById("search-database-button");
     // check for empty input
     if (textInput.value === "") {
@@ -123,7 +124,7 @@ function SearchDatabaseButton(){
         return false;
     }
     // if not empty then reset colours and proceed processing input
-    form.classList.remove("is-invalid");
+    //form.classList.remove("is-invalid");
     button.style.color = "#00BCD4";
 
     let searchValue = textInput.value;
