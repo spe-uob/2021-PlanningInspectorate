@@ -48,6 +48,11 @@ public class databaseCrudController {
 
     @GetMapping("/getRecords/{searchTerm}")
     public CompleteRecord[] GetRecords(@PathVariable String searchTerm){
+        // @Imran, search term is now a 2 value array, value 1 is the search term and value 2 is an integer (sent as a string)
+        // that represents which of the dropdown options was selected, 1 through 7 corresponding to
+        // Sched 1, Org name, APFP, Notes, Method, Name, Email
+        // now needs to search based on that dropdown
+        // Also when we delete records from the website it throws an sql error, I think its todo with otp
         return databaseCrudLogic.GetRecords(searchTerm);
     }
 

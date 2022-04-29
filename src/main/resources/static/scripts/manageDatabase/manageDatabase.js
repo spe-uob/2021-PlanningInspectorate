@@ -131,8 +131,8 @@ function SearchDatabaseButton(){
     // remove info text if they perform a search
     let infoText = document.getElementById("search-database-info");
     infoText.innerHTML = loadingBar;
-
-    GetRecordApi(searchValue).then(r => {
+    let request = [searchValue, dropdown.value];
+    GetRecordApi(request).then(r => {
         infoText.innerHTML = "";
     });
 }
