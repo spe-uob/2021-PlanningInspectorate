@@ -2,10 +2,13 @@ package com.planningInspectorate;
 
 import com.planningInspectorate.DataLayer.*;
 import com.planningInspectorate.ServiceLayer.databaseCrudLogic;
+import com.planningInspectorate.ServiceLayer.oneTimePinUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.security.NoSuchAlgorithmException;
 
 @SpringBootTest
 class PlanningInspectorateApplicationTests {
@@ -18,6 +21,8 @@ class PlanningInspectorateApplicationTests {
 	private OrganisationRepository organisationRepository;
 	@Autowired
 	private PersonRepository personRepository;
+	@Autowired
+	private UpdateRecordRepository updateRecordRepository;
 
 	@Test
 	void contextLoads() {
@@ -57,4 +62,10 @@ class PlanningInspectorateApplicationTests {
 
 		assert complete;
 	}
+
+	@Test
+	void c_testSHA256Hashing() throws NoSuchAlgorithmException {
+
+	}
+
 }
