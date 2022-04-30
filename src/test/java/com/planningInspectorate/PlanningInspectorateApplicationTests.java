@@ -65,6 +65,13 @@ class PlanningInspectorateApplicationTests {
 
 	@Test
 	void c_testSHA256Hashing() throws NoSuchAlgorithmException {
+		oneTimePinUtil otpgen = new oneTimePinUtil();
+		String otp = otpgen.GenerateOneTimePinHashFromId("12345");
+
+		boolean complete = otp != "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5";
+
+
+		assert complete;
 
 	}
 
