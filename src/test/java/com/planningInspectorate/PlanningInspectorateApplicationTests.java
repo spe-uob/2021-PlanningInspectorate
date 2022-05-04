@@ -35,7 +35,7 @@ class PlanningInspectorateApplicationTests {
 	@Test
 	void b_testRead(){
 		databaseCrudLogic crud = new databaseCrudLogic();
-		boolean complete = crud.GetRecords("department") != null;
+		boolean complete = crud.GetRecords(new String[]{"department", "1"}) != null;
 
 		assert complete;
 	}
@@ -52,7 +52,7 @@ class PlanningInspectorateApplicationTests {
 	@Test
 	void d_testDelete(){
 		databaseCrudLogic crud = new databaseCrudLogic();
-		String id = crud.GetRecords("department2")[0].getId();
+		String id = crud.GetRecords(new String[]{"department2", "1"})[0].getId();
 		boolean complete = crud.DeleteRecord(id);
 
 		assert complete;
