@@ -8,6 +8,7 @@ import com.planningInspectorate.DataLayer.*;
 
 import javax.naming.directory.SearchResult;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,21 +31,59 @@ public class databaseCrudLogic {
     private UpdateRecordRepository updateRecordRepository;
 
     // GetRecords takes a string as a url parameter and returns the matching records
-    public CompleteRecord[] GetRecords(String searchTerm){
+    public CompleteRecord[] GetRecords(String[] searchTerm){
+
         // todo: search the database using searchTerm, for now only 1 column then create an array of CompleteRecord[]
         // and return it in this function
-
+        String searchBy = searchTerm[0];
+        if (searchBy == ""){
+            return new CompleteRecord[]{};
+        }
+        String field;
         List<List<String>> result;
         try {
-            result = departmentRepository.getRecord(searchTerm);
+            switch (Integer.parseInt(searchTerm[1])) {
+                case 1:
+                    result = departmentRepository.getRecordByDept(searchBy);
+                    break;
+                case 2:
+                    result = departmentRepository.getRecordByOrg(searchBy);
+                    field = "Organisation.name";
+                    break;
+                case 3:
+                    result = departmentRepository.getRecordByTest(searchBy);
+                    field = "Department.test";
+                    break;
+                case 4:
+                    result = departmentRepository.getRecordByNotes(searchBy);
+                    field = "Department.notes";
+                    break;
+                case 5:
+                    result = departmentRepository.getRecordByMethod(searchBy);
+                    field = "Person.method";
+                    break;
+                case 6:
+                    result = departmentRepository.getRecordByPerson(searchBy);
+                    field = "Person.name";
+                    break;
+                case 7:
+                    result = departmentRepository.getRecordByEmail(searchBy);
+                    field = "Person.email";
+                    break;
+                default:
+                    result = new ArrayList<>();
+                    field = "";
+                    break;
+            }
         }
-        catch (Exception e){
+        catch(Exception e){
             return new CompleteRecord[]{new CompleteRecord("0")};
         }
 
         CompleteRecord[] records = new CompleteRecord[result.size()];
         for(int i = 0; i < records.length; i++){
             List<String> currentResult = result.get(i);
+            System.out.println(currentResult.toString());
             //String recordId = currentResult.get(0).toString() + ":" + currentResult.get(1).toString() + ":" + currentResult.get(2);
             String recordId = currentResult.get(0);
             String deptName = currentResult.get(1);
