@@ -56,7 +56,7 @@ mvn spring-boot:run
 ```
 git clone https://github.com/spe-uob/2021-PlanningInspectorate.git
 ```
-3. Open in your editor of choice and navigate to ```src/main/resources/application.properties``` and edit the spring datasource parameters to connect to localhost
+3. Open in your editor of choice and navigate to ```src/main/resources/application.properties``` and edit the spring datasource parameters to connect to localhost, also ensure that the application port is set to ```8080```, it is sometimes set to others for testing and development.
 4. Locally compile the application by using
 ``` 
 mvn clean package -DskipTests=True
