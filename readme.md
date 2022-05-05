@@ -1,3 +1,5 @@
+[![spe-uob](https://circleci.com/gh/spe-uob/2021-PlanningInspectorate.svg?style=svg&circle-token=91cc6fd237c6936ab63175e11c9dd81c1add4670)](https://app.circleci.com/pipelines/github/spe-uob/2021-PlanningInspectorate)
+
 
 # UoB SPE Planning inspectorate
 
