@@ -22,11 +22,28 @@ A member of the planning inspectorate team should be able to:
 * Search for relations between people, departments and organisations based on any relevant field in the database.
 * Create a one time pin to allow a person to edit their data without accessing anyone elses.
 
-## Documentation, class, architecure and sequence diagrams
+## Documentation, Class, Architecure and Sequence diagrams
 [Documentation](https://github.com/spe-uob/2021-PlanningInspectorate/blob/11a1a06bcd191bbe62796b09e543b33dbf3c6311/docs/Planning%20Inspectorate%20Documentation.docx)
+
+### Class Diagrams
+We have some abstracted class diagrams to demonstrate some of the key components of the tool
+#### OTP class diagram:
+<img width="500" alt="demo image" src="https://user-images.githubusercontent.com/43220609/167017821-6e1bff1d-c58c-4bdf-9b3b-542550a661c4.jpg">
+
+#### CRUD Controller class diagram:
+<img width="500" alt="demo image" src="https://user-images.githubusercontent.com/43220609/167017521-512a15b7-c040-47de-9d6b-7bbdff87e8cf.jpg">
+
+### Architecture Diagram:
+<img width="300" alt="demo image" src="https://user-images.githubusercontent.com/43220609/167017962-d7073591-7662-4b11-8a9b-4bc533200d06.jpg">
+
+### Sequence Diagram:
+This shows a sequence diagram for a get request in the applicaiton
+<img width="900" alt="demo image" src="https://user-images.githubusercontent.com/43220609/167022491-7fd1193c-9e1f-45f9-85da-bf00888e9720.png">
+
 
 ## Tech Stack
 * Rest API backend created in Springboot
+
 * HMTL, CSS and JS frontend making heavy usage of the Google MDL (medium design language) library for accessabillity and consistency
 * Postgres DB for the persistent storage component of the project
 
