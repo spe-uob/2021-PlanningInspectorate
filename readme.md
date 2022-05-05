@@ -12,6 +12,9 @@ This project was created to optimise the workflow of the Planning Inspectorate g
 
 * The time it takes to manually compile consultation lists during pre-application and to conduct/monitor the consultation process. Therefore an automated solution that refreshes and enhances the EST GIS consultation tool and reduce the time taken to identify relevant consultation bodies for Nationally Significant Infrastructure Projects (NSIPs) and compile consultation body lists would be of great convenice. 
 
+## Documentation, class, architecure and sequence diagrams
+[Documentation](https://github.com/spe-uob/2021-PlanningInspectorate/blob/11a1a06bcd191bbe62796b09e543b33dbf3c6311/docs/Planning%20Inspectorate%20Documentation.docx)
+
 ## Tech Stack
 * Rest API backend created in Springboot
 * HMTL, CSS and JS frontend making heavy usage of the Google MDL (medium design language) library for accessabillity and consistency
