@@ -64,10 +64,10 @@ function SetupAddRecordPopup() {
     // Get the <button> element that closes the popup
     let closeBtn = document.getElementById("add-close-popup-button");
     // When the user clicks on the button, open the popup
-
     addRecordBtn.onclick = function () {
         // display popup
         popup.style.display = "block";
+
     }
     closeBtn.onclick = function () {
         popup.style.display = "none";

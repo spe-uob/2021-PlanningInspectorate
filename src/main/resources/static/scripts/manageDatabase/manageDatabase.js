@@ -115,23 +115,24 @@ function CreateNewDatabaseViewRow(data) {
 function SearchDatabaseButton(){
     let form = document.getElementById("search-database-form");
     let textInput = document.getElementById("search-database-input");
+    let dropdown = document.getElementById("search-database-dropdown");
     let button = document.getElementById("search-database-button");
     // check for empty input
-    if (textInput.value === "") {
+    /*if (textInput.value === "") {
         form.classList.add("is-invalid");
         button.style.color = "#D50000";
         return false;
     }
     // if not empty then reset colours and proceed processing input
-    form.classList.remove("is-invalid");
+    //form.classList.remove("is-invalid");
     button.style.color = "#00BCD4";
-
+*/
     let searchValue = textInput.value;
     // remove info text if they perform a search
     let infoText = document.getElementById("search-database-info");
     infoText.innerHTML = loadingBar;
-
-    GetRecordApi(searchValue).then(r => {
+    let request = [searchValue, dropdown.value];
+    GetRecordApi(request).then(r => {
         infoText.innerHTML = "";
     });
 }

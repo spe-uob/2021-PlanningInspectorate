@@ -55,15 +55,17 @@ async function SubmitOtp(){
     if (!(response.status >= 200 && response.status <= 299)) {
         return false;   
     }
+    console.log(response);
     // await response and retrieve json list of records
     console.log(response.body);
     let jsonVals = await response.json();
-    console.log(jsonVals);
     let oldData = [];
     let keys = Object.keys(jsonVals);
+    console.log("awaited2");
     keys.forEach(function(key){
         oldData.push(jsonVals[key]);
     });
+    console.log("awaited3");
 
     // populate record edit container with correct values
     let otpRecordForm = document.getElementById("otp-edit-record");

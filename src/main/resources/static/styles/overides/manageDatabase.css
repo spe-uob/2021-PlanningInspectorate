@@ -51,6 +51,12 @@
     resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
 }
 
+#search-database-form {
+    display: flex;
+    flex-direction: row;
+
+}
+
 #delete-record-popup {
     background-color: rgba(0,0,0,0%);
     width: 100%;
@@ -136,22 +142,32 @@
 
 .filter-search-row {
     display: flex;
-    align-items: center;
     width: 100%;
 }
 
+
 .database-search-form {
-    margin: 5px;
-    width: 70%;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
 }
 
-.search-database-textfield {
-    width: 60%;
+.database-search-form > * {
+    margin: 5px;
 }
+
 
 .database-search-button {
-    margin: 5px;
-    flex-grow: 2;
+    width: 30%;
+    margin-left: 30%;
+}
+
+#search-database-dropdown {
+    width: 20%;
+}
+
+#search-database-input {
+    width: 40%;
 }
 
 .database-crud-viewer {

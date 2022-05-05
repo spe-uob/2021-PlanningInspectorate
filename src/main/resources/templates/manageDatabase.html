@@ -152,17 +152,24 @@
         <div class="database-crud-viewer">
             <div class="filter-search-row">
                 <form class="database-search-form" onsubmit="SearchDatabaseButton();return false">
-                    <button type="submit" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
-                        <i id="search-database-button" class="material-icons">search</i>
-                    </button>
-                    <div id="search-database-form" class="search-database-textfield mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" type="text" id="search-database-input">
-                        <label class="mdl-textfield__label" for="search-database-input">Search database</label>
-                    </div>
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+                            <i id="search-database-button" class="material-icons">search</i>
+                        </button>
+                        <input class="mdl-textfield__input" placeholder="Search Term" type="text" id="search-database-input">
+                        <select class="mdl-textfield__input" id="search-database-dropdown" name="octane">
+                            <option value="1">Sched 1</option>
+                            <option value="2">Org name</option>
+                            <option value="3">APFP</option>
+                            <option value="4">Notes</option>
+                            <option value="5">Method</option>
+                            <option value="6">Name</option>
+                            <option value="7">Email</option>
+                        </select>
+                        <button id="add-record-button" class="database-search-button mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">
+                            Add Record
+                        </button>
                 </form>
-                <button id="add-record-button" class="database-search-button mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect">
-                    Add Record
-                </button>
+
             </div>
             <table class="database-view mdl-data-table mdl-js-data-table mdl-shadow--2dp">
                     <thead id="database-table-head">

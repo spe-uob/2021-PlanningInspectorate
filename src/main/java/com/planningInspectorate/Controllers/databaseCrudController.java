@@ -50,7 +50,8 @@ public class databaseCrudController {
 
     @CrossOrigin(origins = "http://localhost:8081")
     @GetMapping("/getRecords/{searchTerm}")
-    public CompleteRecord[] GetRecords(@PathVariable String searchTerm){
+    public CompleteRecord[] GetRecords(@PathVariable String[] searchTerm){
+
         return databaseCrudLogic.GetRecords(searchTerm);
     }
 
@@ -82,29 +83,18 @@ public class databaseCrudController {
     @GetMapping("/verifyOTP/{pin}")
     public boolean VerifyOTP(@PathVariable String pin){
         return databaseCrudLogic.VerifyOTP(pin);
-        // Imran can you implement this should return true or false for if the pin exists or doesn't
-        // gonna use a second function to get the record data from a given pin
-        //return true;
     }
 
     @CrossOrigin(origins = "http://localhost:8081")
     @GetMapping("/getRecordFromOTP/{pin}")
     public CompleteRecord GetRecordFromOTP(@PathVariable String pin){
         return databaseCrudLogic.GetRecordFromOtp(pin);
-        // This should return a record based on the OTP pin, basically identical to get record but searches OTP's
-        // Should only be used after VerifyOTP
-        //return null;
     }
 
     @CrossOrigin(origins = "http://localhost:8081")
     @PutMapping("/updateOtp")
     public boolean updateOtp(@RequestBody String[] data){
         databaseCrudLogic.updateOtp(data);
-        // another one, this gets sent when the user updates the data, the String[] data is an array of the new data
-        // it has the otp as the first field (should be used to identify the record that needs updating)
-        // it then has the values (no id) so sched 1, org name, apfp regs etc
-        // There is no spam handling on the frontend so once this is called it should also delete the otp for that record
-
         return true;
     }
 }

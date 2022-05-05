@@ -102,4 +102,18 @@ public class CompleteRecord {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "CompleteRecord{" +
+                "id='" + id + '\'' +
+                ", department='" + department + '\'' +
+                ", organisationName='" + organisationName + '\'' +
+                ", apfpTest='" + apfpTest + '\'' +
+                ", notes='" + notes + '\'' +
+                ", contactMethod='" + contactMethod + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
