@@ -118,7 +118,7 @@ function SearchDatabaseButton(){
     let dropdown = document.getElementById("search-database-dropdown");
     let button = document.getElementById("search-database-button");
     // check for empty input
-    if (textInput.value === "") {
+    /*if (textInput.value === "") {
         form.classList.add("is-invalid");
         button.style.color = "#D50000";
         return false;
@@ -126,7 +126,7 @@ function SearchDatabaseButton(){
     // if not empty then reset colours and proceed processing input
     //form.classList.remove("is-invalid");
     button.style.color = "#00BCD4";
-
+*/
     let searchValue = textInput.value;
     // remove info text if they perform a search
     let infoText = document.getElementById("search-database-info");
