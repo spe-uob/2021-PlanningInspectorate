@@ -53,10 +53,12 @@ async function SubmitOtp(){
     response = await fetch(request);
     // check for API response error
     if (!(response.status >= 200 && response.status <= 299)) {
-        return false;
+        return false;   
     }
     // await response and retrieve json list of records
+    console.log(response.body);
     let jsonVals = await response.json();
+    console.log(jsonVals);
     let oldData = [];
     let keys = Object.keys(jsonVals);
     keys.forEach(function(key){
