@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com</groupId>
-	<artifactId>planningInspectorate</artifactId>
+	<artifactId>planning-inspectorate</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>planningInspectorate</name>
 	<description>Planning inspectorate project</description>
@@ -54,9 +54,15 @@
 			<version>1.5.5</version>
 		</dependency>
 		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>31.0.1-jre</version>
+		</dependency>
+		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 		</dependency>
+
 	</dependencies>
 
 	<build>

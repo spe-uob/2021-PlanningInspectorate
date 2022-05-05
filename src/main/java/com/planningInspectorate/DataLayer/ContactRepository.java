@@ -6,13 +6,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface ContactRepository extends JpaRepository<Contact, Long> {
 
         @Modifying
-        @Query(value = "DELETE FROM contact WHERE department_id = ? AND person_id = ?", nativeQuery = true)
+        @Query(value = "DELETE FROM contact " +
+                "WHERE department_id = ? " +
+                "AND person_id = ?", nativeQuery = true)
         int deleteContactsBy(long departmentId, long personId);
 
         @Query(value =
@@ -24,7 +27,9 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
         String getOrg(long contactId);
 
         @Query(value=
-                "SELECT department_id FROM contact WHERE id = ?",
+                "SELECT department_id " +
+                        "FROM contact " +
+                        "WHERE id = ?",
                 nativeQuery = true)
         String getDept(long contactId);
 
@@ -41,8 +46,18 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
                 nativeQuery = true)
         int addOtp(String otp, Long id);
 
+        @Query(value= "SELECT * " +
+                "FROM Contact " +
+                "WHERE otp = ?",
+        nativeQuery = true)
+        List<List<String>> getOtpRow(String pin);
+
         @Query(value =
-                "SELECT person_id FROM Contact WHERE id = ?",
+                "SELECT person_id " +
+                        "FROM Contact " +
+                        "WHERE id = ?",
                 nativeQuery = true)
         String getPerson(long contactId);
+
+
 }

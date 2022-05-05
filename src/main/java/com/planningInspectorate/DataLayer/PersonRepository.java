@@ -25,9 +25,16 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
 
 
-    @Query(value = "SELECT id FROM Person WHERE name = ? AND method = ? AND email = ?", nativeQuery = true)
+    @Query(value = "SELECT id FROM Person " +
+            "WHERE name LIKE ? " +
+            "AND method LIKE ? AND " +
+            "email LIKE ?",
+            nativeQuery = true)
     List<String> getPerson(String name, String contactMethod, String email);
 
-    @Query(value = "SELECT * FROM Person WHERE id = ?", nativeQuery = true)
+    @Query(value = "SELECT * " +
+            "FROM Person " +
+            "WHERE id = ?",
+            nativeQuery = true)
     List<String> getPersonInfo(Long id);
 }

@@ -20,7 +20,8 @@ public class Contact {
     private long departmentId; // foreign key - department table
     @Column
     private long personId; // foreign key - person table
-    @Column(nullable = true)
+    @Lob
+    @Column(nullable = true, length = 512)
     private String otp;
 
     public Contact(){}

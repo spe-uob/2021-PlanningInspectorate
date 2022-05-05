@@ -7,9 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.planningInspectorate.DataLayer.CompleteRecord;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLOutput;
+import java.util.Arrays;
+
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8081")
 @RequestMapping(path="api/v1/dbCrud")
 public class databaseCrudController {
 
@@ -44,29 +48,53 @@ public class databaseCrudController {
         this.databaseCrudLogic = databaseCrudLogic;
     }
 
+    @CrossOrigin(origins = "http://localhost:8081")
     @GetMapping("/getRecords/{searchTerm}")
-    public CompleteRecord[] GetRecords(@PathVariable String searchTerm){
+    public CompleteRecord[] GetRecords(@PathVariable String[] searchTerm){
+
         return databaseCrudLogic.GetRecords(searchTerm);
     }
 
+    @CrossOrigin(origins = "http://localhost:8081")
     @GetMapping("/getRecordPin/{recordId}")
-    public String GetRecordPin(@PathVariable String recordId){
+    public String GetRecordPin(@PathVariable String recordId) throws NoSuchAlgorithmException {
         return databaseCrudLogic.GetRecordOneTimePin(recordId);
     }
 
+    @CrossOrigin(origins = "http://localhost:8081")
     @PutMapping("/editRecords")
     public boolean EditRecord(@RequestBody String[] data){
         return databaseCrudLogic.EditRecord(ConvertArrayToObject(data));
     }
 
+    @CrossOrigin(origins = "http://localhost:8081")
     @PostMapping("/addRecord")
     public boolean AddRecord(@RequestBody String[] data){
         return databaseCrudLogic.AddRecord(ConvertArrayToObject(data));
     }
 
+    @CrossOrigin(origins = "http://localhost:8081")
     @DeleteMapping("/deleteRecord/{id}")
     public boolean DeleteRecord(@PathVariable String id){
          return databaseCrudLogic.DeleteRecord(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:8081")
+    @GetMapping("/verifyOTP/{pin}")
+    public boolean VerifyOTP(@PathVariable String pin){
+        return databaseCrudLogic.VerifyOTP(pin);
+    }
+
+    @CrossOrigin(origins = "http://localhost:8081")
+    @GetMapping("/getRecordFromOTP/{pin}")
+    public CompleteRecord GetRecordFromOTP(@PathVariable String pin){
+        return databaseCrudLogic.GetRecordFromOtp(pin);
+    }
+
+    @CrossOrigin(origins = "http://localhost:8081")
+    @PutMapping("/updateOtp")
+    public boolean updateOtp(@RequestBody String[] data){
+        databaseCrudLogic.updateOtp(data);
+        return true;
+    }
 }
