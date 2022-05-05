@@ -93,7 +93,7 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
     @Query(value =
             "SELECT Department.Id " +
                     "FROM Department, Organisation " +
-                    "WHERE Department.name = ? " +
+                    "WHERE Department.name LIKE ? " +
                     "AND Organisation.id = ? " +
                     "AND Department.organisation_id = Organisation.id;",
             nativeQuery = true)

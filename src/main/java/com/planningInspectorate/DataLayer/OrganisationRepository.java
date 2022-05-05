@@ -19,7 +19,10 @@ public interface OrganisationRepository extends JpaRepository<Organisation, Long
     void updateOrg(String name, long orgId);
 
 
-    @Query(value = "SELECT id, name FROM Organisation WHERE name = ?", nativeQuery = true)
+    @Query(value = "SELECT id, name " +
+            "FROM Organisation " +
+            "WHERE name LIKE ?",
+            nativeQuery = true)
     List<List<String>> getByName(String organisationName);
 
     @Query(value="INSERT INTO Organisation (name) " +

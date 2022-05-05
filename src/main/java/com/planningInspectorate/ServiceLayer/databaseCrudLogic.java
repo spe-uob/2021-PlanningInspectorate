@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-// TODO: REWRITE THIS. IT IS AWFUL.
 
 @Service
 public class databaseCrudLogic {
